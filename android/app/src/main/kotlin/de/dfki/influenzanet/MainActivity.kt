@@ -1,4 +1,4 @@
-package com.example.influenzanet_app
+package de.dfki.influenzanet
 
 import android.os.Bundle
 
