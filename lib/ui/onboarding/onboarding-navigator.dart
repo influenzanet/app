@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/common/widgets/navigators/navigator-page.dart';
 import 'package:InfluenzaNet/ui/onboarding/pages/instance-selection-page.dart';
 import 'package:InfluenzaNet/ui/onboarding/pages/login-page.dart';
 import 'package:InfluenzaNet/ui/onboarding/pages/register-page.dart';
@@ -12,7 +13,7 @@ class OnboardingNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Navigator(
+    return NavigatorPage(
       initialRoute: instanceSelectionRoute,
       onGenerateRoute: (RouteSettings settings) {
         WidgetBuilder builder;

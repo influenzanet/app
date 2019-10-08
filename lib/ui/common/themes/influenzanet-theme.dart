@@ -15,7 +15,12 @@ ThemeData influenzaNetTheme = ThemeData(
     buttonTheme: ButtonThemeData(
         buttonColor: ThemeElements.primaryColor,
         textTheme: ButtonTextTheme.primary,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(19.0))));
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(19.0))),
+    appBarTheme: AppBarTheme(
+        color: Colors.white,
+        brightness: Brightness.light,
+        elevation: 0.0,
+        iconTheme: IconThemeData(color: Colors.black)));
 
 class ThemeElements {
   static const MaterialColor primarySwatch = MaterialColor(0xff4b669d, {

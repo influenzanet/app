@@ -1,5 +1,7 @@
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-flat-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-raised-button.dart';
+import 'package:InfluenzaNet/ui/onboarding/onboarding-navigator.dart';
+import 'package:InfluenzaNet/ui/onboarding/pages/welcome-page.dart';
 import 'package:flutter/material.dart';
 
 class InstanceSelectionPage extends StatelessWidget {
@@ -17,7 +19,7 @@ class InstanceSelectionPage extends StatelessWidget {
           Spacer(flex: 15),
           _countrySelection(themeData),
           Spacer(flex: 20),
-          _nextButton(themeData),
+          _nextButton(context, themeData),
           Spacer(flex: 10)
         ],
       ),
@@ -70,7 +72,10 @@ class InstanceSelectionPage extends StatelessWidget {
     );
   }
 
-  Widget _nextButton(ThemeData themeData) {
+  Widget _nextButton(
+    BuildContext context,
+    ThemeData themeData,
+  ) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -78,7 +83,9 @@ class InstanceSelectionPage extends StatelessWidget {
         ThemedRaisedButton(
           themeData,
           text: 'Next',
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(OnboardingNavigator.welcomeRoute);
+          },
         ),
       ],
     );

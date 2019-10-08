@@ -10,6 +10,5 @@ class ThemedAppBar extends AppBar {
         ));
   }
 
-  ThemedAppBar.widget(ThemeData themeData, {Widget title})
-      : super(brightness: Brightness.light, backgroundColor: Colors.white, centerTitle: true, title: title);
+  ThemedAppBar.widget(ThemeData themeData, {Widget title}) : super(centerTitle: true, title: title);
 }
