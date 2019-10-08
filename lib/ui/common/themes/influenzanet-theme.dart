@@ -52,6 +52,6 @@ class ThemeElements {
   static const Color accentColorDark = const Color(0xff2d8181);
 
   static const TextStyle displayTextStyle = TextStyle(
-    color: primaryColor,
+    color: accentColor,
   );
 }
