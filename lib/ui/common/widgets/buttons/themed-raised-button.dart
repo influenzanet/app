@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ThemedRaisedButton extends RaisedButton {
-  factory ThemedRaisedButton(ThemeData themeData, {String text, void Function() onPressed}) {
+  factory ThemedRaisedButton(ThemeData themeData, {String text = '', void Function() onPressed}) {
     return ThemedRaisedButton.widget(
       themeData,
       child: Text(

@@ -2,7 +2,7 @@ import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:flutter/material.dart';
 
 class ThemedFlatButton extends FlatButton {
-  factory ThemedFlatButton(ThemeData themeData, {String text, void Function() onPressed}) {
+  factory ThemedFlatButton(ThemeData themeData, {String text = '', void Function() onPressed}) {
     return ThemedFlatButton.widget(
       themeData,
       child: Text(text),
