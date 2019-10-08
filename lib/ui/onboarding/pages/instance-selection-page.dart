@@ -1,7 +1,6 @@
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-flat-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-raised-button.dart';
 import 'package:InfluenzaNet/ui/onboarding/onboarding-navigator.dart';
-import 'package:InfluenzaNet/ui/onboarding/pages/welcome-page.dart';
 import 'package:flutter/material.dart';
 
 class InstanceSelectionPage extends StatelessWidget {
