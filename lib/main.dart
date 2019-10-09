@@ -31,6 +31,7 @@ class InfluenzaNet extends StatelessWidget {
     return MaterialApp(
         title: 'InfluenzaNet',
         theme: influenzaNetTheme,
+        debugShowCheckedModeBanner: false,
         initialRoute: onboardingRoute,
         routes: {onboardingRoute: _onboardingNavigator, mainRoute: _mainNavigator});
   }
