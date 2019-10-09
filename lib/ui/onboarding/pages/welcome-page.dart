@@ -1,6 +1,7 @@
 import 'package:InfluenzaNet/ui/common/widgets/app-bars/themed-app-bar.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-raised-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
+import 'package:InfluenzaNet/ui/onboarding/onboarding-navigator.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -18,8 +19,8 @@ class WelcomePage extends StatelessWidget {
             _welcomeText(themeData),
             _logo(),
             Spacer(flex: 20),
-            _loginButton(themeData),
-            _signupButton(themeData),
+            _loginButton(themeData, context),
+            _signupButton(themeData, context),
           ],
         ),
       ),
@@ -41,22 +42,26 @@ class WelcomePage extends StatelessWidget {
     );
   }
 
-  Widget _loginButton(ThemeData themeData) {
+  Widget _loginButton(ThemeData themeData, BuildContext context) {
     return ThemedRaisedButton(
       themeData,
       text: 'Login',
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pushNamed(OnboardingNavigator.loginRoute);
+      },
     );
   }
 
-  Widget _signupButton(ThemeData themeData) {
+  Widget _signupButton(ThemeData themeData, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 24.0),
       child: ThemedRaisedButton(
         themeData,
         primaryColor: false,
         text: 'Create New Account',
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed(OnboardingNavigator.registerRoute);
+        },
       ),
     );
   }
