@@ -6,7 +6,7 @@ ThemeData influenzaNetTheme = ThemeData(
     primaryColorLight: ThemeElements.primaryColorLight,
     primaryColorDark: ThemeElements.primaryColorDark,
     accentColor: ThemeElements.accentColor,
-    canvasColor: const Color(0xfff2f2f2),
+    canvasColor: ThemeElements.canvasColor,
     textTheme: TextTheme(
         display1: ThemeElements.displayTextStyle,
         display2: ThemeElements.displayTextStyle,
@@ -17,10 +17,11 @@ ThemeData influenzaNetTheme = ThemeData(
         textTheme: ButtonTextTheme.primary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(19.0))),
     appBarTheme: AppBarTheme(
-        color: Colors.white,
-        brightness: Brightness.light,
-        elevation: 0.0,
-        iconTheme: IconThemeData(color: Colors.black)));
+      color: ThemeElements.canvasColor,
+      brightness: Brightness.light,
+      elevation: 0.0,
+      iconTheme: IconThemeData(color: ThemeElements.accentColor),
+    ));
 
 class ThemeElements {
   static const MaterialColor primarySwatch = MaterialColor(0xff4b669d, {
@@ -52,11 +53,14 @@ class ThemeElements {
   static const Color primaryColor = const Color(0xff0f346e);
   static const Color primaryColorLight = const Color(0xff475d9d);
   static const Color primaryColorDark = const Color(0xff000e42);
+
   static const Color accentColor = const Color(0xff61b1b0);
   static const Color accentColorLight = const Color(0xff93e3e2);
   static const Color accentColorDark = const Color(0xff2d8181);
 
+  static const Color canvasColor = const Color(0xfff2f2f2);
+
   static const TextStyle displayTextStyle = TextStyle(
-    color: accentColor,
+    color: primaryColor,
   );
 }

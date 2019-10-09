@@ -6,7 +6,7 @@ class ThemedAppBar extends AppBar {
         title: Text(
           titleText,
           textAlign: TextAlign.center,
-          style: TextStyle(color: themeData.primaryColor),
+          style: themeData.textTheme.display1,
         ));
   }
 
