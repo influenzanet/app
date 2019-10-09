@@ -1,5 +1,6 @@
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-flat-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-raised-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
 import 'package:InfluenzaNet/ui/onboarding/onboarding-navigator.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,7 @@ class InstanceSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
-    return Scaffold(
+    return ThemedScaffold(
       body: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -19,7 +20,6 @@ class InstanceSelectionPage extends StatelessWidget {
           _countrySelection(themeData),
           Spacer(flex: 20),
           _nextButton(context, themeData),
-          Spacer(flex: 10)
         ],
       ),
     );
@@ -28,7 +28,7 @@ class InstanceSelectionPage extends StatelessWidget {
   Widget _title(ThemeData themeData) {
     return Text(
       'Select your Country',
-      style: themeData.textTheme.display1,
+      style: themeData.textTheme.display1.copyWith(color: themeData.primaryColor),
       textAlign: TextAlign.center,
     );
   }

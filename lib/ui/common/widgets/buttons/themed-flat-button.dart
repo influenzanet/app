@@ -5,7 +5,10 @@ class ThemedFlatButton extends FlatButton {
   factory ThemedFlatButton(ThemeData themeData, {String text = '', void Function() onPressed}) {
     return ThemedFlatButton.widget(
       themeData,
-      child: Text(text),
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+      ),
       onPressed: onPressed,
     );
   }

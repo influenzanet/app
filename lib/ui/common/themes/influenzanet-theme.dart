@@ -61,6 +61,6 @@ class ThemeElements {
   static const Color canvasColor = const Color(0xfff2f2f2);
 
   static const TextStyle displayTextStyle = TextStyle(
-    color: primaryColor,
+    color: Colors.black,
   );
 }
