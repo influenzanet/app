@@ -10,7 +10,13 @@ void main() {
 }
 
 void initializeApp() {
+  initializeUI();
+}
+
+void initializeUI() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.dark.copyWith(statusBarColor: influenzaNetTheme.canvasColor));
 }
 
 class InfluenzaNet extends StatelessWidget {
