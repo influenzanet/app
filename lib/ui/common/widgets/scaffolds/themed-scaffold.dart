@@ -6,7 +6,7 @@ class ThemedScaffold extends Scaffold {
             appBar: appBar,
             body: SafeArea(
                 child: Padding(
-              padding: const EdgeInsets.only(bottom: 32.0),
+              padding: const EdgeInsets.only(bottom: 16.0),
               child: body,
             )));
 }

@@ -42,7 +42,7 @@ class RegisterFormState extends State<RegisterForm> {
           children: <Widget>[
             Spacer(flex: 10),
             Text(
-              'You Are Only One Step Away!',
+              'Only one more step!',
               style: themeData.textTheme.display1,
               textAlign: TextAlign.center,
             ),
@@ -80,19 +80,10 @@ class RegisterFormState extends State<RegisterForm> {
       children: <Widget>[
         ThemedRaisedButton(themeData, text: 'Create New Account', onPressed: () {}),
         Container(height: ThemeElements.connectedElementPadding),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ThemedFlatButton(themeData, text: 'What is the difference?', onPressed: () {}),
-          ],
-        ),
-        Container(height: ThemeElements.connectedElementPadding),
-        ThemedRaisedButton(
+        ThemedFlatButton.big(
           themeData,
           text: 'Skip',
           onPressed: () {},
-          primaryColor: false,
         ),
       ],
     );

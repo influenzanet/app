@@ -42,7 +42,7 @@ class LoginFormState extends State<LoginForm> {
           children: <Widget>[
             Spacer(flex: 10),
             Text(
-              'Welcome Back!',
+              'Welcome back!',
               style: themeData.textTheme.display1,
               textAlign: TextAlign.center,
             ),

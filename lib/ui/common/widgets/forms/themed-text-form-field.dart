@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 class ThemedTextFormField extends TextFormField {
   ThemedTextFormField({String hintText})
       : super(
-          style: TextStyle(fontSize: 24.0),
+          style: ThemeElements.bigButtonTextStyle,
           decoration: InputDecoration(
               hintText: hintText,
-              hintStyle: TextStyle(fontSize: 24.0),
+              hintStyle: ThemeElements.bigButtonTextStyle,
               contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
               filled: true,
               focusColor: ThemeElements.primaryColorLight,

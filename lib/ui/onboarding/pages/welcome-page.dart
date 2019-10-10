@@ -32,7 +32,7 @@ class WelcomePage extends StatelessWidget {
     return Text(
       'Welcome to',
       textAlign: TextAlign.center,
-      style: themeData.textTheme.display1.copyWith(color: Colors.black),
+      style: themeData.textTheme.display1,
     );
   }
 

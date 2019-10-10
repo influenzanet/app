@@ -10,9 +10,7 @@ class ThemedRaisedButton extends RaisedButton {
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 24.0,
-          letterSpacing: 1.5,
+        style: ThemeElements.bigButtonTextStyle.apply(
           color: Colors.white,
         ),
       ),
@@ -24,7 +22,7 @@ class ThemedRaisedButton extends RaisedButton {
       : super(
           color: primaryColor ? themeData.primaryColor : themeData.accentColor,
           splashColor: primaryColor ? ThemeElements.primarySwatch[500] : ThemeElements.accentSwatch[400],
-          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+          padding: ThemeElements.bigButtonPaddingGeometry,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
           child: child,
           onPressed: onPressed,

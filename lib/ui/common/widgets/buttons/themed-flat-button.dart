@@ -13,12 +13,26 @@ class ThemedFlatButton extends FlatButton {
     );
   }
 
-  ThemedFlatButton.widget(ThemeData themeData, {Widget child, void Function() onPressed})
+  factory ThemedFlatButton.big(ThemeData themeData, {String text = '', void Function() onPressed}) {
+    return ThemedFlatButton.widget(
+      themeData,
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: ThemeElements.bigButtonTextStyle,
+      ),
+      padding: ThemeElements.bigButtonPaddingGeometry,
+      onPressed: onPressed,
+    );
+  }
+
+  ThemedFlatButton.widget(ThemeData themeData, {Widget child, void Function() onPressed, EdgeInsetsGeometry padding})
       : super(
           child: child,
           color: Colors.white,
           textColor: themeData.accentColor,
           splashColor: ThemeElements.accentSwatch[50],
+          padding: padding,
           onPressed: () {},
         );
 }

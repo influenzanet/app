@@ -15,7 +15,7 @@ ThemeData influenzaNetTheme = ThemeData(
     buttonTheme: ButtonThemeData(
         buttonColor: ThemeElements.primaryColor,
         textTheme: ButtonTextTheme.primary,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(19.0))),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0))),
     appBarTheme: AppBarTheme(
       color: Colors.white,
       //color: ThemeElements.canvasColor,
@@ -61,11 +61,12 @@ class ThemeElements {
 
   static const Color canvasColor = const Color(0xfff2f2f2);
 
-  static const TextStyle displayTextStyle = TextStyle(
-    color: Colors.black,
-  );
+  static const TextStyle displayTextStyle = TextStyle(color: Colors.black);
+  static const TextStyle bigButtonTextStyle = TextStyle(fontSize: 20.0);
 
-  static const double pagePadding = 24.0;
-  static const double elementPadding = 24.0;
-  static const double connectedElementPadding = 16.0;
+  static const EdgeInsetsGeometry bigButtonPaddingGeometry = EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0);
+
+  static const double pagePadding = 16.0;
+  static const double elementPadding = 16.0;
+  static const double connectedElementPadding = 12.0;
 }
