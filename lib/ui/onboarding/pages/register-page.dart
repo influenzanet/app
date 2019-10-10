@@ -68,10 +68,12 @@ class RegisterFormState extends State<RegisterForm> {
         Container(height: ThemeElements.connectedElementPadding),
         ThemedTextFormField(
           hintText: 'Password',
+          obscureText: true,
         ),
         Container(height: ThemeElements.connectedElementPadding),
         ThemedTextFormField(
           hintText: 'Confirm Password',
+          obscureText: true,
         ),
         Container(height: ThemeElements.connectedElementPadding),
         _termsAndConditionsField(themeData),
