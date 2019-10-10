@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-flat-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-raised-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
@@ -44,7 +45,7 @@ class InstanceSelectionPage extends StatelessWidget {
           style: themeData.textTheme.title,
         ),
         Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(ThemeElements.connectedElementPadding),
           child: RaisedButton(
             shape: CircleBorder(),
             color: Colors.grey,

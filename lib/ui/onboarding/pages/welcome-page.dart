@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/app-bars/themed-app-bar.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-raised-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
@@ -11,7 +12,7 @@ class WelcomePage extends StatelessWidget {
     return ThemedScaffold(
       appBar: ThemedAppBar(themeData, titleText: 'Get Started'),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: ThemeElements.pagePadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -37,7 +38,7 @@ class WelcomePage extends StatelessWidget {
 
   Widget _logo() {
     return Padding(
-      padding: const EdgeInsets.only(top: 16.0),
+      padding: const EdgeInsets.only(top: ThemeElements.connectedElementPadding),
       child: Image.asset("assets/images/logos/influenzanet.png"),
     );
   }
@@ -54,7 +55,7 @@ class WelcomePage extends StatelessWidget {
 
   Widget _signupButton(ThemeData themeData, BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 24.0),
+      padding: const EdgeInsets.only(top: ThemeElements.elementPadding),
       child: ThemedRaisedButton(
         themeData,
         primaryColor: false,

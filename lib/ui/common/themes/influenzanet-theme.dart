@@ -64,4 +64,8 @@ class ThemeElements {
   static const TextStyle displayTextStyle = TextStyle(
     color: Colors.black,
   );
+
+  static const double pagePadding = 24.0;
+  static const double elementPadding = 24.0;
+  static const double connectedElementPadding = 16.0;
 }
