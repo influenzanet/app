@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Allows the back button to work properly on Android.
 class NavigatorPage extends StatelessWidget {
-  final GlobalKey<NavigatorState> navigatorKey = new GlobalKey();
+  static final GlobalKey<NavigatorState> navigatorKey = new GlobalKey();
 
   final String initialRoute;
   final RouteFactory onGenerateRoute;
