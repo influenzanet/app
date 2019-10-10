@@ -43,7 +43,7 @@ class LoginFormState extends State<LoginForm> {
             Spacer(flex: 10),
             Text(
               'Welcome Back!',
-              style: themeData.textTheme.display2,
+              style: themeData.textTheme.display1,
               textAlign: TextAlign.center,
             ),
             Spacer(flex: 10),

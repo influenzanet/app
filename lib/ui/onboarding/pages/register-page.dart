@@ -43,7 +43,7 @@ class RegisterFormState extends State<RegisterForm> {
             Spacer(flex: 10),
             Text(
               'You Are Only One Step Away!',
-              style: themeData.textTheme.display2,
+              style: themeData.textTheme.display1,
               textAlign: TextAlign.center,
             ),
             Spacer(flex: 10),
