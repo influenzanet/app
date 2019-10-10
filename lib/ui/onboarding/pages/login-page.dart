@@ -10,7 +10,8 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
-    return ThemedScaffold(
+    return ThemedScaffold.scrollable(
+      context,
       appBar: ThemedAppBar(
         themeData,
         titleText: 'Login',
