@@ -62,7 +62,7 @@ class LoginFormState extends State<LoginForm> {
         ThemedTextFormField(
           hintText: 'Email',
         ),
-        Container(height: ThemeElements.elementPadding),
+        Container(height: ThemeElements.connectedElementPadding),
         ThemedTextFormField(
           hintText: 'Password',
         ),
