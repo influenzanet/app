@@ -16,7 +16,7 @@ class ThemedScaffold extends Scaffold {
             appBar: appBar,
             body: SingleChildScrollView(
               child: SizedBox(
-                height: _screenHeight(context),
+                height: _screenHeight(context, withoutAppBar: appBar != null),
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
                   child: body,
@@ -24,9 +24,14 @@ class ThemedScaffold extends Scaffold {
               ),
             ));
 
-  static double _screenHeight(BuildContext context) {
+  static double _screenHeight(BuildContext context, {bool withoutAppBar = true}) {
     double height = MediaQuery.of(context).size.height;
     EdgeInsets padding = MediaQuery.of(context).padding;
-    return height - padding.top - padding.bottom - kToolbarHeight;
+    double safeHeight = height - padding.top - padding.bottom;
+    if (withoutAppBar) {
+      return safeHeight - kToolbarHeight;
+    } else {
+      return safeHeight;
+    }
   }
 }
