@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 /// Allows the back button to work properly on Android and keeps navigation state.
 class NavigatorPage extends StatelessWidget {
-  static final GlobalKey<NavigatorState> navigatorKey = new GlobalKey();
-
   final String initialRoute;
   final RouteFactory onGenerateRoute;
+  final GlobalKey<NavigatorState> navigatorKey;
 
-  NavigatorPage({this.initialRoute, this.onGenerateRoute});
-
+  NavigatorPage({@required this.navigatorKey, @required this.initialRoute, @required this.onGenerateRoute});
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

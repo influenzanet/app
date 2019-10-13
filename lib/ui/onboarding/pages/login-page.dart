@@ -7,6 +7,10 @@ import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
+  final void Function() onLogin;
+
+  LoginPage({this.onLogin});
+
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
@@ -16,12 +20,16 @@ class LoginPage extends StatelessWidget {
         themeData,
         titleText: 'Login',
       ),
-      body: LoginForm(),
+      body: LoginForm(onLogin),
     );
   }
 }
 
 class LoginForm extends StatefulWidget {
+  final void Function() onLogin;
+
+  LoginForm(this.onLogin);
+
   @override
   LoginFormState createState() => LoginFormState();
 }
@@ -42,18 +50,22 @@ class LoginFormState extends State<LoginForm> {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Spacer(flex: 10),
-            Text(
-              'Welcome back!',
-              style: themeData.textTheme.display1,
-              textAlign: TextAlign.center,
-            ),
+            _encouragement(themeData),
             Spacer(flex: 10),
             _inputFields(themeData),
             Spacer(flex: 18),
-            ThemedRaisedButton(themeData, text: 'Login', onPressed: () {}),
+            _loginButton(themeData),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _encouragement(ThemeData themeData) {
+    return Text(
+      'Welcome back!',
+      style: themeData.textTheme.display1,
+      textAlign: TextAlign.center,
     );
   }
 
@@ -72,5 +84,11 @@ class LoginFormState extends State<LoginForm> {
         ThemedFlatButton(themeData, text: 'Forgot Password?', onPressed: () {}),
       ],
     );
+  }
+
+  Widget _loginButton(ThemeData themeData) {
+    return ThemedRaisedButton(themeData, text: 'Login', onPressed: () {
+      widget.onLogin();
+    });
   }
 }

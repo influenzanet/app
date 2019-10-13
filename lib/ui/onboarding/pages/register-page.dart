@@ -8,6 +8,11 @@ import 'package:circular_check_box/circular_check_box.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
+  final void Function() onRegister;
+  final void Function() onSkip;
+
+  RegisterPage({this.onRegister, this.onSkip});
+
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
@@ -17,12 +22,17 @@ class RegisterPage extends StatelessWidget {
         themeData,
         titleText: 'Create New Account',
       ),
-      body: RegisterForm(),
+      body: RegisterForm(onRegister, onSkip),
     );
   }
 }
 
 class RegisterForm extends StatefulWidget {
+  final void Function() onRegister;
+  final void Function() onSkip;
+
+  RegisterForm(this.onRegister, this.onSkip);
+
   @override
   RegisterFormState createState() => RegisterFormState();
 }
@@ -44,11 +54,7 @@ class RegisterFormState extends State<RegisterForm> {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Spacer(flex: 10),
-            Text(
-              'Only one more step!',
-              style: themeData.textTheme.display1,
-              textAlign: TextAlign.center,
-            ),
+            _encouragement(themeData),
             Spacer(flex: 10),
             _inputFields(themeData),
             Spacer(flex: 10),
@@ -56,6 +62,14 @@ class RegisterFormState extends State<RegisterForm> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _encouragement(ThemeData themeData) {
+    return Text(
+      'Only one more step!',
+      style: themeData.textTheme.display1,
+      textAlign: TextAlign.center,
     );
   }
 
@@ -110,12 +124,16 @@ class RegisterFormState extends State<RegisterForm> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        ThemedRaisedButton(themeData, text: 'Create New Account', onPressed: () {}),
+        ThemedRaisedButton(themeData, text: 'Create New Account', onPressed: () {
+          widget.onRegister();
+        }),
         Container(height: ThemeElements.connectedElementPadding),
         ThemedFlatButton.big(
           themeData,
           text: 'Skip',
-          onPressed: () {},
+          onPressed: () {
+            widget.onSkip();
+          },
         ),
       ],
     );

@@ -19,6 +19,8 @@ void initializeUI() {
 }
 
 class InfluenzaNet extends StatelessWidget {
+  static final GlobalKey<NavigatorState> navigatorKey = new GlobalKey();
+
   static const String onboardingRoute = 'onboarding';
   static const String mainRoute = 'main';
 
@@ -31,6 +33,7 @@ class InfluenzaNet extends StatelessWidget {
         title: 'InfluenzaNet',
         theme: influenzaNetTheme,
         debugShowCheckedModeBanner: false,
+        navigatorKey: navigatorKey,
         initialRoute: onboardingRoute,
         routes: {onboardingRoute: _onboardingNavigator, mainRoute: _mainNavigator});
   }
