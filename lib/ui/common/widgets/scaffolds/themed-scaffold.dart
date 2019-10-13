@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ThemedScaffold extends Scaffold {
-  ThemedScaffold({PreferredSizeWidget appBar, Widget body})
+  ThemedScaffold({PreferredSizeWidget appBar, Widget drawer, Widget body})
       : super(
             appBar: appBar,
+            drawer: drawer,
             body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
