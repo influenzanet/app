@@ -39,7 +39,7 @@ class WelcomePage extends StatelessWidget {
   Widget _logo() {
     return Padding(
       padding: const EdgeInsets.only(top: ThemeElements.connectedElementPadding),
-      child: Image.asset("assets/images/logos/influenzanet.png"),
+      child: Image.asset('assets/images/logos/influenzanet.png'),
     );
   }
 

@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 
 ThemeData influenzaNetTheme = ThemeData(
-    primarySwatch: ThemeElements.primarySwatch,
-    primaryColor: ThemeElements.primaryColor,
-    primaryColorLight: ThemeElements.primaryColorLight,
-    primaryColorDark: ThemeElements.primaryColorDark,
-    accentColor: ThemeElements.accentColor,
-    canvasColor: ThemeElements.canvasColor,
-    textTheme: TextTheme(
-        display1: ThemeElements.displayTextStyle,
-        display2: ThemeElements.displayTextStyle,
-        display3: ThemeElements.displayTextStyle,
-        display4: ThemeElements.displayTextStyle),
-    buttonTheme: ButtonThemeData(
-        buttonColor: ThemeElements.primaryColor,
-        textTheme: ButtonTextTheme.primary,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0))),
-    appBarTheme: AppBarTheme(
-      color: Colors.white,
-      //color: ThemeElements.canvasColor,
-      brightness: Brightness.light,
-      elevation: 0.0,
-      iconTheme: IconThemeData(color: ThemeElements.accentColor),
-    ));
+  primarySwatch: ThemeElements.primarySwatch,
+  primaryColor: ThemeElements.primaryColor,
+  primaryColorLight: ThemeElements.primaryColorLight,
+  primaryColorDark: ThemeElements.primaryColorDark,
+  accentColor: ThemeElements.accentColor,
+  canvasColor: ThemeElements.canvasColor,
+  textTheme: TextTheme(
+      display1: ThemeElements.displayTextStyle,
+      display2: ThemeElements.displayTextStyle,
+      display3: ThemeElements.displayTextStyle,
+      display4: ThemeElements.displayTextStyle),
+  buttonTheme: ButtonThemeData(
+      buttonColor: ThemeElements.primaryColor,
+      textTheme: ButtonTextTheme.primary,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0))),
+  appBarTheme: AppBarTheme(
+    color: Colors.white,
+    //color: ThemeElements.canvasColor,
+    brightness: Brightness.light,
+    elevation: 0.0,
+    iconTheme: IconThemeData(color: ThemeElements.accentColor),
+  ),
+  dividerTheme: DividerThemeData(space: ThemeElements.elementPadding / 2),
+);
 
 class ThemeElements {
   static const MaterialColor primarySwatch = MaterialColor(0xff4b669d, {
