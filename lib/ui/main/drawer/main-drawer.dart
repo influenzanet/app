@@ -19,7 +19,7 @@ class MainDrawer extends StatelessWidget {
           Container(
             color: Colors.white,
             height: kToolbarHeight,
-            padding: EdgeInsets.all(12.0),
+            padding: EdgeInsets.all(10.0),
             child: Image.asset('assets/images/logos/influenzanet.png'),
           ),
           Expanded(
