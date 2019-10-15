@@ -1,5 +1,6 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-flat-button.dart';
+import 'package:InfluenzaNet/ui/main/main-navigator.dart';
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -27,16 +28,17 @@ class MainDrawer extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   horizontal: ThemeElements.elementPadding, vertical: ThemeElements.elementPadding / 2),
               children: <Widget>[
-                _drawerItem(context, 'Home'),
+                _drawerItem(context, 'Home', route: MainNavigator.homeRoute),
                 _drawerItem(context, 'Explore'),
-                _drawerItem(context, 'My Studies'),
+                _drawerItem(context, 'My Studies', route: MainNavigator.myStudiesRoute),
                 Divider(),
                 _drawerItem(context, 'Coverage Map', color: themeData.primaryColor),
                 _drawerItem(context, 'Devices', color: themeData.primaryColor),
                 _drawerItem(context, 'News', color: themeData.primaryColor),
                 Divider(),
-                _drawerItem(context, 'Profile', color: themeData.accentColor),
+                _drawerItem(context, 'Profile', color: themeData.accentColor, route: MainNavigator.profileRoute),
                 _drawerItem(context, 'History', color: themeData.accentColor),
+                _drawerItem(context, 'Settings', color: themeData.accentColor),
               ],
             ),
           ),
@@ -61,14 +63,26 @@ class MainDrawer extends StatelessWidget {
     );
   }
 
-  Widget _drawerItem(BuildContext context, String title, {Color color = Colors.black}) {
+  Widget _drawerItem(BuildContext context, String title, {Color color = Colors.black, String route}) {
+    bool enabled = route != null;
+
+    if (!enabled) {
+      color = Theme.of(context).disabledColor;
+    }
+
     return ListTile(
       title: Text(
         title,
         style: Theme.of(context).textTheme.title.apply(color: color),
         textAlign: TextAlign.start,
       ),
+      enabled: enabled,
       dense: true,
+      onTap: (enabled)
+          ? () {
+              MainNavigator.navigatorKey.currentState.pushReplacementNamed(route);
+            }
+          : null,
     );
   }
 }

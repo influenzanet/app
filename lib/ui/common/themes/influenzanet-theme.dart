@@ -7,6 +7,7 @@ ThemeData influenzaNetTheme = ThemeData(
   primaryColorDark: ThemeElements.primaryColorDark,
   accentColor: ThemeElements.accentColor,
   canvasColor: ThemeElements.canvasColor,
+  disabledColor: Colors.grey[350],
   textTheme: TextTheme(
       display1: ThemeElements.displayTextStyle,
       display2: ThemeElements.displayTextStyle,
@@ -18,7 +19,6 @@ ThemeData influenzaNetTheme = ThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0))),
   appBarTheme: AppBarTheme(
     color: Colors.white,
-    //color: ThemeElements.canvasColor,
     brightness: Brightness.light,
     elevation: 0.0,
     iconTheme: IconThemeData(color: ThemeElements.accentColor),
