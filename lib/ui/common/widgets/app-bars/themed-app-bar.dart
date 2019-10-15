@@ -7,7 +7,6 @@ class ThemedAppBar extends AppBar {
       title: Text(
         titleText,
         textAlign: TextAlign.center,
-        //style: themeData.textTheme.display1.copyWith(color: themeData.primaryColor, fontSize: 30.0),
         style: TextStyle(color: themeData.primaryColor),
       ),
       actions: actions,

@@ -11,6 +11,12 @@ class ProfilePage extends StatelessWidget {
       appBar: ThemedAppBar(
         themeData,
         titleText: 'Profile',
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.edit),
+            onPressed: () {},
+          )
+        ],
       ),
       drawer: MainDrawer(),
     );
