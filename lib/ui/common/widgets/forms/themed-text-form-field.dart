@@ -25,6 +25,7 @@ class ThemedTextFormField extends TextFormField {
           ),
           obscureText: obscureText,
           keyboardType: keyboardType,
+          keyboardAppearance: Brightness.light,
           readOnly: readOnly,
           autocorrect: autocorrect,
         );
