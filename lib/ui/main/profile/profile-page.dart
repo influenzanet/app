@@ -13,12 +13,6 @@ class ProfilePage extends StatelessWidget {
       appBar: ThemedAppBar(
         themeData,
         titleText: 'Profile',
-        // actions: <Widget>[
-        //   IconButton(
-        //     icon: Icon(Icons.edit),
-        //     onPressed: () {},
-        //   )
-        // ],
       ),
       drawer: MainDrawer(),
       body: Center(
@@ -27,33 +21,45 @@ class ProfilePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            _avatar(themeData),
+            _avatar(),
             Container(height: ThemeElements.elementPadding),
-            Text(
-              'max.mustermann@muster.de',
-              style: themeData.textTheme.title,
-            ),
+            _username(themeData),
             Container(height: ThemeElements.elementPadding),
-            Text(
-              '•••••••••••••••••••••',
-              style: themeData.textTheme.title,
-            ),
+            _password(themeData),
             Container(height: ThemeElements.elementPadding),
-            ThemedSecondaryButton(
-              themeData,
-              text: 'Edit Profile',
-              onPressed: () {},
-            ),
+            _editButton(themeData),
           ],
         ),
       ),
     );
   }
 
-  Widget _avatar(ThemeData themeData) {
+  Widget _avatar() {
     return Container(
       height: 170,
       child: Image.asset('assets/images/avatars/default-avatar.png'),
+    );
+  }
+
+  Widget _username(ThemeData themeData) {
+    return Text(
+      'max.mustermann@muster.de',
+      style: themeData.textTheme.title,
+    );
+  }
+
+  Widget _password(ThemeData themeData) {
+    return Text(
+      '•••••••••••••••••••••',
+      style: themeData.textTheme.title,
+    );
+  }
+
+  Widget _editButton(ThemeData themeData) {
+    return ThemedSecondaryButton(
+      themeData,
+      text: 'Edit Profile',
+      onPressed: () {},
     );
   }
 }
