@@ -78,16 +78,19 @@ class RegisterFormState extends State<RegisterForm> {
       children: <Widget>[
         ThemedTextFormField(
           hintText: 'Email',
+          keyboardType: TextInputType.emailAddress,
         ),
         Container(height: ThemeElements.connectedElementPadding),
         ThemedTextFormField(
           hintText: 'Password',
           obscureText: true,
+          keyboardType: TextInputType.visiblePassword,
         ),
         Container(height: ThemeElements.connectedElementPadding),
         ThemedTextFormField(
           hintText: 'Confirm Password',
           obscureText: true,
+          keyboardType: TextInputType.visiblePassword,
         ),
         Container(height: ThemeElements.connectedElementPadding),
         _termsAndConditionsField(themeData),

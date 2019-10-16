@@ -2,7 +2,12 @@ import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:flutter/material.dart';
 
 class ThemedTextFormField extends TextFormField {
-  ThemedTextFormField({String hintText, bool obscureText = false})
+  ThemedTextFormField(
+      {String hintText,
+      bool obscureText = false,
+      TextInputType keyboardType,
+      bool readOnly: false,
+      bool autocorrect: false})
       : super(
           style: ThemeElements.bigButtonTextStyle,
           decoration: InputDecoration(
@@ -17,5 +22,8 @@ class ThemedTextFormField extends TextFormField {
             ),
           ),
           obscureText: obscureText,
+          keyboardType: keyboardType,
+          readOnly: readOnly,
+          autocorrect: autocorrect,
         );
 }

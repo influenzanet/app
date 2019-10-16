@@ -74,11 +74,13 @@ class LoginFormState extends State<LoginForm> {
       children: <Widget>[
         ThemedTextFormField(
           hintText: 'Email',
+          keyboardType: TextInputType.emailAddress,
         ),
         Container(height: ThemeElements.connectedElementPadding),
         ThemedTextFormField(
           hintText: 'Password',
           obscureText: true,
+          keyboardType: TextInputType.visiblePassword,
         ),
         Container(height: ThemeElements.connectedElementPadding),
         ThemedFlatButton(themeData, text: 'Forgot Password?', onPressed: () {}),
