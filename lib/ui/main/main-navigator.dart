@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/main.dart';
 import 'package:InfluenzaNet/ui/common/widgets/navigators/navigator-page.dart';
 import 'package:InfluenzaNet/ui/main/home/home-page.dart';
 import 'package:InfluenzaNet/ui/main/my-studies/my-studies-page.dart';
@@ -10,6 +11,10 @@ class MainNavigator extends StatelessWidget {
   static const String profileRoute = 'main/profile';
 
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  static void pushOnboardingRoute() {
+    InfluenzaNet.navigatorKey.currentState.pushReplacementNamed(InfluenzaNet.onboardingRoute);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +43,7 @@ class MainNavigator extends StatelessWidget {
     );
   }
 
-  HomePage _homePage(BuildContext context) => HomePage();
-  MyStudiesPage _myStudiesPage(BuildContext context) => MyStudiesPage();
-  ProfilePage _profilePage(BuildContext context) => ProfilePage();
+  HomePage _homePage(BuildContext _) => HomePage();
+  MyStudiesPage _myStudiesPage(BuildContext _) => MyStudiesPage();
+  ProfilePage _profilePage(BuildContext _) => ProfilePage();
 }

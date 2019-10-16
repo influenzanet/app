@@ -34,6 +34,6 @@ class ThemedSecondaryButton extends FlatButton {
           textColor: themeData.accentColor,
           splashColor: ThemeElements.accentSwatch[50],
           padding: padding,
-          onPressed: () {},
+          onPressed: onPressed,
         );
 }

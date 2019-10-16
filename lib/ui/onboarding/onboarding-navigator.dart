@@ -14,6 +14,10 @@ class OnboardingNavigator extends StatelessWidget {
 
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
+  static void pushMainRoute() {
+    InfluenzaNet.navigatorKey.currentState.pushReplacementNamed(InfluenzaNet.mainRoute);
+  }
+
   @override
   Widget build(BuildContext context) {
     return NavigatorPage(
@@ -44,26 +48,8 @@ class OnboardingNavigator extends StatelessWidget {
     );
   }
 
-  InstanceSelectionPage _instanceSelectionPage(BuildContext context) => InstanceSelectionPage();
-
-  WelcomePage _welcomePage(BuildContext context) => WelcomePage();
-
-  RegisterPage _registerPage(BuildContext context) => RegisterPage(
-        onRegister: () {
-          _onboardingComplete(context);
-        },
-        onSkip: () {
-          _onboardingComplete(context);
-        },
-      );
-
-  LoginPage _loginPage(BuildContext context) => LoginPage(
-        onLogin: () {
-          _onboardingComplete(context);
-        },
-      );
-
-  void _onboardingComplete(BuildContext context) {
-    InfluenzaNet.navigatorKey.currentState.pushReplacementNamed(InfluenzaNet.mainRoute);
-  }
+  InstanceSelectionPage _instanceSelectionPage(BuildContext _) => InstanceSelectionPage();
+  WelcomePage _welcomePage(BuildContext _) => WelcomePage();
+  RegisterPage _registerPage(BuildContext _) => RegisterPage(onRegister: pushMainRoute, onSkip: pushMainRoute);
+  LoginPage _loginPage(BuildContext _) => LoginPage(onLogin: pushMainRoute);
 }

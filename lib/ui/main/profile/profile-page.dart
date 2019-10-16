@@ -39,7 +39,11 @@ class ProfilePage extends StatelessWidget {
               style: themeData.textTheme.title,
             ),
             Container(height: ThemeElements.elementPadding),
-            ThemedSecondaryButton(themeData, text: 'Edit Profile'),
+            ThemedSecondaryButton(
+              themeData,
+              text: 'Edit Profile',
+              onPressed: () {},
+            ),
           ],
         ),
       ),

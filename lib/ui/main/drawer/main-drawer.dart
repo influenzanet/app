@@ -52,7 +52,9 @@ class MainDrawer extends StatelessWidget {
                 child: ThemedSecondaryButton.big(
                   themeData,
                   text: 'Logout',
-                  onPressed: () {},
+                  onPressed: () {
+                    MainNavigator.pushOnboardingRoute();
+                  },
                 ),
               ),
             ],
