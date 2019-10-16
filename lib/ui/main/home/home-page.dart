@@ -1,18 +1,11 @@
-import 'package:InfluenzaNet/ui/common/widgets/app-bars/themed-app-bar.dart';
-import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
-import 'package:InfluenzaNet/ui/main/drawer/main-drawer.dart';
+import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ScaffoldPage {
+  HomePage() : super(titleText: 'Home');
+
   @override
-  Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
-    return ThemedScaffold(
-      appBar: ThemedAppBar(
-        themeData,
-        titleText: 'Home',
-      ),
-      drawer: MainDrawer(),
-    );
+  Widget buildBody(BuildContext context, ThemeData themeData) {
+    return null;
   }
 }

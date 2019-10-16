@@ -1,29 +1,21 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
-import 'package:InfluenzaNet/ui/common/widgets/app-bars/themed-app-bar.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/forms/themed-text-form-field.dart';
-import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
+import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends ScaffoldPage {
   final void Function() onRegister;
   final void Function() onSkip;
 
-  RegisterPage({this.onRegister, this.onSkip});
+  RegisterPage({this.onRegister, this.onSkip})
+      : super(titleText: 'Create New Account', scrollable: true, drawer: false);
 
   @override
-  Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
-    return ThemedScaffold.scrollable(
-      context,
-      appBar: ThemedAppBar(
-        themeData,
-        titleText: 'Create New Account',
-      ),
-      body: RegisterForm(onRegister, onSkip),
-    );
+  Widget buildBody(BuildContext context, ThemeData themeData) {
+    return RegisterForm(onRegister, onSkip);
   }
 }
 

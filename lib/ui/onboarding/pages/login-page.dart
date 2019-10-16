@@ -3,25 +3,17 @@ import 'package:InfluenzaNet/ui/common/widgets/app-bars/themed-app-bar.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/forms/themed-text-form-field.dart';
-import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
+import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends ScaffoldPage {
   final void Function() onLogin;
 
-  LoginPage({this.onLogin});
+  LoginPage({this.onLogin}) : super(titleText: 'Login', scrollable: true, drawer: false);
 
   @override
-  Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
-    return ThemedScaffold.scrollable(
-      context,
-      appBar: ThemedAppBar(
-        themeData,
-        titleText: 'Login',
-      ),
-      body: LoginForm(onLogin),
-    );
+  Widget buildBody(BuildContext context, ThemeData themeData) {
+    return LoginForm(onLogin);
   }
 }
 

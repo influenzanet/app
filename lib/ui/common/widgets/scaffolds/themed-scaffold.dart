@@ -12,9 +12,10 @@ class ThemedScaffold extends Scaffold {
               ),
             ));
 
-  ThemedScaffold.scrollable(BuildContext context, {PreferredSizeWidget appBar, Widget body})
+  ThemedScaffold.scrollable(BuildContext context, {PreferredSizeWidget appBar, Widget drawer, Widget body})
       : super(
             appBar: appBar,
+            drawer: drawer,
             body: SingleChildScrollView(
               child: SizedBox(
                 height: _screenHeight(context, withoutAppBar: appBar != null),

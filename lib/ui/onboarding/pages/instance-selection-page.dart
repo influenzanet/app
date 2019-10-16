@@ -1,28 +1,27 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
-import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
+import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
 import 'package:InfluenzaNet/ui/onboarding/onboarding-navigator.dart';
 import 'package:flutter/material.dart';
 
-class InstanceSelectionPage extends StatelessWidget {
+class InstanceSelectionPage extends ScaffoldPage {
+  InstanceSelectionPage() : super(appBar: false, drawer: false);
+
   @override
-  Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
-    return ThemedScaffold(
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Spacer(flex: 15),
-          _title(themeData),
-          Spacer(flex: 15),
-          _countrySelection(themeData),
-          Spacer(flex: 20),
-          _nextButton(context, themeData),
-        ],
-      ),
+  Widget buildBody(BuildContext context, ThemeData themeData) {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Spacer(flex: 15),
+        _title(themeData),
+        Spacer(flex: 15),
+        _countrySelection(themeData),
+        Spacer(flex: 20),
+        _nextButton(context, themeData),
+      ],
     );
   }
 

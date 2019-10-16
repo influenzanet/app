@@ -1,35 +1,27 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
-import 'package:InfluenzaNet/ui/common/widgets/app-bars/themed-app-bar.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
-import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
-import 'package:InfluenzaNet/ui/main/drawer/main-drawer.dart';
+import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends ScaffoldPage {
+  ProfilePage() : super(titleText: 'Profile');
+
   @override
-  Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
-    return ThemedScaffold(
-      appBar: ThemedAppBar(
-        themeData,
-        titleText: 'Profile',
-      ),
-      drawer: MainDrawer(),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            _avatar(),
-            Container(height: ThemeElements.elementPadding),
-            _username(themeData),
-            Container(height: ThemeElements.elementPadding),
-            _password(themeData),
-            Container(height: ThemeElements.elementPadding),
-            _editButton(themeData),
-          ],
-        ),
+  Widget buildBody(BuildContext context, ThemeData themeData) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          _avatar(),
+          Container(height: ThemeElements.elementPadding),
+          _username(themeData),
+          Container(height: ThemeElements.elementPadding),
+          _password(themeData),
+          Container(height: ThemeElements.elementPadding),
+          _editButton(themeData),
+        ],
       ),
     );
   }
