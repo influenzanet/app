@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 
 class ThemedTextFormField extends TextFormField {
   ThemedTextFormField(
-      {String hintText,
+      {String initialValue,
+      String hintText,
       bool obscureText = false,
       TextInputType keyboardType,
       bool readOnly: false,
       bool autocorrect: false})
       : super(
+          initialValue: initialValue,
           style: ThemeElements.bigButtonTextStyle,
           decoration: InputDecoration(
             hintText: hintText,
