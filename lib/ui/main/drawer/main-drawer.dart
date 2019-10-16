@@ -1,5 +1,5 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
-import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-flat-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
 import 'package:InfluenzaNet/ui/main/main-navigator.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +49,7 @@ class MainDrawer extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.only(top: ThemeElements.elementPadding / 2, bottom: ThemeElements.elementPadding),
-                child: ThemedFlatButton.big(
+                child: ThemedSecondaryButton.big(
                   themeData,
                   text: 'Logout',
                   onPressed: () {},

@@ -1,7 +1,7 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/app-bars/themed-app-bar.dart';
-import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-flat-button.dart';
-import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-raised-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/forms/themed-text-form-field.dart';
 import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
 import 'package:circular_check_box/circular_check_box.dart';
@@ -127,11 +127,11 @@ class RegisterFormState extends State<RegisterForm> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        ThemedRaisedButton(themeData, text: 'Create New Account', onPressed: () {
+        ThemedPrimaryButton(themeData, text: 'Create New Account', onPressed: () {
           widget.onRegister();
         }),
         Container(height: ThemeElements.connectedElementPadding),
-        ThemedFlatButton.big(
+        ThemedSecondaryButton.big(
           themeData,
           text: 'Skip',
           onPressed: () {

@@ -1,6 +1,6 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
-import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-flat-button.dart';
-import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-raised-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
 import 'package:InfluenzaNet/ui/onboarding/onboarding-navigator.dart';
 import 'package:flutter/material.dart';
@@ -46,9 +46,8 @@ class InstanceSelectionPage extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(ThemeElements.connectedElementPadding),
-          child: RaisedButton(
+          child: FlatButton(
             shape: CircleBorder(),
-            color: Colors.grey,
             clipBehavior: Clip.antiAlias,
             onPressed: () {},
             child: Container(
@@ -61,7 +60,7 @@ class InstanceSelectionPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ThemedFlatButton(
+            ThemedSecondaryButton(
               themeData,
               text: 'Change Country',
               onPressed: () {},
@@ -80,7 +79,7 @@ class InstanceSelectionPage extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        ThemedRaisedButton(
+        ThemedPrimaryButton(
           themeData,
           text: 'Next',
           onPressed: () {

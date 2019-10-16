@@ -1,6 +1,6 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/app-bars/themed-app-bar.dart';
-import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-flat-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
 import 'package:InfluenzaNet/ui/main/drawer/main-drawer.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,7 @@ class ProfilePage extends StatelessWidget {
               style: themeData.textTheme.title,
             ),
             Container(height: ThemeElements.elementPadding),
-            ThemedFlatButton(themeData, text: 'Edit Profile'),
+            ThemedSecondaryButton(themeData, text: 'Edit Profile'),
           ],
         ),
       ),

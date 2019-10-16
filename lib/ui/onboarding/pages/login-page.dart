@@ -1,7 +1,7 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/app-bars/themed-app-bar.dart';
-import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-flat-button.dart';
-import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-raised-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/forms/themed-text-form-field.dart';
 import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
 import 'package:flutter/material.dart';
@@ -83,13 +83,13 @@ class LoginFormState extends State<LoginForm> {
           keyboardType: TextInputType.visiblePassword,
         ),
         Container(height: ThemeElements.connectedElementPadding),
-        ThemedFlatButton(themeData, text: 'Forgot Password?', onPressed: () {}),
+        ThemedSecondaryButton(themeData, text: 'Forgot Password?', onPressed: () {}),
       ],
     );
   }
 
   Widget _loginButton(ThemeData themeData) {
-    return ThemedRaisedButton(themeData, text: 'Login', onPressed: () {
+    return ThemedPrimaryButton(themeData, text: 'Login', onPressed: () {
       widget.onLogin();
     });
   }

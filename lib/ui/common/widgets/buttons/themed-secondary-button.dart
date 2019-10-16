@@ -1,9 +1,9 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:flutter/material.dart';
 
-class ThemedFlatButton extends FlatButton {
-  factory ThemedFlatButton(ThemeData themeData, {String text = '', void Function() onPressed}) {
-    return ThemedFlatButton.widget(
+class ThemedSecondaryButton extends FlatButton {
+  factory ThemedSecondaryButton(ThemeData themeData, {String text = '', void Function() onPressed}) {
+    return ThemedSecondaryButton.widget(
       themeData,
       child: Text(
         text,
@@ -13,8 +13,8 @@ class ThemedFlatButton extends FlatButton {
     );
   }
 
-  factory ThemedFlatButton.big(ThemeData themeData, {String text = '', void Function() onPressed}) {
-    return ThemedFlatButton.widget(
+  factory ThemedSecondaryButton.big(ThemeData themeData, {String text = '', void Function() onPressed}) {
+    return ThemedSecondaryButton.widget(
       themeData,
       child: Text(
         text,
@@ -26,7 +26,8 @@ class ThemedFlatButton extends FlatButton {
     );
   }
 
-  ThemedFlatButton.widget(ThemeData themeData, {Widget child, void Function() onPressed, EdgeInsetsGeometry padding})
+  ThemedSecondaryButton.widget(ThemeData themeData,
+      {Widget child, void Function() onPressed, EdgeInsetsGeometry padding})
       : super(
           child: child,
           color: Colors.white,
