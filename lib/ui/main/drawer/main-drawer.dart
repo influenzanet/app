@@ -39,6 +39,8 @@ class MainDrawer extends StatelessWidget {
                 _drawerItem(context, 'Profile', color: themeData.accentColor, route: MainNavigator.profileRoute),
                 _drawerItem(context, 'History', color: themeData.accentColor),
                 _drawerItem(context, 'Settings', color: themeData.accentColor),
+                Divider(),
+                _drawerItem(context, 'Survey', route: MainNavigator.surveryRoute),
               ],
             ),
           ),
