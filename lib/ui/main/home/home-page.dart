@@ -70,18 +70,32 @@ class HomePage extends ScaffoldPage {
           Text(
             title,
             style: themeData.textTheme.headline,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
           ),
           Text(
             subtitle,
             style: themeData.textTheme.subhead,
           ),
-          Spacer(),
-          Text(
-            text,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 4,
+          Container(height: ThemeElements.connectedElementPadding),
+          Expanded(
+            child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                print(constraints);
+                return Text(
+                  text,
+                  style: themeData.textTheme.body1,
+                  textAlign: TextAlign.justify,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: (constraints.maxHeight /
+                              themeData.textTheme.body1.fontSize /
+                              MediaQuery.textScaleFactorOf(context))
+                          .floor() -
+                      1,
+                );
+              },
+            ),
           ),
-          Spacer(),
         ],
       ),
     );
