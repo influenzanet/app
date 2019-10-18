@@ -71,4 +71,6 @@ class ThemeElements {
   static const double pagePadding = 16.0;
   static const double elementPadding = 16.0;
   static const double connectedElementPadding = 12.0;
+
+  static const double cardBorderRadius = 12.0;
 }
