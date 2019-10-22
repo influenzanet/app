@@ -41,7 +41,7 @@ class HomePage extends ListPage {
       child: ThemedCard(
         color: color[400],
         splashColor: color[700],
-        width: 125,
+        width: 135,
         height: 90,
         onTap: () {},
         child: Padding(

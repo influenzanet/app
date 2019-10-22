@@ -61,7 +61,7 @@ class ThemeElements {
   static const Color accentColorLight = const Color(0xff93e3e2);
   static const Color accentColorDark = const Color(0xff2d8181);
 
-  static const Color canvasColor = const Color(0xfff2f2f2);
+  static const Color canvasColor = const Color(0xfff0f0f0);
 
   static const TextStyle displayTextStyle = TextStyle(color: Colors.black);
   static const TextStyle bigButtonTextStyle = TextStyle(fontSize: 20.0);
