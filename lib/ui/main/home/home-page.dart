@@ -28,7 +28,7 @@ class HomePage extends ScaffoldPage {
       height: 90,
       children: <Widget>[
         _quickActionItem(themeData, 'Sickness', Colors.teal),
-        _quickActionItem(themeData, 'Injury', Colors.red),
+        _quickActionItem(themeData, 'Injury', Colors.pink),
         _quickActionItem(themeData, 'Household Members', Colors.brown),
         _quickActionItem(themeData, 'Visit to Doctor', Colors.blue),
         _quickActionItem(themeData, 'Hospital', Colors.orange),
