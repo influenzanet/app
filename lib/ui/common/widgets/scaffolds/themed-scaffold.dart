@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:flutter/material.dart';
 
 class ThemedScaffold extends Scaffold {
@@ -7,7 +8,7 @@ class ThemedScaffold extends Scaffold {
             drawer: drawer,
             body: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
+                padding: const EdgeInsets.only(bottom: ThemeElements.pagePadding),
                 child: body,
               ),
             ));
@@ -20,7 +21,7 @@ class ThemedScaffold extends Scaffold {
               child: SizedBox(
                 height: _screenHeight(context, withoutAppBar: appBar != null),
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
+                  padding: const EdgeInsets.only(bottom: ThemeElements.pagePadding),
                   child: body,
                 ),
               ),

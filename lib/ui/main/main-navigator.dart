@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 
 class MainNavigator extends StatelessWidget {
   static const String homeRoute = 'main/home';
+  static const String homeNewsRoute = 'main/home/news';
   static const String exploreStudiesRoute = 'main/exploreStudies';
   static const String myStudiesRoute = 'main/myStudies';
   static const String newsRoute = 'main/news';
@@ -34,6 +35,9 @@ class MainNavigator extends StatelessWidget {
         switch (settings.name) {
           case homeRoute:
             builder = _homePage;
+            break;
+          case homeNewsRoute:
+            builder = _homeNewsPage;
             break;
           case exploreStudiesRoute:
             builder = _exploreStudiesPage;
@@ -60,6 +64,9 @@ class MainNavigator extends StatelessWidget {
   }
 
   HomePage _homePage(BuildContext _) => HomePage();
+  NewsPage _homeNewsPage(BuildContext _) => NewsPage(
+        drawer: false,
+      );
   ExploreStudiesPage _exploreStudiesPage(BuildContext _) => ExploreStudiesPage();
   MyStudiesPage _myStudiesPage(BuildContext _) => MyStudiesPage();
   NewsPage _newsPage(BuildContext _) => NewsPage();

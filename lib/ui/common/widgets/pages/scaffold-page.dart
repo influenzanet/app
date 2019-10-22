@@ -10,7 +10,7 @@ abstract class ScaffoldPage extends StatelessWidget {
   final bool scrollable;
 
   ScaffoldPage({
-    this.titleText = '',
+    @required this.titleText,
     this.appBar = true,
     this.drawer = true,
     this.scrollable = false,
