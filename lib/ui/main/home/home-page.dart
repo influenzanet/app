@@ -1,24 +1,22 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/common/widgets/lists/horizontal-list.dart';
-import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
+import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
 import 'package:InfluenzaNet/ui/main/main-navigator.dart';
 import 'package:InfluenzaNet/ui/main/news/news-item.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends ScaffoldPage {
+class HomePage extends ListPage {
   HomePage() : super(titleText: 'Home');
 
   @override
-  Widget buildBody(BuildContext context, ThemeData themeData) {
-    return ListView(
-      children: <Widget>[
-        Container(height: ThemeElements.pagePadding),
-        _quickActions(context),
-        Container(height: ThemeElements.elementPadding),
-        _news(context),
-      ],
-    );
+  List<Widget> buildChildren(BuildContext context, ThemeData themeData) {
+    return <Widget>[
+      Container(height: ThemeElements.pagePadding),
+      _quickActions(context),
+      Container(height: ThemeElements.elementPadding),
+      _news(context),
+    ];
   }
 
   Widget _quickActions(BuildContext context) {
