@@ -7,7 +7,7 @@ import 'package:InfluenzaNet/ui/main/news/news-item.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends ScaffoldPage {
-  HomePage() : super(titleText: 'Home');
+  HomePage() : super(titleText: 'Home', notificationButton: true);
 
   @override
   Widget buildBody(BuildContext context, ThemeData themeData) {
