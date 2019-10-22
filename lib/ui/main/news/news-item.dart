@@ -1,4 +1,5 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
+import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -22,28 +23,24 @@ class NewsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
-    return Ink(
-      decoration:
-          BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(ThemeElements.cardBorderRadius)),
+    return ThemedCard(
+      color: Colors.white,
       width: width,
       height: height,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(ThemeElements.cardBorderRadius),
-        onTap: () {
-          _openUrl(url);
-        },
-        child: Padding(
-          padding: EdgeInsets.all(ThemeElements.connectedElementPadding),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              _title(themeData),
-              _subtitle(themeData),
-              Container(height: ThemeElements.connectedElementPadding),
-              _text(themeData),
-            ],
-          ),
+      onTap: () {
+        _openUrl(url);
+      },
+      child: Padding(
+        padding: EdgeInsets.all(ThemeElements.connectedElementPadding),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            _title(themeData),
+            _subtitle(themeData),
+            Container(height: ThemeElements.connectedElementPadding),
+            _text(themeData),
+          ],
         ),
       ),
     );

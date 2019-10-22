@@ -31,17 +31,23 @@ class HorizontalList extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text(
                 titleText,
                 style: themeData.textTheme.display1,
               ),
-              if (onViewAllPressed != null)
-                ThemedSecondaryButton(
+              Visibility(
+                visible: onViewAllPressed != null,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: ThemedSecondaryButton(
                   themeData,
                   text: 'View All',
                   onPressed: onViewAllPressed,
                 ),
+              ),
             ],
           ),
         ),
