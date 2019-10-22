@@ -6,7 +6,7 @@ import 'package:InfluenzaNet/ui/onboarding/onboarding-navigator.dart';
 import 'package:flutter/material.dart';
 
 class InstanceSelectionPage extends ScaffoldPage {
-  InstanceSelectionPage() : super(titleText: '', appBar: false, drawer: false);
+  InstanceSelectionPage() : super(titleText: '', appBar: false, drawer: false, notificationButton: false);
 
   @override
   Widget buildBody(BuildContext context, ThemeData themeData) {

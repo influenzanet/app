@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class LoginPage extends ScaffoldPage {
   final void Function() onLogin;
 
-  LoginPage({this.onLogin}) : super(titleText: 'Login', scrollable: true, drawer: false);
+  LoginPage({this.onLogin}) : super(titleText: 'Login', scrollable: true, drawer: false, notificationButton: false);
 
   @override
   Widget buildBody(BuildContext context, ThemeData themeData) {

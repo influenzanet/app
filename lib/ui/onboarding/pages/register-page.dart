@@ -11,7 +11,7 @@ class RegisterPage extends ScaffoldPage {
   final void Function() onSkip;
 
   RegisterPage({this.onRegister, this.onSkip})
-      : super(titleText: 'Create New Account', scrollable: true, drawer: false);
+      : super(titleText: 'Create New Account', scrollable: true, drawer: false, notificationButton: false);
 
   @override
   Widget buildBody(BuildContext context, ThemeData themeData) {

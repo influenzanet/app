@@ -5,7 +5,7 @@ import 'package:InfluenzaNet/ui/onboarding/onboarding-navigator.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends ScaffoldPage {
-  WelcomePage() : super(titleText: 'Get Started', drawer: false);
+  WelcomePage() : super(titleText: 'Get Started', drawer: false, notificationButton: false);
 
   @override
   Widget buildBody(BuildContext context, ThemeData themeData) {

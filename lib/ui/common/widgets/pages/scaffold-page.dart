@@ -16,7 +16,7 @@ abstract class ScaffoldPage extends StatelessWidget {
     this.appBar = true,
     this.drawer = true,
     this.scrollable = false,
-    this.notificationButton = false,
+    this.notificationButton = true,
   });
 
   @override
