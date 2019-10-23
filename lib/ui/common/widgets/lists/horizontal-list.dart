@@ -44,7 +44,7 @@ class HorizontalList extends StatelessWidget {
                 maintainState: true,
                 child: ThemedSecondaryButton(
                   themeData,
-                  text: 'View All',
+                  text: (onViewAllPressed != null) ? 'View All' : '',
                   onPressed: onViewAllPressed,
                 ),
               ),

@@ -11,16 +11,18 @@ class HomePage extends ListPage {
 
   @override
   List<Widget> buildChildren(BuildContext context, ThemeData themeData) {
+    ThemeData themeData = Theme.of(context);
     return <Widget>[
       Container(height: ThemeElements.pagePadding),
-      _quickActions(context),
+      _quickActions(context, themeData),
       Container(height: ThemeElements.elementPadding),
       _news(context),
+      Container(height: ThemeElements.elementPadding),
+      _history(context, themeData),
     ];
   }
 
-  Widget _quickActions(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
+  Widget _quickActions(BuildContext context, ThemeData themeData) {
     return HorizontalList(
       titleText: 'Quick Report',
       height: 90,
@@ -97,6 +99,44 @@ class HomePage extends ListPage {
         url: url,
         width: 205,
         height: 205 - ThemeElements.listItemPadding * 2,
+      ),
+    );
+  }
+
+  Widget _history(BuildContext context, ThemeData themeData) {
+    return HorizontalList(
+      titleText: 'Your History',
+      height: 85,
+      onViewAllPressed: () {},
+      children: <Widget>[
+        _historyItem(themeData, '3 Days', 'Coughing', Colors.teal),
+        _historyItem(themeData, '10 KM', 'Running', Colors.orange),
+        _historyItem(themeData, '8 Hours', 'Sleeping', Colors.blue),
+      ],
+    );
+  }
+
+  Widget _historyItem(ThemeData themeData, String data, String dataType, Color color) {
+    return Padding(
+      padding: EdgeInsets.all(ThemeElements.listItemPadding),
+      child: ThemedCard(
+        color: Colors.white,
+        width: 105,
+        height: 100,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              data,
+              style: themeData.textTheme.title,
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              dataType,
+              style: themeData.textTheme.title.apply(color: color),
+            )
+          ],
+        ),
       ),
     );
   }
