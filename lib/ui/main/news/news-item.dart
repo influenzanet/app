@@ -66,12 +66,10 @@ class NewsItem extends StatelessWidget {
     return Expanded(
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          print(constraints);
           TextStyle textStyle = themeData.textTheme.body1.copyWith(height: 1.1);
           int maxLines =
               (constraints.maxHeight / textStyle.height / textStyle.fontSize / MediaQuery.textScaleFactorOf(context))
                   .floor();
-          print(maxLines * textStyle.fontSize * textStyle.height);
           return Text(
             text,
             style: textStyle,
