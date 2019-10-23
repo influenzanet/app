@@ -112,6 +112,7 @@ class HomePage extends ListPage {
         _historyItem(themeData, '3 Days', 'Coughing', Colors.teal),
         _historyItem(themeData, '10 KM', 'Running', Colors.orange),
         _historyItem(themeData, '8 Hours', 'Sleeping', Colors.blue),
+        _historyItem(themeData, '3 Times', 'Vaccinated', Colors.green),
       ],
     );
   }
@@ -121,7 +122,7 @@ class HomePage extends ListPage {
       padding: EdgeInsets.all(ThemeElements.listItemPadding),
       child: ThemedCard(
         color: Colors.white,
-        width: 105,
+        width: 110,
         height: 100,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
