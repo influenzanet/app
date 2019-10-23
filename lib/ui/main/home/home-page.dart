@@ -1,5 +1,6 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
+import 'package:InfluenzaNet/ui/common/widgets/headers/section-header.dart';
 import 'package:InfluenzaNet/ui/common/widgets/lists/horizontal-list.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
 import 'package:InfluenzaNet/ui/main/main-navigator.dart';
@@ -19,6 +20,8 @@ class HomePage extends ListPage {
       _news(context),
       Container(height: ThemeElements.elementPadding),
       _history(context, themeData),
+      Container(height: ThemeElements.elementPadding),
+      _map(context, themeData),
     ];
   }
 
@@ -139,6 +142,105 @@ class HomePage extends ListPage {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _map(BuildContext context, ThemeData themeData) {
+    double topHeight = 30;
+    double bottomHeight = 30;
+    return Column(
+      children: <Widget>[
+        SectionHeader(
+          titleText: 'Your Area',
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+              top: ThemeElements.listItemPadding, left: ThemeElements.pagePadding, right: ThemeElements.pagePadding),
+          child: ThemedCard(
+            color: Colors.white,
+            height: 150,
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(ThemeElements.cardBorderRadius),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: <Widget>[
+                    Positioned(
+                      left: 0,
+                      right: 0,
+                      top: topHeight,
+                      bottom: bottomHeight,
+                      child: Image.asset(
+                        'assets/images/placeholders/map.jpg',
+                        fit: BoxFit.fitWidth,
+                        alignment: Alignment.center,
+                      ),
+                    ),
+                    Positioned(
+                      left: 0,
+                      right: 0,
+                      top: topHeight,
+                      bottom: bottomHeight,
+                      child: Center(
+                        child: Container(
+                          width: 25,
+                          height: 25,
+                          alignment: Alignment.center,
+                          decoration:
+                              BoxDecoration(color: themeData.primaryColor.withOpacity(0.2), shape: BoxShape.circle),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 0,
+                      right: 0,
+                      top: topHeight,
+                      bottom: bottomHeight,
+                      child: Center(
+                        child: Container(
+                          width: 10,
+                          height: 10,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(color: themeData.primaryColor, shape: BoxShape.circle),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      height: topHeight,
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        color: Colors.green,
+                        child: Center(
+                          child: Text(
+                            'No Outbreak',
+                            style: themeData.textTheme.title.apply(color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      height: bottomHeight,
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        color: Colors.white,
+                        child: Center(
+                          child: Text(
+                            'View Full Map',
+                            style: themeData.textTheme.button.apply(color: themeData.accentColor),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
+          ),
+        ),
+      ],
     );
   }
 }

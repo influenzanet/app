@@ -1,5 +1,5 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
-import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/headers/section-header.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalList extends StatelessWidget {
@@ -21,35 +21,14 @@ class HorizontalList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
     return Column(
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                titleText,
-                style: themeData.textTheme.display1,
-              ),
-              Visibility(
-                visible: onViewAllPressed != null,
-                maintainSize: true,
-                maintainAnimation: true,
-                maintainState: true,
-                child: ThemedSecondaryButton(
-                  themeData,
-                  text: (onViewAllPressed != null) ? 'View All' : '',
-                  onPressed: onViewAllPressed,
-                ),
-              ),
-            ],
-          ),
+        SectionHeader(
+          titleText: titleText,
+          horizontalPadding: horizontalPadding,
+          onViewAllPressed: onViewAllPressed,
         ),
         Container(
           height: height,

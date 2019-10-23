@@ -9,8 +9,7 @@ class ThemedCard extends StatelessWidget {
   final void Function() onTap;
   final Widget child;
 
-  ThemedCard(
-      {@required this.width, @required this.height, @required this.color, this.splashColor, this.onTap, this.child});
+  ThemedCard({this.width, this.height, @required this.color, this.splashColor, this.onTap, this.child});
 
   @override
   Widget build(BuildContext context) {
