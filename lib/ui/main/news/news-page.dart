@@ -32,11 +32,7 @@ class NewsPage extends ListPage {
 
   Widget _newsItem(String title, String subtitle, String text, String url) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: ThemeElements.connectedElementPadding,
-        top: ThemeElements.connectedElementPadding,
-        right: ThemeElements.connectedElementPadding,
-      ),
+      padding: ThemeElements.listPageItemEdgeInsets,
       child: NewsItem(
         title: title,
         subtitle: subtitle,
