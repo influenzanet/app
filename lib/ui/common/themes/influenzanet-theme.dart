@@ -72,6 +72,13 @@ class ThemeElements {
   static const double elementPadding = 16.0;
   static const double connectedElementPadding = 12.0;
   static const double listItemPadding = connectedElementPadding / 2;
+  static const double listItemContentPadding = 12.0;
 
   static const double cardBorderRadius = 12.0;
+
+  static const listPageItemEdgeInsets = const EdgeInsets.only(
+    left: ThemeElements.connectedElementPadding,
+    top: ThemeElements.connectedElementPadding,
+    right: ThemeElements.connectedElementPadding,
+  );
 }

@@ -31,7 +31,7 @@ class NewsItem extends StatelessWidget {
         _openUrl(url);
       },
       child: Padding(
-        padding: EdgeInsets.all(ThemeElements.connectedElementPadding),
+        padding: EdgeInsets.all(ThemeElements.listItemContentPadding),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
