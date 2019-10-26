@@ -2,19 +2,24 @@ import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
+import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
 import 'package:flutter/material.dart';
 import 'package:intervalprogressbar/intervalprogressbar.dart';
 
 class ThirdQuestionPage extends ScaffoldPage {
   final void Function() onAnswered;
 
-  ThirdQuestionPage({@required this.onAnswered}) : super(titleText: 'Weekly Influenza Survey', drawer: false, notificationButton: false);
+  ThirdQuestionPage({@required this.onAnswered})
+      : super(
+            titleText: 'Weekly Influenza Survey',
+            drawer: false,
+            notificationButton: false,
+            actions: <Widget>[ExitSurveyButton()]);
 
   @override
   Widget buildBody(BuildContext context, ThemeData themeData) {
     return ThirdQuestionForm(this.onAnswered);
   }
-
 }
 
 class ThirdQuestionForm extends StatefulWidget {
@@ -36,10 +41,10 @@ class ThirdQuestionFormState extends State<ThirdQuestionForm> {
   void setStatus(double newValue) {
     setState(() {
       _value = newValue;
-      
+
       if (_value == 0) {
         _status = 'No Sneeze';
-      } else if(_value < 25) {
+      } else if (_value < 25) {
         _status = 'Very Rare';
       } else if (_value > 25 && _value < 48) {
         _status = 'Rare';
@@ -78,23 +83,23 @@ class ThirdQuestionFormState extends State<ThirdQuestionForm> {
 
   Widget _progressBar(ThemeData themeData) {
     return Row(
-       mainAxisAlignment: MainAxisAlignment.center,
-       children: [70, 70, 70].map<Widget>((i) {
-         return Padding(
-             padding: EdgeInsets.only(right: 10),
-             child: IntervalProgressBar(
-                 direction: IntervalProgressDirection.horizontal,
-                 max: 70,
-                 progress: i,
-                 intervalSize: 2,
-                 size: Size(70, 5),
-                 highlightColor: themeData.accentColor,
-                 defaultColor: themeData.disabledColor,
-                 intervalColor: Colors.transparent,
-                 intervalHighlightColor: Colors.transparent,
-                 reverse: true,
-                 radius: 0));
-       }).toList());
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [70, 70, 70].map<Widget>((i) {
+          return Padding(
+              padding: EdgeInsets.only(right: 10),
+              child: IntervalProgressBar(
+                  direction: IntervalProgressDirection.horizontal,
+                  max: 70,
+                  progress: i,
+                  intervalSize: 2,
+                  size: Size(70, 5),
+                  highlightColor: themeData.accentColor,
+                  defaultColor: themeData.disabledColor,
+                  intervalColor: Colors.transparent,
+                  intervalHighlightColor: Colors.transparent,
+                  reverse: true,
+                  radius: 0));
+        }).toList());
   }
 
   Widget _nextButton(ThemeData themeData) {
@@ -112,8 +117,8 @@ class ThirdQuestionFormState extends State<ThirdQuestionForm> {
     return ThemedCard(
       color: Colors.white,
       child: Padding(
-          padding: EdgeInsets.all(12),
-          child: Column(
+        padding: EdgeInsets.all(12),
+        child: Column(
           children: <Widget>[
             Text(
               question,
@@ -147,6 +152,4 @@ class ThirdQuestionFormState extends State<ThirdQuestionForm> {
       ),
     );
   }
-
 }
-

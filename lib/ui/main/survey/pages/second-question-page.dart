@@ -2,19 +2,24 @@ import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
+import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
 import 'package:flutter/material.dart';
 import 'package:intervalprogressbar/intervalprogressbar.dart';
 
 class SecondQuestionPage extends ScaffoldPage {
   final void Function() onAnswered;
 
-  SecondQuestionPage({@required this.onAnswered}) : super(titleText: 'Weekly Influenza Survey', drawer: false, notificationButton: false);
+  SecondQuestionPage({@required this.onAnswered})
+      : super(
+            titleText: 'Weekly Influenza Survey',
+            drawer: false,
+            notificationButton: false,
+            actions: <Widget>[ExitSurveyButton()]);
 
   @override
   Widget buildBody(BuildContext context, ThemeData themeData) {
     return SecondQuestionForm(this.onAnswered);
   }
-
 }
 
 class SecondQuestionForm extends StatefulWidget {
@@ -61,23 +66,23 @@ class SecondQuestionFormState extends State<SecondQuestionForm> {
 
   Widget _progressBar(ThemeData themeData) {
     return Row(
-       mainAxisAlignment: MainAxisAlignment.center,
-       children: [70, 70, 0].map<Widget>((i) {
-         return Padding(
-             padding: EdgeInsets.only(right: 10),
-             child: IntervalProgressBar(
-                 direction: IntervalProgressDirection.horizontal,
-                 max: 70,
-                 progress: i,
-                 intervalSize: 2,
-                 size: Size(70, 5),
-                 highlightColor: themeData.accentColor,
-                 defaultColor: themeData.disabledColor,
-                 intervalColor: Colors.transparent,
-                 intervalHighlightColor: Colors.transparent,
-                 reverse: true,
-                 radius: 0));
-       }).toList());
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [70, 70, 0].map<Widget>((i) {
+          return Padding(
+              padding: EdgeInsets.only(right: 10),
+              child: IntervalProgressBar(
+                  direction: IntervalProgressDirection.horizontal,
+                  max: 70,
+                  progress: i,
+                  intervalSize: 2,
+                  size: Size(70, 5),
+                  highlightColor: themeData.accentColor,
+                  defaultColor: themeData.disabledColor,
+                  intervalColor: Colors.transparent,
+                  intervalHighlightColor: Colors.transparent,
+                  reverse: true,
+                  radius: 0));
+        }).toList());
   }
 
   Widget _nextButton(ThemeData themeData) {
@@ -95,8 +100,8 @@ class SecondQuestionFormState extends State<SecondQuestionForm> {
     return ThemedCard(
       color: Colors.white,
       child: Padding(
-          padding: EdgeInsets.all(12),
-          child: Column(
+        padding: EdgeInsets.all(12),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
@@ -159,7 +164,6 @@ class SecondQuestionFormState extends State<SecondQuestionForm> {
       ),
     );
   }
-
 }
 
 class LabeledCheckbox extends StatelessWidget {

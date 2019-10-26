@@ -8,11 +8,13 @@ abstract class ListPage extends StatelessWidget {
   final String titleText;
   final bool drawer;
   final bool notificationButton;
+  final List<Widget> actions;
 
   ListPage({
     @required this.titleText,
     this.drawer = true,
     this.notificationButton = true,
+    this.actions,
   });
 
   @override
@@ -42,6 +44,7 @@ abstract class ListPage extends StatelessWidget {
       themeData,
       titleText: titleText,
       actions: <Widget>[
+        if (actions != null) ...actions,
         if (notificationButton) NotificationButton(),
       ],
     );

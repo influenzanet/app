@@ -2,7 +2,6 @@ import 'package:InfluenzaNet/ui/common/widgets/app-bars/themed-app-bar.dart';
 import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
 import 'package:InfluenzaNet/ui/main/drawer/main-drawer.dart';
 import 'package:InfluenzaNet/ui/main/notifications/notification-button.dart';
-import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
 import 'package:flutter/material.dart';
 
 abstract class ScaffoldPage extends StatelessWidget {
@@ -11,6 +10,7 @@ abstract class ScaffoldPage extends StatelessWidget {
   final bool drawer;
   final bool scrollable;
   final bool notificationButton;
+  final List<Widget> actions;
 
   ScaffoldPage({
     @required this.titleText,
@@ -18,6 +18,7 @@ abstract class ScaffoldPage extends StatelessWidget {
     this.drawer = true,
     this.scrollable = false,
     this.notificationButton = true,
+    this.actions,
   });
 
   @override
@@ -38,15 +39,13 @@ abstract class ScaffoldPage extends StatelessWidget {
   }
 
   PreferredSizeWidget _appBar(ThemeData themeData) {
-
     return (appBar)
         ? ThemedAppBar(
             themeData,
             titleText: titleText,
             actions: <Widget>[
-              if (notificationButton)
-                NotificationButton() 
-              else ExitSurveyButton()
+              if (actions != null) ...actions,
+              if (notificationButton) NotificationButton(),
             ],
           )
         : null;

@@ -2,15 +2,21 @@ import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
+import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
 import 'package:flutter/material.dart';
 import 'package:intervalprogressbar/intervalprogressbar.dart';
 
-enum Answer {yes, no}
+enum Answer { yes, no }
 
 class FirstQuestionPage extends ScaffoldPage {
   final void Function() onAnswered;
 
-  FirstQuestionPage({@required this.onAnswered}) : super(titleText: 'Weekly Influenza Survey', drawer: false, notificationButton: false);
+  FirstQuestionPage({@required this.onAnswered})
+      : super(
+            titleText: 'Weekly Influenza Survey',
+            drawer: false,
+            notificationButton: false,
+            actions: <Widget>[ExitSurveyButton()]);
 
   @override
   Widget buildBody(BuildContext context, ThemeData themeData) {
@@ -32,7 +38,6 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
   Answer _answer = Answer.yes;
   static final String firstQuestion = "Did you visit a doctor?";
   static final String secondQuestion = "Please describe your symptoms in more detail";
-  
 
   @override
   Widget build(BuildContext context) {
@@ -61,23 +66,23 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
 
   Widget _progressBar(ThemeData themeData) {
     return Row(
-       mainAxisAlignment: MainAxisAlignment.center,
-       children: [70, 0, 0].map<Widget>((i) {
-         return Padding(
-             padding: EdgeInsets.only(right: 10),
-             child: IntervalProgressBar(
-                 direction: IntervalProgressDirection.horizontal,
-                 max: 70,
-                 progress: i,
-                 intervalSize: 2,
-                 size: Size(70, 5),
-                 highlightColor: themeData.accentColor,
-                 defaultColor: themeData.disabledColor,
-                 intervalColor: Colors.transparent,
-                 intervalHighlightColor: Colors.transparent,
-                 reverse: true,
-                 radius: 0));
-       }).toList());
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [70, 0, 0].map<Widget>((i) {
+          return Padding(
+              padding: EdgeInsets.only(right: 10),
+              child: IntervalProgressBar(
+                  direction: IntervalProgressDirection.horizontal,
+                  max: 70,
+                  progress: i,
+                  intervalSize: 2,
+                  size: Size(70, 5),
+                  highlightColor: themeData.accentColor,
+                  defaultColor: themeData.disabledColor,
+                  intervalColor: Colors.transparent,
+                  intervalHighlightColor: Colors.transparent,
+                  reverse: true,
+                  radius: 0));
+        }).toList());
   }
 
   Widget _nextButton(ThemeData themeData) {
@@ -95,8 +100,8 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
     return ThemedCard(
       color: Colors.white,
       child: Padding(
-          padding: EdgeInsets.all(12),
-          child: Column(
+        padding: EdgeInsets.all(12),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
@@ -109,29 +114,29 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
                 Row(
                   children: <Widget>[
                     Radio(
-                    value: Answer.yes,
-                    groupValue: _answer,
-                    onChanged: (Answer value) {
-                      setState(() { 
-                        _answer = value; 
-                      });
-                    },
-                  ),
-                  const Text('Yes')
+                      value: Answer.yes,
+                      groupValue: _answer,
+                      onChanged: (Answer value) {
+                        setState(() {
+                          _answer = value;
+                        });
+                      },
+                    ),
+                    const Text('Yes')
                   ],
                 ),
                 Row(
                   children: <Widget>[
                     Radio(
-                    value: Answer.no,
-                    groupValue: _answer,
-                    onChanged: (Answer value) {
-                      setState(() { 
-                        _answer = value; 
-                      });
-                    },
-                  ),
-                  const Text('No')
+                      value: Answer.no,
+                      groupValue: _answer,
+                      onChanged: (Answer value) {
+                        setState(() {
+                          _answer = value;
+                        });
+                      },
+                    ),
+                    const Text('No')
                   ],
                 ),
               ],
@@ -140,15 +145,14 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
         ),
       ),
     );
-
   }
 
   Widget _inputLongTextFields(ThemeData themeData, String question) {
     return ThemedCard(
       color: Colors.white,
       child: Padding(
-          padding: EdgeInsets.all(12),
-          child: Column(
+        padding: EdgeInsets.all(12),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
@@ -159,17 +163,16 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
             Padding(
               padding: EdgeInsets.only(top: 10, bottom: 5),
               child: new TextField(
-              keyboardType: TextInputType.multiline,
-              maxLines: 5, // Or use "null" to make it grow automatically
-              decoration: new InputDecoration.collapsed(
-                hintText: 'Fill in here',
+                keyboardType: TextInputType.multiline,
+                maxLines: 5, // Or use "null" to make it grow automatically
+                decoration: new InputDecoration.collapsed(
+                  hintText: 'Fill in here',
+                ),
               ),
-            ),
             ),
           ],
         ),
       ),
     );
   }
-
 }
