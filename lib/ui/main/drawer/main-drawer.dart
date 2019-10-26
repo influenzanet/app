@@ -1,9 +1,37 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
 import 'package:InfluenzaNet/ui/main/main-navigator.dart';
+import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 
-class MainDrawer extends StatelessWidget {
+class MainDrawer extends StatefulWidget {
+  @override
+  _MainDrawerState createState() => _MainDrawerState();
+}
+
+class _MainDrawerState extends State<MainDrawer> with AfterLayoutMixin<MainDrawer> {
+  ScrollController _scrollController;
+  bool _enoughSpace = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) {
+    if (_scrollController.offset >= _scrollController.position.maxScrollExtent) {
+      setState(() {
+        _enoughSpace = true;
+      });
+    } else {
+      setState(() {
+        _enoughSpace = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
@@ -25,6 +53,7 @@ class MainDrawer extends StatelessWidget {
           ),
           Expanded(
             child: ListView(
+              controller: _scrollController,
               padding: EdgeInsets.symmetric(
                   horizontal: ThemeElements.elementPadding, vertical: ThemeElements.elementPadding / 2),
               children: <Widget>[
@@ -41,27 +70,11 @@ class MainDrawer extends StatelessWidget {
                 _drawerItem(context, 'Settings', color: themeData.accentColor),
                 Divider(),
                 _drawerItem(context, 'Survey', route: MainNavigator.surveryRoute),
+                if (!_enoughSpace) ..._logoutButton(themeData, screenPadding),
               ],
             ),
           ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding:
-                    const EdgeInsets.only(top: ThemeElements.elementPadding / 2, bottom: ThemeElements.elementPadding),
-                child: ThemedSecondaryButton.big(
-                  themeData,
-                  text: 'Logout',
-                  onPressed: () {
-                    MainNavigator.pushOnboardingRoute();
-                  },
-                ),
-              ),
-            ],
-          ),
-          Container(height: screenPadding.bottom),
+          if (_enoughSpace) ..._logoutButton(themeData, screenPadding),
         ],
       ),
     );
@@ -88,5 +101,27 @@ class MainDrawer extends StatelessWidget {
             }
           : null,
     );
+  }
+
+  List<Widget> _logoutButton(ThemeData themeData, EdgeInsets screenPadding) {
+    return <Widget>[
+      Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: ThemeElements.elementPadding / 2, bottom: ThemeElements.elementPadding),
+            child: ThemedSecondaryButton.big(
+              themeData,
+              text: 'Logout',
+              onPressed: () {
+                MainNavigator.pushOnboardingRoute();
+              },
+            ),
+          ),
+        ],
+      ),
+      Container(height: screenPadding.bottom),
+    ];
   }
 }
