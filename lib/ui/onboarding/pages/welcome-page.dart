@@ -16,6 +16,7 @@ class WelcomePage extends ScaffoldPage {
         children: <Widget>[
           Spacer(flex: 17),
           _welcomeText(themeData),
+          Container(height: ThemeElements.connectedElementPadding),
           _logo(),
           Spacer(flex: 20),
           _loginButton(themeData, context),
@@ -36,8 +37,10 @@ class WelcomePage extends ScaffoldPage {
 
   Widget _logo() {
     return Padding(
-      padding: const EdgeInsets.only(top: ThemeElements.connectedElementPadding),
-      child: Image.asset('assets/images/logos/influenzanet.png'),
+      padding: const EdgeInsets.symmetric(horizontal: ThemeElements.pagePadding),
+      child: Image.asset(
+        'assets/images/logos/influenzanet.png',
+      ),
     );
   }
 
