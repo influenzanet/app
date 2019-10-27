@@ -51,6 +51,7 @@ class RegisterFormState extends State<RegisterForm> {
             _inputFields(themeData),
             Spacer(flex: 10),
             _continueButtons(themeData),
+            Container(height: ThemeElements.pagePadding),
           ],
         ),
       ),

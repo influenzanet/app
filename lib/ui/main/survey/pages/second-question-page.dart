@@ -58,6 +58,7 @@ class SecondQuestionFormState extends State<SecondQuestionForm> {
             _inputCheckBoxFields(themeData, _question),
             Spacer(flex: 10),
             _nextButton(themeData),
+            Container(height: ThemeElements.pagePadding),
           ],
         ),
       ),

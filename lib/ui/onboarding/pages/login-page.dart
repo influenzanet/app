@@ -46,6 +46,7 @@ class LoginFormState extends State<LoginForm> {
             _inputFields(themeData),
             Spacer(flex: 18),
             _loginButton(themeData),
+            Container(height: ThemeElements.pagePadding),
           ],
         ),
       ),

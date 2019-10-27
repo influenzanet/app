@@ -75,6 +75,7 @@ class ThirdQuestionFormState extends State<ThirdQuestionForm> {
             _inputCheckBoxFields(themeData, _question),
             Spacer(flex: 10),
             _nextButton(themeData),
+            Container(height: ThemeElements.pagePadding),
           ],
         ),
       ),

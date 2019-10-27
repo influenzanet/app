@@ -124,7 +124,6 @@ class HomePage extends ListPage {
     return Padding(
       padding: EdgeInsets.all(ThemeElements.listItemPadding),
       child: ThemedCard(
-        color: Colors.white,
         width: 110,
         height: 100,
         child: Column(

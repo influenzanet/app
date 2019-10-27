@@ -20,6 +20,7 @@ class WelcomePage extends ScaffoldPage {
           Spacer(flex: 20),
           _loginButton(themeData, context),
           _signupButton(themeData, context),
+          Container(height: ThemeElements.pagePadding),
         ],
       ),
     );

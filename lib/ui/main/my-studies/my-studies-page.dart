@@ -6,6 +6,8 @@ class MyStudiesPage extends ScaffoldPage {
 
   @override
   Widget buildBody(BuildContext context, ThemeData themeData) {
-    return null;
+    return Container(
+      height: 20,
+    );
   }
 }

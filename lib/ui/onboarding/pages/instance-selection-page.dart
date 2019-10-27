@@ -21,6 +21,7 @@ class InstanceSelectionPage extends ScaffoldPage {
         _countrySelection(themeData),
         Spacer(flex: 20),
         _nextButton(context, themeData),
+        Container(height: ThemeElements.pagePadding),
       ],
     );
   }

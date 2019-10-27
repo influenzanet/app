@@ -5,6 +5,7 @@ import 'package:InfluenzaNet/ui/main/home/home-page.dart';
 import 'package:InfluenzaNet/ui/main/my-studies/my-studies-page.dart';
 import 'package:InfluenzaNet/ui/main/news/news-page.dart';
 import 'package:InfluenzaNet/ui/main/profile/profile-page.dart';
+import 'package:InfluenzaNet/ui/main/studies/study-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/survey-navigator.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class MainNavigator extends StatelessWidget {
   static const String newsRoute = 'main/news';
   static const String profileRoute = 'main/profile';
 
+  static const String studyRoute = 'main/study';
   static const String surveryRoute = 'main/survey';
 
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -51,6 +53,9 @@ class MainNavigator extends StatelessWidget {
           case profileRoute:
             builder = _profilePage;
             break;
+          case studyRoute:
+            builder = _studyPage;
+            break;
           case surveryRoute:
             builder = _surveyNavigator;
             break;
@@ -72,5 +77,6 @@ class MainNavigator extends StatelessWidget {
   NewsPage _newsPage(BuildContext _) => NewsPage();
   ProfilePage _profilePage(BuildContext _) => ProfilePage();
 
+  StudyPage _studyPage(BuildContext _) => StudyPage();
   SurveyNavigator _surveyNavigator(BuildContext _) => SurveyNavigator();
 }

@@ -72,7 +72,8 @@ class ThemeElements {
   static const double elementPadding = 16.0;
   static const double connectedElementPadding = 12.0;
   static const double listItemPadding = connectedElementPadding / 2;
-  static const double listItemContentPadding = 12.0;
+  static const double cardContentPadding = 12.0;
+  static const double cardElementPadding = 8.0;
 
   static const double cardBorderRadius = 12.0;
 

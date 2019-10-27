@@ -1,5 +1,6 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
+import 'package:InfluenzaNet/ui/main/main-navigator.dart';
 import 'package:flutter/material.dart';
 
 class StudyItem extends StatelessWidget {
@@ -8,8 +9,11 @@ class StudyItem extends StatelessWidget {
     ThemeData themeData = Theme.of(context);
     return ThemedCard(
       color: Colors.white,
+      onTap: () {
+        Navigator.of(context).pushNamed(MainNavigator.studyRoute);
+      },
       child: Padding(
-        padding: const EdgeInsets.all(ThemeElements.listItemContentPadding),
+        padding: const EdgeInsets.all(ThemeElements.cardContentPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -22,14 +26,14 @@ class StudyItem extends StatelessWidget {
                   height: 32,
                 ),
                 Container(
-                  width: ThemeElements.listItemContentPadding,
+                  width: ThemeElements.cardContentPadding,
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Influenza Study',
+                      'Influenza Incidents',
                       style: themeData.textTheme.title,
                     ),
                     Text(
@@ -45,7 +49,7 @@ class StudyItem extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       '337',
-                      style: themeData.textTheme.title.apply(color: themeData.primaryColor, fontSizeDelta: -2),
+                      style: themeData.textTheme.title.apply(color: themeData.accentColor, fontSizeDelta: -2),
                       textAlign: TextAlign.end,
                     ),
                     Text(
@@ -58,9 +62,10 @@ class StudyItem extends StatelessWidget {
               ],
             ),
             Container(
-              height: ThemeElements.connectedElementPadding,
+              height: ThemeElements.cardElementPadding,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 _tag(themeData, 'Influenza'),
                 Container(

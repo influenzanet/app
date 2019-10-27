@@ -24,14 +24,13 @@ class NewsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
     return ThemedCard(
-      color: Colors.white,
       width: width,
       height: height,
       onTap: () {
         _openUrl(url);
       },
       child: Padding(
-        padding: EdgeInsets.all(ThemeElements.listItemContentPadding),
+        padding: EdgeInsets.all(ThemeElements.cardContentPadding),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,

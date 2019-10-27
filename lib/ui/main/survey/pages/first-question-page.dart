@@ -58,6 +58,7 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
             _inputLongTextFields(themeData, secondQuestion),
             Spacer(flex: 10),
             _nextButton(themeData),
+            Container(height: ThemeElements.pagePadding),
           ],
         ),
       ),
