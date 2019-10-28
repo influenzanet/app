@@ -5,12 +5,17 @@ import 'package:flutter/material.dart';
 class SectionHeader extends StatelessWidget {
   final String titleText;
   final double horizontalPadding;
+  // Make View All Button only invisible but still use it for layout. Since button is higher than default text, this is important for proper layout.
+  final bool viewAllButtonLayout;
   final void Function() onViewAllPressed;
+  final TextStyle titleTextStyle;
 
   SectionHeader({
     @required this.titleText,
     this.horizontalPadding = ThemeElements.pagePadding,
     this.onViewAllPressed,
+    this.titleTextStyle,
+    this.viewAllButtonLayout = true,
   });
 
   @override
@@ -25,19 +30,20 @@ class SectionHeader extends StatelessWidget {
         children: <Widget>[
           Text(
             titleText,
-            style: themeData.textTheme.display1,
+            style: (titleTextStyle == null) ? themeData.textTheme.display1 : titleTextStyle,
           ),
-          Visibility(
-            visible: onViewAllPressed != null,
-            maintainSize: true,
-            maintainAnimation: true,
-            maintainState: true,
-            child: ThemedSecondaryButton(
-              themeData,
-              text: (onViewAllPressed != null) ? 'View All' : '',
-              onPressed: onViewAllPressed,
+          if (viewAllButtonLayout)
+            Visibility(
+              visible: onViewAllPressed != null,
+              maintainSize: true,
+              maintainAnimation: true,
+              maintainState: true,
+              child: ThemedSecondaryButton(
+                themeData,
+                text: (onViewAllPressed != null) ? 'View All' : '',
+                onPressed: onViewAllPressed,
+              ),
             ),
-          ),
         ],
       ),
     );
