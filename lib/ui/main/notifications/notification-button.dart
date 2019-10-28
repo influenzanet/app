@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/main/main-navigator.dart';
 import 'package:flutter/material.dart';
 
 class NotificationButton extends StatelessWidget {
@@ -14,7 +15,9 @@ class NotificationButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(100),
             highlightColor: Colors.red[100].withOpacity(0.5),
             splashColor: Colors.red[100].withOpacity(0.75),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed(MainNavigator.notificationRoute);
+            },
             child: Center(
               child: Container(
                   width: 26,
@@ -22,7 +25,7 @@ class NotificationButton extends StatelessWidget {
                   decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(100)),
                   child: Center(
                       child: Text(
-                    '2',
+                    '1',
                     style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16.0),
                   ))),
             ),

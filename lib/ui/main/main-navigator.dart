@@ -5,6 +5,7 @@ import 'package:InfluenzaNet/ui/main/home/home-page.dart';
 import 'package:InfluenzaNet/ui/main/my-studies/my-studies-page.dart';
 import 'package:InfluenzaNet/ui/main/news/news-page.dart';
 import 'package:InfluenzaNet/ui/main/profile/profile-page.dart';
+import 'package:InfluenzaNet/ui/main/notifications/notification-page.dart';
 import 'package:InfluenzaNet/ui/main/studies/study-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/survey-navigator.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class MainNavigator extends StatelessWidget {
   static const String myStudiesRoute = 'main/myStudies';
   static const String newsRoute = 'main/news';
   static const String profileRoute = 'main/profile';
+  static const String notificationRoute = 'main/notification';
 
   static const String subscribedStudyRoute = 'main/subscribedStudy';
   static const String unsubscribedStudyRoute = 'main/unsubscribedStudy';
@@ -54,6 +56,9 @@ class MainNavigator extends StatelessWidget {
           case profileRoute:
             builder = _profilePage;
             break;
+          case notificationRoute:
+            builder = _notificationPage;
+            break;
           case subscribedStudyRoute:
             builder = _subscribedStudyPage;
             break;
@@ -80,6 +85,7 @@ class MainNavigator extends StatelessWidget {
   MyStudiesPage _myStudiesPage(BuildContext _) => MyStudiesPage();
   NewsPage _newsPage(BuildContext _) => NewsPage();
   ProfilePage _profilePage(BuildContext _) => ProfilePage();
+  NotificationPage _notificationPage(BuildContext _) => NotificationPage();
 
   StudyPage _unsubscribedStudyPage(BuildContext _) => StudyPage(
         subscribed: false,
