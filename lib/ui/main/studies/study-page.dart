@@ -1,7 +1,6 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
-import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -32,7 +31,7 @@ class StudyPage extends ScaffoldPage {
             style: themeData.textTheme.subhead,
             textAlign: TextAlign.center,
           ),
-          Container(height: ThemeElements.elementPadding),
+          Container(height: ThemeElements.connectedElementPadding),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -45,12 +44,10 @@ class StudyPage extends ScaffoldPage {
           ),
           Container(height: ThemeElements.elementPadding),
           ThemedCard(
-            //color: ThemeElements.canvasColor,
             child: Padding(
               padding: const EdgeInsets.all(ThemeElements.cardContentPadding),
               child: Column(
                 children: <Widget>[
-                  //Container(height: ThemeElements.cardContentPadding),
                   GestureDetector(
                     child: Text(
                       'https://influenzanet.github.io',
@@ -74,7 +71,6 @@ class StudyPage extends ScaffoldPage {
                     height: ThemeElements.cardElementPadding,
                   ),
                   Row(
-                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Spacer(),
                       Text(
