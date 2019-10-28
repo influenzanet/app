@@ -17,7 +17,8 @@ class MainNavigator extends StatelessWidget {
   static const String newsRoute = 'main/news';
   static const String profileRoute = 'main/profile';
 
-  static const String studyRoute = 'main/study';
+  static const String subscribedStudyRoute = 'main/subscribedStudy';
+  static const String unsubscribedStudyRoute = 'main/unsubscribedStudy';
   static const String surveryRoute = 'main/survey';
 
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -53,8 +54,11 @@ class MainNavigator extends StatelessWidget {
           case profileRoute:
             builder = _profilePage;
             break;
-          case studyRoute:
-            builder = _studyPage;
+          case subscribedStudyRoute:
+            builder = _subscribedStudyPage;
+            break;
+          case unsubscribedStudyRoute:
+            builder = _unsubscribedStudyPage;
             break;
           case surveryRoute:
             builder = _surveyNavigator;
@@ -77,6 +81,11 @@ class MainNavigator extends StatelessWidget {
   NewsPage _newsPage(BuildContext _) => NewsPage();
   ProfilePage _profilePage(BuildContext _) => ProfilePage();
 
-  StudyPage _studyPage(BuildContext _) => StudyPage();
+  StudyPage _unsubscribedStudyPage(BuildContext _) => StudyPage(
+        subscribed: false,
+      );
+  StudyPage _subscribedStudyPage(BuildContext _) => StudyPage(
+        subscribed: true,
+      );
   SurveyNavigator _surveyNavigator(BuildContext _) => SurveyNavigator();
 }

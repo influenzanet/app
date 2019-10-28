@@ -14,7 +14,8 @@ class StudyItem extends StatelessWidget {
     return ThemedCard(
       color: Colors.white,
       onTap: () {
-        Navigator.of(context).pushNamed(MainNavigator.studyRoute);
+        String route = (subscribed) ? MainNavigator.subscribedStudyRoute : MainNavigator.unsubscribedStudyRoute;
+        Navigator.of(context).pushNamed(route);
       },
       child: Padding(
         padding: const EdgeInsets.all(ThemeElements.cardContentPadding),

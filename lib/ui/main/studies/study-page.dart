@@ -1,12 +1,15 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class StudyPage extends ScaffoldPage {
-  StudyPage()
+  final bool subscribed;
+
+  StudyPage({this.subscribed = false})
       : super(
             titleWidget: Image.asset(
               'assets/images/logos/influenzanet_small.png',
@@ -116,11 +119,13 @@ class StudyPage extends ScaffoldPage {
             ],
           ),
           Container(height: ThemeElements.elementPadding),
-          ThemedPrimaryButton(
-            themeData,
-            text: 'Join Study',
-            onPressed: () {},
-          ),
+          (subscribed)
+              ? ThemedSecondaryButton.big(themeData, text: 'Leave Study', onPressed: () {})
+              : ThemedPrimaryButton(
+                  themeData,
+                  text: 'Join Study',
+                  onPressed: () {},
+                ),
         ],
       ),
     );
