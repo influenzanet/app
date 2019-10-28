@@ -11,7 +11,6 @@ abstract class ListPage extends StatefulWidget {
   final bool appBar;
   final bool drawer;
   final bool notificationButton;
-  final bool bottomWidget;
   final List<Widget> actions;
 
   ListPage({
@@ -20,7 +19,6 @@ abstract class ListPage extends StatefulWidget {
     this.appBar = true,
     this.drawer = true,
     this.notificationButton = true,
-    this.bottomWidget = false,
     this.actions,
   });
 
