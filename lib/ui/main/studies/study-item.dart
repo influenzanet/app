@@ -4,6 +4,10 @@ import 'package:InfluenzaNet/ui/main/main-navigator.dart';
 import 'package:flutter/material.dart';
 
 class StudyItem extends StatelessWidget {
+  final bool subscribed;
+
+  StudyItem({this.subscribed = false});
+
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
@@ -64,19 +68,23 @@ class StudyItem extends StatelessWidget {
             Container(
               height: ThemeElements.cardElementPadding,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                _tag(themeData, 'Influenza'),
-                Container(
-                  width: 4,
-                ),
-                _tag(themeData, 'Open Research'),
-              ],
-            ),
+            (subscribed) ? _surveysPreview(themeData) : _tagList(themeData),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _tagList(ThemeData themeData) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        _tag(themeData, 'Influenza'),
+        Container(
+          width: 4,
+        ),
+        _tag(themeData, 'Open Research'),
+      ],
     );
   }
 
@@ -88,6 +96,27 @@ class StudyItem extends StatelessWidget {
         text,
         style: TextStyle(color: Colors.white, fontSize: 12),
       ),
+    );
+  }
+
+  Widget _surveysPreview(ThemeData themeData) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Spacer(),
+        Text(
+          '4',
+          style: themeData.textTheme.title.apply(color: themeData.primaryColor),
+        ),
+        Text(' New Surveys'),
+        Spacer(),
+        Text(
+          '2',
+          style: themeData.textTheme.title.apply(color: Colors.red),
+        ),
+        Text(' Incomplete Surveys'),
+        Spacer(),
+      ],
     );
   }
 }

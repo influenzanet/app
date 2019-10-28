@@ -9,14 +9,16 @@ class ExploreStudiesPage extends ListPage {
   @override
   List<Widget> buildChildren(BuildContext context, ThemeData themeData) {
     return <Widget>[
-      _studyItem(),
+      _studyItem(false),
     ];
   }
 
-  Widget _studyItem() {
+  Widget _studyItem(bool subscribed) {
     return Padding(
       padding: ThemeElements.listPageItemEdgeInsets,
-      child: StudyItem(),
+      child: StudyItem(
+        subscribed: subscribed,
+      ),
     );
   }
 }
