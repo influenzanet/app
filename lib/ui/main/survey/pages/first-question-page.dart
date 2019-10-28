@@ -4,7 +4,6 @@ import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
 import 'package:flutter/material.dart';
-import 'package:intervalprogressbar/intervalprogressbar.dart';
 
 enum Answer { yes, no }
 
@@ -39,6 +38,13 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
   static final String firstQuestion = "Did you visit a doctor?";
   static final String secondQuestion = "Please describe your symptoms in more detail";
 
+  void setAnswer(Answer answer) {
+    setState(() {
+      _answer = answer;
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
@@ -51,7 +57,6 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            _progressBar(themeData),
             Spacer(flex: 5),
             _inputRadioButtonFields(themeData, firstQuestion),
             Spacer(flex: 1),
@@ -63,27 +68,6 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
         ),
       ),
     );
-  }
-
-  Widget _progressBar(ThemeData themeData) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [70, 0, 0].map<Widget>((i) {
-          return Padding(
-              padding: EdgeInsets.only(right: 10),
-              child: IntervalProgressBar(
-                  direction: IntervalProgressDirection.horizontal,
-                  max: 70,
-                  progress: i,
-                  intervalSize: 2,
-                  size: Size(70, 5),
-                  highlightColor: themeData.accentColor,
-                  defaultColor: themeData.disabledColor,
-                  intervalColor: Colors.transparent,
-                  intervalHighlightColor: Colors.transparent,
-                  reverse: true,
-                  radius: 0));
-        }).toList());
   }
 
   Widget _nextButton(ThemeData themeData) {
@@ -116,14 +100,17 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
                   children: <Widget>[
                     Radio(
                       value: Answer.yes,
-                      groupValue: _answer,
+                       groupValue: _answer,
                       onChanged: (Answer value) {
                         setState(() {
                           _answer = value;
                         });
                       },
                     ),
-                    const Text('Yes')
+                    InkWell(
+                      onTap: () => setAnswer(Answer.yes),
+                      child: const Text('Yes'),
+                    )
                   ],
                 ),
                 Row(
@@ -137,7 +124,10 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
                         });
                       },
                     ),
-                    const Text('No')
+                    InkWell(
+                      onTap: () => setAnswer(Answer.no),
+                      child: const Text('No'),
+                    )
                   ],
                 ),
               ],

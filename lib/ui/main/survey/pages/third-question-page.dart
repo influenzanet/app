@@ -4,7 +4,6 @@ import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
 import 'package:flutter/material.dart';
-import 'package:intervalprogressbar/intervalprogressbar.dart';
 
 class ThirdQuestionPage extends ScaffoldPage {
   final void Function() onAnswered;
@@ -70,7 +69,6 @@ class ThirdQuestionFormState extends State<ThirdQuestionForm> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            _progressBar(themeData),
             Spacer(flex: 5),
             _inputCheckBoxFields(themeData, _question),
             Spacer(flex: 10),
@@ -80,27 +78,6 @@ class ThirdQuestionFormState extends State<ThirdQuestionForm> {
         ),
       ),
     );
-  }
-
-  Widget _progressBar(ThemeData themeData) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [70, 70, 70].map<Widget>((i) {
-          return Padding(
-              padding: EdgeInsets.only(right: 10),
-              child: IntervalProgressBar(
-                  direction: IntervalProgressDirection.horizontal,
-                  max: 70,
-                  progress: i,
-                  intervalSize: 2,
-                  size: Size(70, 5),
-                  highlightColor: themeData.accentColor,
-                  defaultColor: themeData.disabledColor,
-                  intervalColor: Colors.transparent,
-                  intervalHighlightColor: Colors.transparent,
-                  reverse: true,
-                  radius: 0));
-        }).toList());
   }
 
   Widget _nextButton(ThemeData themeData) {
