@@ -1,27 +1,29 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/app-bars/themed-sliver-app-bar.dart';
-import 'package:InfluenzaNet/ui/common/widgets/pages/page.dart';
+import 'package:InfluenzaNet/ui/main/drawer/main-drawer.dart';
+import 'package:InfluenzaNet/ui/main/notifications/notification-button.dart';
 import 'package:flutter/material.dart';
 
-abstract class ListPage extends Page {
+abstract class ListPage extends StatelessWidget {
+  final String titleText;
+  final Widget titleWidget;
+  final bool appBar;
+  final bool drawer;
+  final bool notificationButton;
+  final List<Widget> actions;
+
   ListPage({
-    String titleText = '',
-    Widget titleWidget,
-    bool appBar = true,
-    bool drawer = true,
-    bool notificationButton = true,
-    List<Widget> actions,
-  }) : super(
-          titleText: titleText,
-          titleWidget: titleWidget,
-          appBar: appBar,
-          drawer: drawer,
-          notificationButton: notificationButton,
-          actions: actions,
-        );
+    this.titleText = '',
+    this.titleWidget,
+    this.appBar = true,
+    this.drawer = true,
+    this.notificationButton = true,
+    this.actions,
+  });
 
   @override
-  Widget buildPage(BuildContext context, ThemeData themeData) {
+  Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return Scaffold(
       drawer: drawerWidget(),
       body: CustomScrollView(
@@ -37,6 +39,10 @@ abstract class ListPage extends Page {
     );
   }
 
+  Widget drawerWidget() {
+    return (drawer) ? MainDrawer() : null;
+  }
+
   ThemedSliverAppBar _appBar(ThemeData themeData) {
     return ThemedSliverAppBar(
       themeData,
@@ -47,6 +53,13 @@ abstract class ListPage extends Page {
 
   ThemedSliverAppBar _widgetAppBar(ThemeData themeData) {
     return ThemedSliverAppBar.widget(themeData, title: titleWidget, actions: appBarActions());
+  }
+
+  List<Widget> appBarActions() {
+    return <Widget>[
+      if (actions != null) ...actions,
+      if (notificationButton) NotificationButton(),
+    ];
   }
 
   List<Widget> _children(BuildContext context, ThemeData themeData) {
