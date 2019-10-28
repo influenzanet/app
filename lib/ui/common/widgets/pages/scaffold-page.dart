@@ -1,30 +1,32 @@
 import 'package:InfluenzaNet/ui/common/widgets/app-bars/themed-app-bar.dart';
-import 'package:InfluenzaNet/ui/common/widgets/pages/page.dart';
 import 'package:InfluenzaNet/ui/common/widgets/scaffolds/themed-scaffold.dart';
+import 'package:InfluenzaNet/ui/main/drawer/main-drawer.dart';
+import 'package:InfluenzaNet/ui/main/notifications/notification-button.dart';
 import 'package:flutter/material.dart';
 
-abstract class ScaffoldPage extends Page {
+abstract class ScaffoldPage extends StatelessWidget {
+  final String titleText;
+  final Widget titleWidget;
+  final bool appBar;
+  final bool drawer;
+  final bool notificationButton;
+  final List<Widget> actions;
+
   final bool scrollable;
 
   ScaffoldPage({
-    String titleText = '',
-    Widget titleWidget,
-    bool appBar = true,
-    bool drawer = true,
-    bool notificationButton = true,
-    List<Widget> actions,
+    this.titleText = '',
+    this.titleWidget,
+    this.appBar = true,
+    this.drawer = true,
+    this.notificationButton = true,
+    this.actions,
     this.scrollable = false,
-  }) : super(
-          titleText: titleText,
-          titleWidget: titleWidget,
-          appBar: appBar,
-          drawer: drawer,
-          notificationButton: notificationButton,
-          actions: actions,
-        );
+  });
 
   @override
-  Widget buildPage(BuildContext context, ThemeData themeData) {
+  Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return (scrollable)
         ? ThemedScaffold.scrollable(
             context,
@@ -37,6 +39,10 @@ abstract class ScaffoldPage extends Page {
             drawer: drawerWidget(),
             body: buildBody(context, themeData),
           );
+  }
+
+  Widget drawerWidget() {
+    return (drawer) ? MainDrawer() : null;
   }
 
   PreferredSizeWidget _appBar(ThemeData themeData) {
@@ -52,6 +58,13 @@ abstract class ScaffoldPage extends Page {
             title: titleWidget,
             actions: appBarActions(),
           );
+  }
+
+  List<Widget> appBarActions() {
+    return <Widget>[
+      if (actions != null) ...actions,
+      if (notificationButton) NotificationButton(),
+    ];
   }
 
   Widget buildBody(BuildContext context, ThemeData themeData);

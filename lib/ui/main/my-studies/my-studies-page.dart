@@ -1,13 +1,24 @@
-import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
+import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
+import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
+import 'package:InfluenzaNet/ui/main/studies/study-item.dart';
 import 'package:flutter/material.dart';
 
-class MyStudiesPage extends ScaffoldPage {
+class MyStudiesPage extends ListPage {
   MyStudiesPage() : super(titleText: 'My Studies');
 
   @override
-  Widget buildBody(BuildContext context, ThemeData themeData) {
-    return Container(
-      height: 20,
+  List<Widget> buildChildren(BuildContext context, ThemeData themeData) {
+    return <Widget>[
+      _studyItem(true),
+    ];
+  }
+
+  Widget _studyItem(bool subscribed) {
+    return Padding(
+      padding: ThemeElements.listPageItemEdgeInsets,
+      child: StudyItem(
+        subscribed: subscribed,
+      ),
     );
   }
 }
