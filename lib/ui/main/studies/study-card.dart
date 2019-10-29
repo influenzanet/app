@@ -3,10 +3,10 @@ import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/main/main-navigator.dart';
 import 'package:flutter/material.dart';
 
-class StudyItem extends StatelessWidget {
+class StudyCard extends StatelessWidget {
   final bool subscribed;
 
-  StudyItem({this.subscribed = false});
+  StudyCard({this.subscribed = false});
 
   @override
   Widget build(BuildContext context) {
