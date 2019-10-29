@@ -1,13 +1,15 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
-import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
+import 'package:InfluenzaNet/ui/common/widgets/forms/themed-long-text-form-field.dart';
+import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/answer-wrap.dart';
 import 'package:flutter/material.dart';
 
 enum Answer { yes, no }
 
-class FirstQuestionPage extends ScaffoldPage {
+class FirstQuestionPage extends ListPage {
   final void Function() onAnswered;
 
   FirstQuestionPage({@required this.onAnswered})
@@ -18,21 +20,43 @@ class FirstQuestionPage extends ScaffoldPage {
             actions: <Widget>[ExitSurveyButton()]);
 
   @override
-  Widget buildBody(BuildContext context, ThemeData themeData) {
-    return FirstQuestionForm(this.onAnswered);
+  List<Widget> buildChildren(BuildContext context, ThemeData themeData) {
+    return [
+      _item()
+    ];
+  }
+
+  @override
+  Widget buildBottomWidget(BuildContext context, ThemeData themeData) {
+    return _nextButton(context, themeData);
+  }
+
+  Widget _item() {
+    return Padding(
+      padding: ThemeElements.listPageItemEdgeInsets,
+      child: FirstQuestionList(),
+    );
+  }
+
+  Widget _nextButton(BuildContext context, ThemeData themeData) {
+    return ThemedPrimaryButton(
+        themeData,
+        primaryColor: true,
+        text: 'Next',
+        onPressed: onAnswered,
+      );
+    
   }
 }
 
-class FirstQuestionForm extends StatefulWidget {
-  final void Function() onAnswered;
-
-  FirstQuestionForm(this.onAnswered);
+class FirstQuestionList extends StatefulWidget {
+  FirstQuestionList({Key key}) : super(key: key);
 
   @override
-  FirstQuestionFormState createState() => FirstQuestionFormState();
+  _FirstQuestionListState createState() => _FirstQuestionListState();
 }
 
-class FirstQuestionFormState extends State<FirstQuestionForm> {
+class _FirstQuestionListState extends State<FirstQuestionList> {
   static final _formKey = GlobalKey<FormState>();
   Answer _answer = Answer.yes;
   static final String firstQuestion = "Did you visit a doctor?";
@@ -42,7 +66,6 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
     setState(() {
       _answer = answer;
     });
-
   }
 
   @override
@@ -50,34 +73,24 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
     ThemeData themeData = Theme.of(context);
     return Form(
       key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: ThemeElements.pagePadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Spacer(flex: 5),
-            _inputRadioButtonFields(themeData, firstQuestion),
-            Spacer(flex: 1),
-            _inputLongTextFields(themeData, secondQuestion),
-            Spacer(flex: 10),
-            _nextButton(themeData),
-            Container(height: ThemeElements.pagePadding),
-          ],
-        ),
+      child: Container(
+         child: Column(
+           children: <Widget>[
+             _inputRadioButtonFields(themeData, firstQuestion),
+             Container(
+               height: ThemeElements.cardContentPadding,
+             ),
+             _inputLongTextFields(themeData, secondQuestion),
+             Container(
+               height: ThemeElements.cardContentPadding,
+             ),
+             _inputLongTextFields(themeData, secondQuestion),
+             Container(
+               height: ThemeElements.cardContentPadding,
+             ),
+           ],
+         ),
       ),
-    );
-  }
-
-  Widget _nextButton(ThemeData themeData) {
-    return ThemedPrimaryButton(
-      themeData,
-      primaryColor: true,
-      text: 'Next',
-      onPressed: () {
-        widget.onAnswered();
-      },
     );
   }
 
@@ -90,17 +103,20 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              question,
+              firstQuestion,
               style: themeData.textTheme.title,
               textAlign: TextAlign.left,
             ),
-            Column(
+            Container(
+               height: ThemeElements.cardContentPadding,
+            ),
+            AnswerWrap(
               children: <Widget>[
                 Row(
                   children: <Widget>[
                     Radio(
                       value: Answer.yes,
-                       groupValue: _answer,
+                      groupValue: _answer,
                       onChanged: (Answer value) {
                         setState(() {
                           _answer = value;
@@ -112,7 +128,7 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
                       child: const Text('Yes'),
                     )
                   ],
-                ),
+                ),                  
                 Row(
                   children: <Widget>[
                     Radio(
@@ -121,8 +137,7 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
                       onChanged: (Answer value) {
                         setState(() {
                           _answer = value;
-                        });
-                      },
+                      });                        },
                     ),
                     InkWell(
                       onTap: () => setAnswer(Answer.no),
@@ -132,6 +147,9 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
                 ),
               ],
             ),
+            /*Container(
+               height: ThemeElements.cardContentPadding,
+            ),*/
           ],
         ),
       ),
@@ -147,20 +165,20 @@ class FirstQuestionFormState extends State<FirstQuestionForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              question,
+              secondQuestion,
               style: themeData.textTheme.title,
               textAlign: TextAlign.left,
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 5),
-              child: new TextField(
-                keyboardType: TextInputType.multiline,
-                maxLines: 5, // Or use "null" to make it grow automatically
-                decoration: new InputDecoration.collapsed(
-                  hintText: 'Fill in here',
-                ),
-              ),
+            Container(
+               height: ThemeElements.cardContentPadding,
+             ),
+            ThemedLongTextFormField(
+                hintText: "Fill in Here",
+                maxlines: 5,
             ),
+            /*Container(
+               height: ThemeElements.cardContentPadding,
+            ),*/
           ],
         ),
       ),

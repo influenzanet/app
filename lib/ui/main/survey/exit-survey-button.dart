@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ExitSurveyButton extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Padding(
-        padding: EdgeInsets.only(right: 15),
-        child: InkWell(
-          onTap: () {},
-          child: Text(
-            "Exit",
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600, fontSize: 16.0),
-          ),
+      child: IconButton(
+        padding: EdgeInsets.only(right: 5.0),
+        iconSize: 30.0,
+        icon: Icon(
+          Icons.close,
+          color: Colors.red,
+          semanticLabel: "Stop the Survey",
         ),
+        onPressed: () {},
       ),
     );
   }

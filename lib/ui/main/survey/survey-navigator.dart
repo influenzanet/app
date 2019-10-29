@@ -2,11 +2,13 @@ import 'package:InfluenzaNet/ui/common/widgets/navigators/navigator-page.dart';
 import 'package:InfluenzaNet/ui/main/main-navigator.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/first-question-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/second-question-page.dart';
+import 'package:InfluenzaNet/ui/main/survey/pages/survey-wecome-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/third-question-page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SurveyNavigator extends StatelessWidget {
+  static const String surveyWelcomeRoute = 'survey/welcome';
   static const String firstQuestionRoute = 'survey/firstQuestion';
   static const String secondQuestionRoute = 'survey/secondQuestion';
   static const String thirdQuestionRoute = 'survey/thirdQuestion';
@@ -39,6 +41,9 @@ class SurveyNavigator extends StatelessWidget {
         WidgetBuilder builder;
 
         switch (settings.name) {
+          case surveyWelcomeRoute:
+            builder = _surveyWelcomePage;
+            break;
           case firstQuestionRoute:
             builder = _firstQuestionPage;
             break;
@@ -57,8 +62,11 @@ class SurveyNavigator extends StatelessWidget {
     );
   }
 
+  SurveyWelcomePage _surveyWelcomePage(BuildContext _) => SurveyWelcomePage(
+      onStart: pushFirstQuestionRoute,
+    );
   FirstQuestionPage _firstQuestionPage(BuildContext _) => FirstQuestionPage(
-        onAnswered: pushSecondQuestionRoute,
+      onAnswered: pushSecondQuestionRoute, 
       );
   SecondQuestionPage _secondQuestionPage(BuildContext _) => SecondQuestionPage(
         onAnswered: pushThirdQuestionRoute,

@@ -1,11 +1,12 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
-import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
+import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/answer-wrap.dart';
 import 'package:flutter/material.dart';
 
-class ThirdQuestionPage extends ScaffoldPage {
+class ThirdQuestionPage extends ListPage{
   final void Function() onAnswered;
 
   ThirdQuestionPage({@required this.onAnswered})
@@ -16,23 +17,47 @@ class ThirdQuestionPage extends ScaffoldPage {
             actions: <Widget>[ExitSurveyButton()]);
 
   @override
-  Widget buildBody(BuildContext context, ThemeData themeData) {
-    return ThirdQuestionForm(this.onAnswered);
+  List<Widget> buildChildren(BuildContext context, ThemeData themeData) {
+    return [
+      _item()
+    ];
+  }
+
+  @override
+  Widget buildBottomWidget(BuildContext context, ThemeData themeData) {
+    return _nextButton(context, themeData);
+  }
+
+  Widget _item() {
+    return Padding(
+      padding: ThemeElements.listPageItemEdgeInsets,
+      child: ThirdQuestionList(),
+    );
+  }
+
+  Widget _nextButton(BuildContext context, ThemeData themeData) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, right: 15),
+      child: ThemedPrimaryButton(
+        themeData,
+        primaryColor: true,
+        text: 'Finish Survey',
+        onPressed: onAnswered,
+      ),
+    );  
   }
 }
 
-class ThirdQuestionForm extends StatefulWidget {
-  final void Function() onAnswered;
-
-  ThirdQuestionForm(this.onAnswered);
+class ThirdQuestionList extends StatefulWidget {
+  ThirdQuestionList({Key key}) : super(key: key);
 
   @override
-  ThirdQuestionFormState createState() => ThirdQuestionFormState();
+  _ThirdQuestionListState createState() => _ThirdQuestionListState();
 }
 
-class ThirdQuestionFormState extends State<ThirdQuestionForm> {
+class _ThirdQuestionListState extends State<ThirdQuestionList> {
   static final _formKey = GlobalKey<FormState>();
-  static final String _question = "How often do you sneeze a day?";
+  static final String _question = "How often do you sneeze in a day?";
 
   double _value = 0.0;
   String _status = '';
@@ -62,36 +87,20 @@ class ThirdQuestionFormState extends State<ThirdQuestionForm> {
     ThemeData themeData = Theme.of(context);
     return Form(
       key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: ThemeElements.pagePadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Spacer(flex: 5),
-            _inputCheckBoxFields(themeData, _question),
-            Spacer(flex: 10),
-            _nextButton(themeData),
-            Container(height: ThemeElements.pagePadding),
-          ],
-        ),
+      child: Container(
+         child: Column(
+           children: <Widget>[
+             _inputSlider(themeData, _question),
+             Container(
+               height: ThemeElements.cardContentPadding,
+             ),
+           ],
+         ),
       ),
     );
   }
 
-  Widget _nextButton(ThemeData themeData) {
-    return ThemedPrimaryButton(
-      themeData,
-      primaryColor: true,
-      text: 'Finish Survey',
-      onPressed: () {
-        widget.onAnswered();
-      },
-    );
-  }
-
-  Widget _inputCheckBoxFields(ThemeData themeData, String question) {
+  Widget _inputSlider(ThemeData themeData, String question) {
     return ThemedCard(
       color: Colors.white,
       child: Padding(
@@ -103,28 +112,41 @@ class ThirdQuestionFormState extends State<ThirdQuestionForm> {
               style: themeData.textTheme.title,
               textAlign: TextAlign.left,
             ),
-            SliderTheme(
-              data: SliderThemeData(
-                activeTrackColor: themeData.primaryColorLight,
-                inactiveTrackColor: themeData.canvasColor,
-                trackHeight: 5,
-                thumbColor: themeData.primaryColor,
-                thumbShape: RoundSliderThumbShape(
-                  enabledThumbRadius: 8,
+            Container(
+               height: ThemeElements.cardContentPadding,
+            ),
+            AnswerWrap(
+              children: <Widget>[
+                SliderTheme(
+                  data: SliderThemeData(
+                    activeTrackColor: themeData.accentColor,
+                    inactiveTrackColor: Colors.white,
+                    trackHeight: 5,
+                    thumbColor: themeData.accentColor,
+                    thumbShape: RoundSliderThumbShape(
+                      enabledThumbRadius: 8,
+                    ),
+                  ),
+                  child: Slider(
+                    value: _value,
+                    min: 0,
+                    max: 100,
+                    onChanged: setStatus,
+                  ),
                 ),
-              ),
-              child: Slider(
-                value: _value,
-                min: 0,
-                max: 100,
-                onChanged: setStatus,
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 6.0),
+                  child: Text(
+                    _status,
+                    style: themeData.textTheme.body2,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
             ),
-            Text(
-              _status,
-              style: themeData.textTheme.body2,
-              textAlign: TextAlign.center,
-            ),
+            /*Container(
+               height: ThemeElements.cardContentPadding,
+            ),*/
           ],
         ),
       ),
