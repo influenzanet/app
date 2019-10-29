@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ExitSurveyButton extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -16,7 +15,7 @@ class ExitSurveyButton extends StatelessWidget {
           semanticLabel: "Stop the Survey",
         ),
         onPressed: () {
-          MainNavigator.navigatorKey.currentState.pushNamed(MainNavigator.homeRoute);
+          MainNavigator.navigatorKey.currentState.pushReplacementNamed(MainNavigator.homeRoute);
         },
       ),
     );
