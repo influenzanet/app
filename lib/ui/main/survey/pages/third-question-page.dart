@@ -18,33 +18,37 @@ class ThirdQuestionPage extends ListPage{
 
   @override
   List<Widget> buildChildren(BuildContext context, ThemeData themeData) {
-    return [
-      _item()
+    return <Widget>[
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(
+              left: ThemeElements.pagePadding,
+              top: ThemeElements.pagePadding,
+              right: ThemeElements.pagePadding,
+            ),
+            child: ThirdQuestionList(),
+          ),
+        ],
+      ),
     ];
   }
 
   @override
   Widget buildBottomWidget(BuildContext context, ThemeData themeData) {
-    return _nextButton(context, themeData);
-  }
-
-  Widget _item() {
-    return Padding(
-      padding: ThemeElements.listPageItemEdgeInsets,
-      child: ThirdQuestionList(),
+    ThemeData themeData = Theme.of(context);
+    return Column(
+      children: <Widget>[
+        Container(height: ThemeElements.elementPadding),
+        ThemedPrimaryButton(
+          themeData,
+          primaryColor: true,
+          text: 'Next',
+          onPressed: onAnswered,
+        ),
+      ],
     );
-  }
-
-  Widget _nextButton(BuildContext context, ThemeData themeData) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 15),
-      child: ThemedPrimaryButton(
-        themeData,
-        primaryColor: true,
-        text: 'Finish Survey',
-        onPressed: onAnswered,
-      ),
-    );  
   }
 }
 
