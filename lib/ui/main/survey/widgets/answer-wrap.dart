@@ -11,8 +11,8 @@ class AnswerWrap extends Container {
             borderRadius: BorderRadius.all(
               Radius.circular(10)),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(2.0),
+          child: Container(
+            padding: const EdgeInsets.all(3.0),
             child: Column(
               children: children,
             ),

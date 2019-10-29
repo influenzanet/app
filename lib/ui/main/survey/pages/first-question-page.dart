@@ -161,9 +161,6 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
                 ),
               ],
             ),
-            /*Container(
-              height: ThemeElements.cardContentPadding,
-            ),*/
           ],
         ),
       ),
@@ -190,9 +187,6 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
                 hintText: "Fill in Here",
                 maxlines: 5,
             ),
-            /*Container(
-               height: ThemeElements.cardContentPadding,
-            ),*/
           ],
         ),
       ),

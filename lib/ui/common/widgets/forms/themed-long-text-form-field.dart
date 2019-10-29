@@ -8,7 +8,6 @@ class ThemedLongTextFormField extends TextField {
       bool readOnly: false,
       bool autocorrect: false})
       : super(
-          //initialValue: initialValue,
           style: ThemeElements.longTextFormFieldTextStyle,
           decoration: InputDecoration(
             hintText: hintText,

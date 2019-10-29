@@ -36,7 +36,7 @@ class SurveyNavigator extends StatelessWidget {
   Widget build(BuildContext context) {
     return NavigatorPage(
       navigatorKey: navigatorKey,
-      initialRoute: firstQuestionRoute,
+      initialRoute: surveyWelcomeRoute,
       onGenerateRoute: (RouteSettings settings) {
         WidgetBuilder builder;
 

@@ -145,9 +145,6 @@ class _ThirdQuestionListState extends State<ThirdQuestionList> {
                 ),
               ],
             ),
-            /*Container(
-               height: ThemeElements.cardContentPadding,
-            ),*/
           ],
         ),
       ),

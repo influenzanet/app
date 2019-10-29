@@ -121,9 +121,6 @@ class _SecondQuestionListState extends State<SecondQuestionList> {
             AnswerWrap(
               children: checkBoxItems,
             ),
-            /*Container(
-               height: ThemeElements.cardContentPadding,
-            ),*/
           ],
         ),
       ),
