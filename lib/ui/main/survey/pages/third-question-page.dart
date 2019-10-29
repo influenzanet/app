@@ -44,7 +44,7 @@ class ThirdQuestionPage extends ListPage{
         ThemedPrimaryButton(
           themeData,
           primaryColor: true,
-          text: 'Next',
+          text: 'Finish Survey',
           onPressed: onAnswered,
         ),
       ],
@@ -95,9 +95,6 @@ class _ThirdQuestionListState extends State<ThirdQuestionList> {
          child: Column(
            children: <Widget>[
              _inputSlider(themeData, _question),
-             Container(
-               height: ThemeElements.cardContentPadding,
-             ),
            ],
          ),
       ),

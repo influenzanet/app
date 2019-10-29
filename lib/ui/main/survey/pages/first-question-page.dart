@@ -5,6 +5,7 @@ import 'package:InfluenzaNet/ui/common/widgets/forms/themed-long-text-form-field
 import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/answer-wrap.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 enum Answer { yes, no }
@@ -91,9 +92,6 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
                height: ThemeElements.cardContentPadding,
              ),
              _inputLongTextFields(themeData, secondQuestion),
-             Container(
-               height: ThemeElements.cardContentPadding,
-             ),
            ],
          ),
       ),
@@ -118,43 +116,53 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
             ),
             AnswerWrap(
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Radio(
-                      value: Answer.yes,
-                      groupValue: _answer,
-                      onChanged: (Answer value) {
-                        setState(() {
-                          _answer = value;
-                        });
-                      },
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children:<Widget>[
+                    Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: <Widget>[
+                        Radio(
+                          value: Answer.yes,
+                          groupValue: _answer,
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          onChanged: (Answer value) {
+                            setState(() {
+                              _answer = value;
+                            });
+                          },
+                        ),
+                        InkWell(
+                          onTap: () => setAnswer(Answer.yes),
+                          child: const Text('Yes'),
+                        )
+                      ],
                     ),
-                    InkWell(
-                      onTap: () => setAnswer(Answer.yes),
-                      child: const Text('Yes'),
-                    )
-                  ],
-                ),                  
-                Row(
-                  children: <Widget>[
-                    Radio(
-                      value: Answer.no,
-                      groupValue: _answer,
-                      onChanged: (Answer value) {
-                        setState(() {
-                          _answer = value;
-                      });                        },
-                    ),
-                    InkWell(
-                      onTap: () => setAnswer(Answer.no),
-                      child: const Text('No'),
-                    )
+                    Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: <Widget>[
+                        Radio(
+                          value: Answer.no,
+                          groupValue: _answer,
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          onChanged: (Answer value) {
+                            setState(() {
+                              _answer = value;
+                            });
+                          },
+                        ),
+                        InkWell(
+                          onTap: () => setAnswer(Answer.no),
+                          child: const Text('No'),
+                        )
+                      ],
+                    ), 
                   ],
                 ),
               ],
             ),
             /*Container(
-               height: ThemeElements.cardContentPadding,
+              height: ThemeElements.cardContentPadding,
             ),*/
           ],
         ),

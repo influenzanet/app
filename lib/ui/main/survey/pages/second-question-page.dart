@@ -87,9 +87,6 @@ class _SecondQuestionListState extends State<SecondQuestionList> {
          child: Column(
            children: <Widget>[
              _inputCheckBoxFields(themeData, _question),
-             Container(
-               height: ThemeElements.cardContentPadding,
-             ),
            ],
          ),
       ),
