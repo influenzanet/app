@@ -6,7 +6,7 @@ import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/answer-wrap.dart';
 import 'package:flutter/material.dart';
 
-class ThirdQuestionPage extends ListPage{
+class ThirdQuestionPage extends ListPage {
   final void Function() onAnswered;
 
   ThirdQuestionPage({@required this.onAnswered})
@@ -92,11 +92,11 @@ class _ThirdQuestionListState extends State<ThirdQuestionList> {
     return Form(
       key: _formKey,
       child: Container(
-         child: Column(
-           children: <Widget>[
-             _inputSlider(themeData, _question),
-           ],
-         ),
+        child: Column(
+          children: <Widget>[
+            _inputSlider(themeData, _question),
+          ],
+        ),
       ),
     );
   }
@@ -110,11 +110,11 @@ class _ThirdQuestionListState extends State<ThirdQuestionList> {
           children: <Widget>[
             Text(
               question,
-              style: themeData.textTheme.title,
+              style: themeData.textTheme.headline6,
               textAlign: TextAlign.left,
             ),
             Container(
-               height: ThemeElements.cardContentPadding,
+              height: ThemeElements.cardContentPadding,
             ),
             AnswerWrap(
               children: <Widget>[
@@ -139,7 +139,7 @@ class _ThirdQuestionListState extends State<ThirdQuestionList> {
                   padding: const EdgeInsets.only(bottom: 6.0),
                   child: Text(
                     _status,
-                    style: themeData.textTheme.body2,
+                    style: themeData.textTheme.bodyText1,
                     textAlign: TextAlign.center,
                   ),
                 ),

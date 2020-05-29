@@ -14,8 +14,10 @@ void initializeApp() {
 }
 
 void initializeUI() {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.white));
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.white));
 }
 
 class InfluenzaNet extends StatelessWidget {
@@ -28,17 +30,21 @@ class InfluenzaNet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Default to onboarding route until logic to check for existing login is implemented.
-    // TODO: Set initial route depending on existing login
+    // Todo: Set initial route depending on existing login
     return MaterialApp(
         title: 'InfluenzaNet',
         theme: influenzaNetTheme,
         debugShowCheckedModeBanner: false,
         navigatorKey: navigatorKey,
         initialRoute: onboardingRoute,
-        routes: {onboardingRoute: _onboardingNavigator, mainRoute: _mainNavigator});
+        routes: {
+          onboardingRoute: _onboardingNavigator,
+          mainRoute: _mainNavigator
+        });
   }
 
   // Routes
-  OnboardingNavigator _onboardingNavigator(BuildContext _) => OnboardingNavigator();
+  OnboardingNavigator _onboardingNavigator(BuildContext _) =>
+      OnboardingNavigator();
   MainNavigator _mainNavigator(BuildContext _) => MainNavigator();
 }

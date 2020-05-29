@@ -48,7 +48,7 @@ class NewsItem extends StatelessWidget {
   Widget _title(ThemeData themeData) {
     return Text(
       title,
-      style: themeData.textTheme.headline,
+      style: themeData.textTheme.headline5,
       overflow: TextOverflow.ellipsis,
       maxLines: 2,
     );
@@ -57,7 +57,7 @@ class NewsItem extends StatelessWidget {
   Widget _subtitle(ThemeData themeData) {
     return Text(
       subtitle,
-      style: themeData.textTheme.subhead,
+      style: themeData.textTheme.subtitle1,
     );
   }
 
@@ -65,10 +65,13 @@ class NewsItem extends StatelessWidget {
     return Expanded(
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          TextStyle textStyle = themeData.textTheme.body1.copyWith(height: 1.1);
-          int maxLines =
-              (constraints.maxHeight / textStyle.height / textStyle.fontSize / MediaQuery.textScaleFactorOf(context))
-                  .floor();
+          TextStyle textStyle =
+              themeData.textTheme.bodyText2.copyWith(height: 1.1);
+          int maxLines = (constraints.maxHeight /
+                  textStyle.height /
+                  textStyle.fontSize /
+                  MediaQuery.textScaleFactorOf(context))
+              .floor();
           return Text(
             text,
             style: textStyle,

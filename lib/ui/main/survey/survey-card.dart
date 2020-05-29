@@ -24,7 +24,7 @@ class SurveyCard extends StatelessWidget {
               children: <Widget>[
                 Text(
                   'Weekly Influenza Survey',
-                  style: themeData.textTheme.title,
+                  style: themeData.textTheme.headline6,
                 ),
                 Text(
                   'Influenza Incidents Study',
@@ -41,20 +41,22 @@ class SurveyCard extends StatelessWidget {
               children: <Widget>[
                 Text(
                   '90',
-                  style: themeData.textTheme.title.apply(fontSizeDelta: -2, fontWeightDelta: -1),
+                  style: themeData.textTheme.headline6
+                      .apply(fontSizeDelta: -2, fontWeightDelta: -1),
                 ),
                 Text(
                   ' Seconds',
-                  style: themeData.textTheme.title.apply(fontSizeDelta: -4, fontWeightDelta: -1),
+                  style: themeData.textTheme.headline6
+                      .apply(fontSizeDelta: -4, fontWeightDelta: -1),
                 ),
                 // //Container(width: 20),
                 // Text(
                 //   'Due: ',
-                //   style: themeData.textTheme.body1,
+                //   style: themeData.textTheme.bodyText2,
                 // ),
                 // Text(
                 //   '06.11.2019',
-                //   style: themeData.textTheme.body1,
+                //   style: themeData.textTheme.bodyText2,
                 // ),
               ],
             )

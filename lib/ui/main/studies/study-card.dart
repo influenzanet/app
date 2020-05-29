@@ -14,7 +14,9 @@ class StudyCard extends StatelessWidget {
     return ThemedCard(
       color: Colors.white,
       onTap: () {
-        String route = (subscribed) ? MainNavigator.subscribedStudyRoute : MainNavigator.unsubscribedStudyRoute;
+        String route = (subscribed)
+            ? MainNavigator.subscribedStudyRoute
+            : MainNavigator.unsubscribedStudyRoute;
         Navigator.of(context).pushNamed(route);
       },
       child: Padding(
@@ -39,11 +41,12 @@ class StudyCard extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       'Influenza Incidents',
-                      style: themeData.textTheme.title,
+                      style: themeData.textTheme.headline6,
                     ),
                     Text(
                       'ABC Research Group',
-                      style: themeData.textTheme.caption.copyWith(fontWeight: FontWeight.w600),
+                      style: themeData.textTheme.caption
+                          .copyWith(fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),
@@ -54,7 +57,8 @@ class StudyCard extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       '337',
-                      style: themeData.textTheme.title.apply(color: themeData.accentColor, fontSizeDelta: -2),
+                      style: themeData.textTheme.headline6.apply(
+                          color: themeData.accentColor, fontSizeDelta: -2),
                       textAlign: TextAlign.end,
                     ),
                     Text(
@@ -92,7 +96,9 @@ class StudyCard extends StatelessWidget {
   Widget _tag(ThemeData themeData, String text) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 4, horizontal: 6),
-      decoration: BoxDecoration(color: themeData.accentColor, borderRadius: BorderRadius.circular(500)),
+      decoration: BoxDecoration(
+          color: themeData.accentColor,
+          borderRadius: BorderRadius.circular(500)),
       child: Text(
         text,
         style: TextStyle(color: Colors.white, fontSize: 12),
@@ -107,13 +113,14 @@ class StudyCard extends StatelessWidget {
         Spacer(),
         Text(
           '4',
-          style: themeData.textTheme.title.apply(color: themeData.primaryColor),
+          style: themeData.textTheme.headline6
+              .apply(color: themeData.primaryColor),
         ),
         Text(' New Surveys'),
         Spacer(),
         Text(
           '2',
-          style: themeData.textTheme.title.apply(color: Colors.red),
+          style: themeData.textTheme.headline6.apply(color: Colors.red),
         ),
         Text(' Incomplete Surveys'),
         Spacer(),

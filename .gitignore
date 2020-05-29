@@ -23,10 +23,11 @@
 # Flutter/Dart/Pub related
 **/doc/api/
 .dart_tool/
-.flutter-plugins
+.flutter-plugins*
 .packages
 .pub-cache/
 .pub/
+pubspec.lock
 /build/
 
 # Android related
@@ -36,6 +37,7 @@
 **/android/gradlew
 **/android/gradlew.bat
 **/android/local.properties
+**/android/gradle.properties
 **/android/**/GeneratedPluginRegistrant.java
 
 # iOS/XCode related
@@ -71,3 +73,4 @@
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+

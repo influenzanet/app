@@ -9,7 +9,8 @@ class MainDrawer extends StatefulWidget {
   _MainDrawerState createState() => _MainDrawerState();
 }
 
-class _MainDrawerState extends State<MainDrawer> with AfterLayoutMixin<MainDrawer> {
+class _MainDrawerState extends State<MainDrawer>
+    with AfterLayoutMixin<MainDrawer> {
   ScrollController _scrollController;
   bool _enoughSpace = true;
 
@@ -21,7 +22,8 @@ class _MainDrawerState extends State<MainDrawer> with AfterLayoutMixin<MainDrawe
 
   @override
   void afterFirstLayout(BuildContext context) {
-    if (_scrollController.offset >= _scrollController.position.maxScrollExtent) {
+    if (_scrollController.offset >=
+        _scrollController.position.maxScrollExtent) {
       setState(() {
         _enoughSpace = true;
       });
@@ -55,17 +57,25 @@ class _MainDrawerState extends State<MainDrawer> with AfterLayoutMixin<MainDrawe
             child: ListView(
               controller: _scrollController,
               padding: EdgeInsets.symmetric(
-                  horizontal: ThemeElements.elementPadding, vertical: ThemeElements.elementPadding / 2),
+                  horizontal: ThemeElements.elementPadding,
+                  vertical: ThemeElements.elementPadding / 2),
               children: <Widget>[
                 _drawerItem(context, 'Home', route: MainNavigator.homeRoute),
-                _drawerItem(context, 'Explore', route: MainNavigator.exploreStudiesRoute),
-                _drawerItem(context, 'My Studies', route: MainNavigator.myStudiesRoute),
+                _drawerItem(context, 'Explore',
+                    route: MainNavigator.exploreStudiesRoute),
+                _drawerItem(context, 'My Studies',
+                    route: MainNavigator.myStudiesRoute),
                 Divider(),
-                _drawerItem(context, 'Coverage Map', color: themeData.primaryColor),
+                _drawerItem(context, 'Coverage Map',
+                    color: themeData.primaryColor),
                 _drawerItem(context, 'Devices', color: themeData.primaryColor),
-                _drawerItem(context, 'News', color: themeData.primaryColor, route: MainNavigator.newsRoute),
+                _drawerItem(context, 'News',
+                    color: themeData.primaryColor,
+                    route: MainNavigator.newsRoute),
                 Divider(),
-                _drawerItem(context, 'Profile', color: themeData.accentColor, route: MainNavigator.profileRoute),
+                _drawerItem(context, 'Profile',
+                    color: themeData.accentColor,
+                    route: MainNavigator.profileRoute),
                 _drawerItem(context, 'History', color: themeData.accentColor),
                 _drawerItem(context, 'Settings', color: themeData.accentColor),
                 if (!_enoughSpace) ..._logoutButton(themeData, screenPadding),
@@ -78,7 +88,8 @@ class _MainDrawerState extends State<MainDrawer> with AfterLayoutMixin<MainDrawe
     );
   }
 
-  Widget _drawerItem(BuildContext context, String title, {Color color = Colors.black, String route}) {
+  Widget _drawerItem(BuildContext context, String title,
+      {Color color = Colors.black, String route}) {
     bool enabled = route != null;
 
     if (!enabled) {
@@ -88,14 +99,15 @@ class _MainDrawerState extends State<MainDrawer> with AfterLayoutMixin<MainDrawe
     return ListTile(
       title: Text(
         title,
-        style: Theme.of(context).textTheme.title.apply(color: color),
+        style: Theme.of(context).textTheme.headline6.apply(color: color),
         textAlign: TextAlign.start,
       ),
       enabled: enabled,
       dense: true,
       onTap: (enabled)
           ? () {
-              MainNavigator.navigatorKey.currentState.pushReplacementNamed(route);
+              MainNavigator.navigatorKey.currentState
+                  .pushReplacementNamed(route);
             }
           : null,
     );
@@ -108,7 +120,9 @@ class _MainDrawerState extends State<MainDrawer> with AfterLayoutMixin<MainDrawe
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: ThemeElements.elementPadding / 2, bottom: ThemeElements.elementPadding),
+            padding: const EdgeInsets.only(
+                top: ThemeElements.elementPadding / 2,
+                bottom: ThemeElements.elementPadding),
             child: ThemedSecondaryButton.big(
               themeData,
               text: 'Logout',

@@ -30,7 +30,9 @@ class SectionHeader extends StatelessWidget {
         children: <Widget>[
           Text(
             titleText,
-            style: (titleTextStyle == null) ? themeData.textTheme.display1 : titleTextStyle,
+            style: (titleTextStyle == null)
+                ? themeData.textTheme.headline4
+                : titleTextStyle,
           ),
           if (viewAllButtonLayout)
             Visibility(

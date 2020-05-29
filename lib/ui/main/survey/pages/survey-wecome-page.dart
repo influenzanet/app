@@ -5,8 +5,7 @@ import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
 import 'package:flutter/material.dart';
 
-
-class SurveyWelcomePage extends ListPage{
+class SurveyWelcomePage extends ListPage {
   final void Function() onStart;
 
   SurveyWelcomePage({@required this.onStart})
@@ -14,8 +13,7 @@ class SurveyWelcomePage extends ListPage{
             titleText: 'Weekly Influenza Survey',
             drawer: false,
             notificationButton: false,
-            actions: <Widget>[ExitSurveyButton()]
-          );
+            actions: <Widget>[ExitSurveyButton()]);
 
   @override
   List<Widget> buildChildren(BuildContext context, ThemeData themeData) {
@@ -55,7 +53,8 @@ class SurveyWelcomePage extends ListPage{
 
 class WelcomeCard extends StatelessWidget {
   static final String title = 'Welcome to Influenza Survey';
-  static final String message = 'Thank you for every second invested in our research. With this survey, we would like to find out the influenza spreading in Germany';
+  static final String message =
+      'Thank you for every second invested in our research. With this survey, we would like to find out the influenza spreading in Germany';
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +68,10 @@ class WelcomeCard extends StatelessWidget {
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children:<Widget>[
+              children: <Widget>[
                 Text(
                   title,
-                  style: themeData.textTheme.title,
+                  style: themeData.textTheme.headline6,
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -94,4 +93,3 @@ class WelcomeCard extends StatelessWidget {
     );
   }
 }
-

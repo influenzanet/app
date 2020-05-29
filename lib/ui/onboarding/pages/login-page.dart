@@ -1,6 +1,6 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
-import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/forms/themed-text-form-field.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,12 @@ import 'package:flutter/material.dart';
 class LoginPage extends ScaffoldPage {
   final void Function() onLogin;
 
-  LoginPage({this.onLogin}) : super(titleText: 'Login', scrollable: true, drawer: false, notificationButton: false);
+  LoginPage({this.onLogin})
+      : super(
+            titleText: 'Login',
+            scrollable: true,
+            drawer: false,
+            notificationButton: false);
 
   @override
   Widget buildBody(BuildContext context, ThemeData themeData) {
@@ -34,7 +39,8 @@ class LoginFormState extends State<LoginForm> {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: ThemeElements.pagePadding),
+        padding:
+            const EdgeInsets.symmetric(horizontal: ThemeElements.pagePadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,7 +62,7 @@ class LoginFormState extends State<LoginForm> {
   Widget _encouragement(ThemeData themeData) {
     return Text(
       'Welcome back!',
-      style: themeData.textTheme.display1,
+      style: themeData.textTheme.headline4,
       textAlign: TextAlign.center,
     );
   }
@@ -75,7 +81,8 @@ class LoginFormState extends State<LoginForm> {
           keyboardType: TextInputType.visiblePassword,
         ),
         Container(height: ThemeElements.connectedElementPadding),
-        ThemedSecondaryButton(themeData, text: 'Forgot Password?', onPressed: () {}),
+        ThemedSecondaryButton(themeData,
+            text: 'Forgot Password?', onPressed: () {}),
       ],
     );
   }

@@ -36,14 +36,14 @@ class ProfilePage extends ScaffoldPage {
   Widget _username(ThemeData themeData) {
     return Text(
       'max.mustermann@muster.de',
-      style: themeData.textTheme.title,
+      style: themeData.textTheme.headline6,
     );
   }
 
   Widget _password(ThemeData themeData) {
     return Text(
       '•••••••••••••••••••••',
-      style: themeData.textTheme.title,
+      style: themeData.textTheme.headline6,
     );
   }
 

@@ -5,12 +5,15 @@ import 'package:InfluenzaNet/ui/onboarding/onboarding-navigator.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends ScaffoldPage {
-  WelcomePage() : super(titleText: 'Get Started', drawer: false, notificationButton: false);
+  WelcomePage()
+      : super(
+            titleText: 'Get Started', drawer: false, notificationButton: false);
 
   @override
   Widget buildBody(BuildContext context, ThemeData themeData) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: ThemeElements.pagePadding),
+      padding:
+          const EdgeInsets.symmetric(horizontal: ThemeElements.pagePadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -31,13 +34,14 @@ class WelcomePage extends ScaffoldPage {
     return Text(
       'Welcome to',
       textAlign: TextAlign.center,
-      style: themeData.textTheme.display1,
+      style: themeData.textTheme.headline4,
     );
   }
 
   Widget _logo() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: ThemeElements.pagePadding),
+      padding:
+          const EdgeInsets.symmetric(horizontal: ThemeElements.pagePadding),
       child: Image.asset(
         'assets/images/logos/influenzanet.png',
       ),

@@ -1,12 +1,17 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
-import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
 import 'package:InfluenzaNet/ui/onboarding/onboarding-navigator.dart';
 import 'package:flutter/material.dart';
 
 class InstanceSelectionPage extends ScaffoldPage {
-  InstanceSelectionPage() : super(titleText: '', appBar: false, drawer: false, notificationButton: false);
+  InstanceSelectionPage()
+      : super(
+            titleText: '',
+            appBar: false,
+            drawer: false,
+            notificationButton: false);
 
   @override
   Widget buildBody(BuildContext context, ThemeData themeData) {
@@ -29,7 +34,8 @@ class InstanceSelectionPage extends ScaffoldPage {
   Widget _title(ThemeData themeData) {
     return Text(
       'Select your Country',
-      style: themeData.textTheme.display1.copyWith(color: themeData.primaryColor),
+      style:
+          themeData.textTheme.headline4.copyWith(color: themeData.primaryColor),
       textAlign: TextAlign.center,
     );
   }
@@ -42,7 +48,7 @@ class InstanceSelectionPage extends ScaffoldPage {
         Text(
           'Germany',
           textAlign: TextAlign.center,
-          style: themeData.textTheme.title,
+          style: themeData.textTheme.headline6,
         ),
         Padding(
           padding: const EdgeInsets.all(ThemeElements.connectedElementPadding),

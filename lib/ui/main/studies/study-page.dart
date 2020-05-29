@@ -52,7 +52,7 @@ class StudyPage extends ListPage {
   Widget _name(ThemeData themeData) {
     return Text(
       'Influenza Incidents',
-      style: themeData.textTheme.display1,
+      style: themeData.textTheme.headline4,
       textAlign: TextAlign.center,
     );
   }
@@ -60,7 +60,7 @@ class StudyPage extends ListPage {
   Widget _organizer(ThemeData themeData) {
     return Text(
       'ABC Research Group',
-      style: themeData.textTheme.subhead,
+      style: themeData.textTheme.subtitle1,
       textAlign: TextAlign.center,
     );
   }
@@ -81,7 +81,9 @@ class StudyPage extends ListPage {
   Widget _tag(ThemeData themeData, String text) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 4, horizontal: 6),
-      decoration: BoxDecoration(color: themeData.accentColor, borderRadius: BorderRadius.circular(500)),
+      decoration: BoxDecoration(
+          color: themeData.accentColor,
+          borderRadius: BorderRadius.circular(500)),
       child: Text(
         text,
         style: TextStyle(color: Colors.white, fontSize: 12),
@@ -96,7 +98,8 @@ class StudyPage extends ListPage {
         HorizontalList(
           titleText: 'New Surveys',
           height: 105,
-          titleTextStyle: themeData.textTheme.display1.copyWith(fontSize: 24, color: themeData.primaryColor),
+          titleTextStyle: themeData.textTheme.headline4
+              .copyWith(fontSize: 24, color: themeData.primaryColor),
           viewAllButtonLayout: false,
           children: <Widget>[
             _surveyItem(),
@@ -110,7 +113,8 @@ class StudyPage extends ListPage {
         HorizontalList(
           titleText: 'Incomplete Surveys',
           height: 105,
-          titleTextStyle: themeData.textTheme.display1.copyWith(fontSize: 24, color: Colors.red),
+          titleTextStyle: themeData.textTheme.headline4
+              .copyWith(fontSize: 24, color: Colors.red),
           viewAllButtonLayout: false,
           children: <Widget>[
             _surveyItem(),
@@ -151,7 +155,7 @@ class StudyPage extends ListPage {
             ),
             Text(
               'The Influenza Incidents study is a world wide study conducted by a renowned group of leading medical scientists. It strives to analyze Influenza-Like-Illnesses (ILI) on an unpredecented scale to develop new methods to reduce influenza incidents and their severity. All data will be made available to governments, medical institutions and researchers worldwide. Join now into this global effort!',
-              style: themeData.textTheme.body1,
+              style: themeData.textTheme.bodyText2,
               textAlign: TextAlign.justify,
             ),
             Container(
@@ -166,7 +170,8 @@ class StudyPage extends ListPage {
                 ),
                 Text(
                   ' 01.02.2019',
-                  style: themeData.textTheme.caption.copyWith(fontWeight: FontWeight.bold),
+                  style: themeData.textTheme.caption
+                      .copyWith(fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
                 Text(
@@ -175,7 +180,8 @@ class StudyPage extends ListPage {
                 ),
                 Text(
                   ' 01.02.2022',
-                  style: themeData.textTheme.caption.copyWith(fontWeight: FontWeight.bold),
+                  style: themeData.textTheme.caption
+                      .copyWith(fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
               ],
@@ -194,12 +200,13 @@ class StudyPage extends ListPage {
         Text(
           '337',
           textAlign: TextAlign.center,
-          style: themeData.textTheme.title.apply(color: themeData.accentColor),
+          style:
+              themeData.textTheme.headline6.apply(color: themeData.accentColor),
         ),
         Text(
           ' Participants',
           textAlign: TextAlign.center,
-          style: themeData.textTheme.title,
+          style: themeData.textTheme.headline6,
         ),
       ],
     );
@@ -207,7 +214,8 @@ class StudyPage extends ListPage {
 
   Widget _subscriptionButton(ThemeData themeData) {
     return (subscribed)
-        ? ThemedSecondaryButton.big(themeData, text: 'Leave Study', onPressed: () {})
+        ? ThemedSecondaryButton.big(themeData,
+            text: 'Leave Study', onPressed: () {})
         : ThemedPrimaryButton(
             themeData,
             text: 'Join Study',

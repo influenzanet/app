@@ -67,7 +67,8 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
   static final _formKey = GlobalKey<FormState>();
   Answer _answer = Answer.yes;
   static final String firstQuestion = "Did you visit a doctor?";
-  static final String secondQuestion = "Please describe your symptoms in more detail";
+  static final String secondQuestion =
+      "Please describe your symptoms in more detail";
 
   void setAnswer(Answer answer) {
     setState(() {
@@ -81,19 +82,19 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
     return Form(
       key: _formKey,
       child: Container(
-         child: Column(
-           children: <Widget>[
-             _inputRadioButtonFields(themeData, firstQuestion),
-             Container(
-               height: ThemeElements.cardContentPadding,
-             ),
-             _inputLongTextFields(themeData, secondQuestion),
-             Container(
-               height: ThemeElements.cardContentPadding,
-             ),
-             _inputLongTextFields(themeData, secondQuestion),
-           ],
-         ),
+        child: Column(
+          children: <Widget>[
+            _inputRadioButtonFields(themeData, firstQuestion),
+            Container(
+              height: ThemeElements.cardContentPadding,
+            ),
+            _inputLongTextFields(themeData, secondQuestion),
+            Container(
+              height: ThemeElements.cardContentPadding,
+            ),
+            _inputLongTextFields(themeData, secondQuestion),
+          ],
+        ),
       ),
     );
   }
@@ -108,24 +109,25 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
           children: <Widget>[
             Text(
               firstQuestion,
-              style: themeData.textTheme.title,
+              style: themeData.textTheme.headline6,
               textAlign: TextAlign.left,
             ),
             Container(
-               height: ThemeElements.cardContentPadding,
+              height: ThemeElements.cardContentPadding,
             ),
             AnswerWrap(
               children: <Widget>[
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children:<Widget>[
+                  children: <Widget>[
                     Wrap(
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: <Widget>[
                         Radio(
                           value: Answer.yes,
                           groupValue: _answer,
-                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
                           onChanged: (Answer value) {
                             setState(() {
                               _answer = value;
@@ -144,7 +146,8 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
                         Radio(
                           value: Answer.no,
                           groupValue: _answer,
-                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
                           onChanged: (Answer value) {
                             setState(() {
                               _answer = value;
@@ -156,7 +159,7 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
                           child: const Text('No'),
                         )
                       ],
-                    ), 
+                    ),
                   ],
                 ),
               ],
@@ -177,15 +180,15 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
           children: <Widget>[
             Text(
               secondQuestion,
-              style: themeData.textTheme.title,
+              style: themeData.textTheme.headline6,
               textAlign: TextAlign.left,
             ),
             Container(
-               height: ThemeElements.cardContentPadding,
-             ),
+              height: ThemeElements.cardContentPadding,
+            ),
             ThemedLongTextFormField(
-                hintText: "Fill in Here",
-                maxlines: 5,
+              hintText: "Fill in Here",
+              maxlines: 5,
             ),
           ],
         ),

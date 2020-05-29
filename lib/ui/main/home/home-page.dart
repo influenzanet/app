@@ -40,7 +40,8 @@ class HomePage extends ListPage {
     );
   }
 
-  Widget _quickActionItem(ThemeData themeData, String text, MaterialColor color) {
+  Widget _quickActionItem(
+      ThemeData themeData, String text, MaterialColor color) {
     return Padding(
       padding: const EdgeInsets.all(ThemeElements.listItemPadding),
       child: ThemedCard(
@@ -55,7 +56,7 @@ class HomePage extends ListPage {
               child: Text(
             text,
             textAlign: TextAlign.center,
-            style: themeData.textTheme.title.apply(color: Colors.white),
+            style: themeData.textTheme.headline6.apply(color: Colors.white),
           )),
         ),
       ),
@@ -120,7 +121,8 @@ class HomePage extends ListPage {
     );
   }
 
-  Widget _historyItem(ThemeData themeData, String data, String dataType, Color color) {
+  Widget _historyItem(
+      ThemeData themeData, String data, String dataType, Color color) {
     return Padding(
       padding: EdgeInsets.all(ThemeElements.listItemPadding),
       child: ThemedCard(
@@ -131,12 +133,12 @@ class HomePage extends ListPage {
           children: <Widget>[
             Text(
               data,
-              style: themeData.textTheme.title,
+              style: themeData.textTheme.headline6,
               textAlign: TextAlign.center,
             ),
             Text(
               dataType,
-              style: themeData.textTheme.title.apply(color: color),
+              style: themeData.textTheme.headline6.apply(color: color),
             )
           ],
         ),
@@ -154,12 +156,15 @@ class HomePage extends ListPage {
         ),
         Padding(
           padding: const EdgeInsets.only(
-              top: ThemeElements.listItemPadding, left: ThemeElements.pagePadding, right: ThemeElements.pagePadding),
+              top: ThemeElements.listItemPadding,
+              left: ThemeElements.pagePadding,
+              right: ThemeElements.pagePadding),
           child: ThemedCard(
             color: Colors.white,
             height: 150,
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(ThemeElements.cardBorderRadius),
+                borderRadius:
+                    BorderRadius.circular(ThemeElements.cardBorderRadius),
                 child: Stack(
                   fit: StackFit.expand,
                   children: <Widget>[
@@ -184,8 +189,9 @@ class HomePage extends ListPage {
                           width: 25,
                           height: 25,
                           alignment: Alignment.center,
-                          decoration:
-                              BoxDecoration(color: themeData.primaryColor.withOpacity(0.2), shape: BoxShape.circle),
+                          decoration: BoxDecoration(
+                              color: themeData.primaryColor.withOpacity(0.2),
+                              shape: BoxShape.circle),
                         ),
                       ),
                     ),
@@ -199,7 +205,9 @@ class HomePage extends ListPage {
                           width: 10,
                           height: 10,
                           alignment: Alignment.center,
-                          decoration: BoxDecoration(color: themeData.primaryColor, shape: BoxShape.circle),
+                          decoration: BoxDecoration(
+                              color: themeData.primaryColor,
+                              shape: BoxShape.circle),
                         ),
                       ),
                     ),
@@ -213,7 +221,8 @@ class HomePage extends ListPage {
                         child: Center(
                           child: Text(
                             'No Outbreak',
-                            style: themeData.textTheme.title.apply(color: Colors.white),
+                            style: themeData.textTheme.headline6
+                                .apply(color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -229,7 +238,8 @@ class HomePage extends ListPage {
                         child: Center(
                           child: Text(
                             'View Full Map',
-                            style: themeData.textTheme.button.apply(color: themeData.accentColor),
+                            style: themeData.textTheme.button
+                                .apply(color: themeData.accentColor),
                             textAlign: TextAlign.center,
                           ),
                         ),

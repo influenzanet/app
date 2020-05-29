@@ -1,6 +1,6 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
-import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
+import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-secondary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/forms/themed-text-form-field.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/scaffold-page.dart';
 import 'package:circular_check_box/circular_check_box.dart';
@@ -11,7 +11,11 @@ class RegisterPage extends ScaffoldPage {
   final void Function() onSkip;
 
   RegisterPage({this.onRegister, this.onSkip})
-      : super(titleText: 'Create New Account', scrollable: true, drawer: false, notificationButton: false);
+      : super(
+            titleText: 'Create New Account',
+            scrollable: true,
+            drawer: false,
+            notificationButton: false);
 
   @override
   Widget buildBody(BuildContext context, ThemeData themeData) {
@@ -39,7 +43,8 @@ class RegisterFormState extends State<RegisterForm> {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: ThemeElements.pagePadding),
+        padding:
+            const EdgeInsets.symmetric(horizontal: ThemeElements.pagePadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,7 +66,7 @@ class RegisterFormState extends State<RegisterForm> {
   Widget _encouragement(ThemeData themeData) {
     return Text(
       'Only one more step!',
-      style: themeData.textTheme.display1,
+      style: themeData.textTheme.headline4,
       textAlign: TextAlign.center,
     );
   }
@@ -107,7 +112,10 @@ class RegisterFormState extends State<RegisterForm> {
         Text('I agree to the '),
         Text(
           'Terms and Conditions',
-          style: TextStyle(color: themeData.accentColor, fontWeight: FontWeight.bold, letterSpacing: .5),
+          style: TextStyle(
+              color: themeData.accentColor,
+              fontWeight: FontWeight.bold,
+              letterSpacing: .5),
         ),
         Container(
           width: 12.0,
@@ -120,7 +128,8 @@ class RegisterFormState extends State<RegisterForm> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        ThemedPrimaryButton(themeData, text: 'Create New Account', onPressed: () {
+        ThemedPrimaryButton(themeData, text: 'Create New Account',
+            onPressed: () {
           widget.onRegister();
         }),
         Container(height: ThemeElements.connectedElementPadding),

@@ -54,10 +54,10 @@ class SecondQuestionPage extends ListPage {
 }
 
 class CheckBoxData {
-    String label;
-    bool value;
+  String label;
+  bool value;
 
-    CheckBoxData(this.label, this.value);
+  CheckBoxData(this.label, this.value);
 }
 
 class SecondQuestionList extends StatefulWidget {
@@ -72,7 +72,7 @@ class _SecondQuestionListState extends State<SecondQuestionList> {
   static final String _question = 'Do you feel one or more symptoms below?';
 
   List<CheckBoxData> checkBoxData = [
-    CheckBoxData('This is the first label', false), 
+    CheckBoxData('This is the first label', false),
     CheckBoxData('This is the second label', false),
     CheckBoxData('This is the third label', false),
     CheckBoxData('This is the fourth label', false),
@@ -84,24 +84,25 @@ class _SecondQuestionListState extends State<SecondQuestionList> {
     return Form(
       key: _formKey,
       child: Container(
-         child: Column(
-           children: <Widget>[
-             _inputCheckBoxFields(themeData, _question),
-           ],
-         ),
+        child: Column(
+          children: <Widget>[
+            _inputCheckBoxFields(themeData, _question),
+          ],
+        ),
       ),
     );
   }
 
   Widget _inputCheckBoxFields(ThemeData themeData, String question) {
-    List checkBoxItems = checkBoxData.map((data) => _checkBoxField(
-      themeData, 
-      data.label, 
-      data.value, 
-      (value) => setState(() {
-        data.value = value;
-        }) 
-    )).toList();
+    List checkBoxItems = checkBoxData
+        .map((data) => _checkBoxField(
+            themeData,
+            data.label,
+            data.value,
+            (value) => setState(() {
+                  data.value = value;
+                })))
+        .toList();
 
     return ThemedCard(
       color: Colors.white,
@@ -112,7 +113,7 @@ class _SecondQuestionListState extends State<SecondQuestionList> {
           children: <Widget>[
             Text(
               question,
-              style: themeData.textTheme.title,
+              style: themeData.textTheme.headline6,
               textAlign: TextAlign.left,
             ),
             Container(
@@ -127,7 +128,8 @@ class _SecondQuestionListState extends State<SecondQuestionList> {
     );
   }
 
-  Widget _checkBoxField(ThemeData themeData, String label, bool value, dynamic Function(bool value) onPressed) {
+  Widget _checkBoxField(ThemeData themeData, String label, bool value,
+      dynamic Function(bool value) onPressed) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -139,7 +141,7 @@ class _SecondQuestionListState extends State<SecondQuestionList> {
             padding: const EdgeInsets.only(left: 6.0),
             child: Text(
               label,
-              style: themeData.textTheme.body1,
+              style: themeData.textTheme.bodyText2,
               maxLines: 2,
             ),
           ),
