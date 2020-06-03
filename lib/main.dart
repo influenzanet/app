@@ -1,6 +1,5 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
-import 'package:InfluenzaNet/ui/main/main-navigator.dart';
-import 'package:InfluenzaNet/ui/onboarding/onboarding-navigator.dart';
+import 'package:InfluenzaNet/ui/main/survey/survey-navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -37,14 +36,12 @@ class InfluenzaNet extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         navigatorKey: navigatorKey,
         initialRoute: onboardingRoute,
-        routes: {
-          onboardingRoute: _onboardingNavigator,
-          mainRoute: _mainNavigator
-        });
+        routes: {onboardingRoute: _mainNavigator, mainRoute: _mainNavigator});
   }
 
+  SurveyNavigator _mainNavigator(BuildContext _) => SurveyNavigator();
   // Routes
-  OnboardingNavigator _onboardingNavigator(BuildContext _) =>
-      OnboardingNavigator();
-  MainNavigator _mainNavigator(BuildContext _) => MainNavigator();
+//   OnboardingNavigator _onboardingNavigator(BuildContext _) =>
+//       OnboardingNavigator();
+
 }

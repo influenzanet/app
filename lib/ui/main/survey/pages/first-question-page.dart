@@ -1,14 +1,11 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
-import 'package:InfluenzaNet/ui/common/widgets/forms/themed-long-text-form-field.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/answer-wrap.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-enum Answer { yes, no }
 
 class FirstQuestionPage extends ListPage {
   final void Function() onAnswered;
@@ -65,16 +62,7 @@ class FirstQuestionList extends StatefulWidget {
 
 class _FirstQuestionListState extends State<FirstQuestionList> {
   static final _formKey = GlobalKey<FormState>();
-  Answer _answer = Answer.yes;
   static final String firstQuestion = "Did you visit a doctor?";
-  static final String secondQuestion =
-      "Please describe your symptoms in more detail";
-
-  void setAnswer(Answer answer) {
-    setState(() {
-      _answer = answer;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,14 +73,6 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
         child: Column(
           children: <Widget>[
             _inputRadioButtonFields(themeData, firstQuestion),
-            Container(
-              height: ThemeElements.cardContentPadding,
-            ),
-            _inputLongTextFields(themeData, secondQuestion),
-            Container(
-              height: ThemeElements.cardContentPadding,
-            ),
-            _inputLongTextFields(themeData, secondQuestion),
           ],
         ),
       ),
@@ -115,84 +95,72 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
             Container(
               height: ThemeElements.cardContentPadding,
             ),
-            AnswerWrap(
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: <Widget>[
-                        Radio(
-                          value: Answer.yes,
-                          groupValue: _answer,
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
-                          onChanged: (Answer value) {
-                            setState(() {
-                              _answer = value;
-                            });
-                          },
-                        ),
-                        InkWell(
-                          onTap: () => setAnswer(Answer.yes),
-                          child: const Text('Yes'),
-                        )
-                      ],
-                    ),
-                    Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: <Widget>[
-                        Radio(
-                          value: Answer.no,
-                          groupValue: _answer,
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
-                          onChanged: (Answer value) {
-                            setState(() {
-                              _answer = value;
-                            });
-                          },
-                        ),
-                        InkWell(
-                          onTap: () => setAnswer(Answer.no),
-                          child: const Text('No'),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            AnswerWrap(children: <Widget>[
+              Column(children: <Widget>[ThemedRadioFormField()])
+            ]),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _inputLongTextFields(ThemeData themeData, String question) {
-    return ThemedCard(
-      color: Colors.white,
-      child: Padding(
-        padding: EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+class TimeValue {
+  final int _key;
+  final String _value;
+  TimeValue(this._key, this._value);
+}
+
+class ThemedRadioFormField extends StatefulWidget {
+  ThemedRadioFormField({Key key}) : super(key: key);
+
+  @override
+  _ThemedRadioFormFieldState createState() => _ThemedRadioFormFieldState();
+}
+
+class _ThemedRadioFormFieldState extends State<ThemedRadioFormField> {
+  int _currentTimeValue = 1;
+
+  final _buttonOptions = [
+    TimeValue(30, "30 minutes"),
+    TimeValue(60, "1 hour"),
+    TimeValue(120, "2 hours"),
+    TimeValue(240, "4 hours"),
+    TimeValue(480, "8 hours"),
+    TimeValue(720, "12 hours"),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
           children: <Widget>[
-            Text(
-              secondQuestion,
-              style: themeData.textTheme.headline6,
-              textAlign: TextAlign.left,
-            ),
-            Container(
-              height: ThemeElements.cardContentPadding,
-            ),
-            ThemedLongTextFormField(
-              hintText: "Fill in Here",
-              maxlines: 5,
-            ),
+            SizedBox(
+              height: 400.0,
+              child: ListView(
+                shrinkWrap: true,
+                children: _buttonOptions
+                    .map((timeValue) => RadioListTile(
+                          dense: false,
+                          groupValue: _currentTimeValue,
+                          title:
+                              Text(timeValue._value, textAlign: TextAlign.left),
+                          value: timeValue._key,
+                          onChanged: (val) {
+                            setState(() {
+                              debugPrint('VAL = $val');
+                              _currentTimeValue = val;
+                            });
+                          },
+                        ))
+                    .toList(),
+              ),
+            )
           ],
         ),
-      ),
+      ],
     );
   }
 }
