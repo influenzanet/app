@@ -8,6 +8,6 @@ class WarningItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(Utils.getContent(this.warningComponent),
-        style: TextStyle(color: Colors.orange));
+        style: TextStyle(color: Color(0xffbb33)));
   }
 }
