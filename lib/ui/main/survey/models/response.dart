@@ -21,10 +21,4 @@ class ResponseModel with ChangeNotifier {
     debugPrint('Response init=' + responseItem.toJson());
     notifyListeners();
   }
-
-  void response(String val) {
-    value = val;
-    debugPrint("Value at parent=" + val);
-    notifyListeners();
-  }
 }
