@@ -9,6 +9,7 @@ import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/survey/body_component.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/survey/question.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
+import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,7 @@ class FirstQuestionPage extends ListPage {
   @override
   List<Widget> buildChildren(BuildContext context, ThemeData themeData) {
     SurveySingleItemModel surveySingleItemModel =
-        SurveySingleItemModel(surveySingleItem: qp[2]);
+        SurveySingleItemModel(surveySingleItem: qp[0]);
     return <Widget>[
       Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -80,8 +81,6 @@ class FirstQuestionList extends StatefulWidget {
 }
 
 class _FirstQuestionListState extends State<FirstQuestionList> {
-  //static final String firstQuestion = "Did you visit a doctor?";
-
   dynamic surveySingleItem;
   dynamic question;
   dynamic helpGroup;
@@ -111,9 +110,16 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
               child: Padding(
                 padding: EdgeInsets.all(12),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Question(questionComponent: question),
+                    Wrap(alignment: WrapAlignment.end, children: <Widget>[
+                      Question(questionComponent: question),
+                      IconButton(
+                        icon: Icon(Icons.info_outline),
+                        onPressed: () async {
+                          _showHelpGroup(context);
+                        },
+                      ),
+                    ]),
                     Container(
                       height: ThemeElements.cardContentPadding,
                     ),
@@ -127,6 +133,36 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _showHelpGroup(context) async {
+    List<Widget> helpWidgets =
+        WidgetUtils.getHelpGroupContents(helpGroup, context);
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Help',
+            textAlign: TextAlign.center,
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: helpWidgets,
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

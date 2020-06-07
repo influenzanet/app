@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/response.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/error_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/text_item.dart';
@@ -112,5 +113,23 @@ class WidgetUtils {
         debugPrint('Invalid or not implemented response component');
         return null;
     }
+  }
+
+  static List<Widget> getHelpGroupContents(
+      dynamic helpGroupComponent, BuildContext context) {
+    ThemeData themeData = Theme.of(context);
+    List<Widget> helpWidgets = [];
+    List helpGroupItems = helpGroupComponent['items'];
+    for (int iter = 0; iter < helpGroupComponent.length; iter += 2) {
+      helpWidgets.add(Text(Utils.getContent(helpGroupItems[iter]),
+          style: themeData.textTheme.headline6));
+      helpWidgets.add(Container(
+        height: ThemeElements.cardContentPadding,
+      ));
+      helpWidgets.add(Text(Utils.getContent(helpGroupItems[iter + 1]),
+          style: themeData.textTheme.bodyText2));
+    }
+
+    return helpWidgets;
   }
 }
