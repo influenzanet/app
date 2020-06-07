@@ -10,6 +10,7 @@ import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/mul
 import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/number_input.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/single_choice_group.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/answer-wrap.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,26 +22,30 @@ class WidgetUtils {
       case 'helpGroup':
         return null;
       case 'responseGroup':
-        return Container(
-          padding: const EdgeInsets.all(2.0),
-          child: Consumer<ResponseModel>(
-              builder: (context, response, child) =>
-                  ResponseComponent(responseComponent: itemComponent)),
+        return AnswerWrap(
+          children: <Widget>[
+            Container(
+              ////padding: const EdgeInsets.all(2.0),
+              child: Consumer<ResponseModel>(
+                  builder: (context, response, child) =>
+                      ResponseComponent(responseComponent: itemComponent)),
+            )
+          ],
         );
       case 'text':
         return Container(
-          padding: const EdgeInsets.all(2.0),
+          //padding: const EdgeInsets.all(2.0),
           child: TextItem(textComponent: itemComponent),
         );
       case 'error':
         return Container(
-          padding: const EdgeInsets.all(2.0),
+          //padding: const EdgeInsets.all(2.0),
           child: ErrorItem(errorComponent: itemComponent),
         );
 
       case 'warning':
         return Container(
-          padding: const EdgeInsets.all(2.0),
+          //padding: const EdgeInsets.all(2.0),
           child: WarningItem(warningComponent: itemComponent),
         );
 
@@ -54,37 +59,37 @@ class WidgetUtils {
     switch (responseComponent['role']) {
       case 'input':
         return Container(
-            padding: const EdgeInsets.all(2.0),
+            //padding: const EdgeInsets.all(2.0),
             child: Input(
                 hintText: Utils.getContent(responseComponent),
                 itemKey: responseComponent['key']));
       case 'multilineTextInput':
         return Container(
-            padding: const EdgeInsets.all(2.0),
+            //padding: const EdgeInsets.all(2.0),
             child: MultilineInput(
                 hintText: Utils.getContent(responseComponent),
                 itemKey: responseComponent['key']));
       case 'numberInput':
         return Container(
-            padding: const EdgeInsets.all(2.0),
+            //padding: const EdgeInsets.all(2.0),
             child: NumberInput(
                 hintText: Utils.getContent(responseComponent),
                 itemKey: responseComponent['key']));
       case 'singleChoiceGroup':
         return Container(
-            padding: const EdgeInsets.all(2.0),
+            //padding: const EdgeInsets.all(2.0),
             child: SingleChoiceGroup(
                 singleChoiceGroupComponent: responseComponent,
                 itemKey: responseComponent['key']));
       case 'multipleChoiceGroup':
         return Container(
-            padding: const EdgeInsets.all(2.0),
+            //padding: const EdgeInsets.all(2.0),
             child: MultipleChoiceGroup(
                 multipleChoiceGroupComponent: responseComponent,
                 itemKey: responseComponent['key']));
       case 'dropDownGroup':
         return Container(
-            padding: const EdgeInsets.all(2.0),
+            //padding: const EdgeInsets.all(2.0),
             child: DropDownGroup(
                 dropDownGroupComponent: responseComponent,
                 itemKey: responseComponent['key']));

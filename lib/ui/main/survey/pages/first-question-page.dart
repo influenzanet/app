@@ -4,11 +4,14 @@ import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/flattened_rendered.dart';
+import 'package:InfluenzaNet/ui/main/survey/models/response.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
+import 'package:InfluenzaNet/ui/main/survey/pages/survey/body_component.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/survey/question.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FirstQuestionPage extends ListPage {
   final void Function() onAnswered;
@@ -102,6 +105,12 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Question(questionComponent: question),
+                    Container(
+                      height: ThemeElements.cardContentPadding,
+                    ),
+                    ChangeNotifierProvider(
+                        create: (context) => ResponseModel(),
+                        child: Body(bodyComponent: bodyComponent)),
                   ],
                 ),
               ),
