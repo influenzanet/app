@@ -59,7 +59,6 @@ class _SingleChoiceGroupState extends State<SingleChoiceGroup> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //padding: const EdgeInsets.all(2.0),
       child: SingleChildScrollView(
         child: ListBody(
           children: choiceItemsWidget(singleChoiceGroupComponent['items']),

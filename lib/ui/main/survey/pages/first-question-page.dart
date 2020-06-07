@@ -27,7 +27,7 @@ class FirstQuestionPage extends ListPage {
   @override
   List<Widget> buildChildren(BuildContext context, ThemeData themeData) {
     SurveySingleItemModel surveySingleItemModel =
-        SurveySingleItemModel(surveySingleItem: qp[0]);
+        SurveySingleItemModel(surveySingleItem: qp[2]);
     return <Widget>[
       Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -58,8 +58,6 @@ class FirstQuestionPage extends ListPage {
           text: 'Next',
           onPressed: () {
             if (_formKey.currentState.validate()) {
-              //Scaffold.of(context).showSnackBar(
-              //SnackBar(content: Text('Fetching next Survey Item')));
               debugPrint('Validating');
             }
             onAnswered();
@@ -131,90 +129,4 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
       ),
     );
   }
-
-//   Widget _inputRadioButtonFields(ThemeData themeData, String question) {
-//     return ThemedCard(
-//       color: Colors.white,
-//       child: Padding(
-//         padding: EdgeInsets.all(12),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: <Widget>[
-//             Text(
-//               firstQuestion,
-//               style: themeData.textTheme.headline6,
-//               textAlign: TextAlign.left,
-//             ),
-//             Container(
-//               height: ThemeElements.cardContentPadding,
-//             ),
-//             AnswerWrap(children: <Widget>[
-//               Column(children: <Widget>[ThemedRadioFormField()])
-//             ]),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class TimeValue {
-//   final int _key;
-//   final String _value;
-//   TimeValue(this._key, this._value);
-// }
-
-// class ThemedRadioFormField extends StatefulWidget {
-//   ThemedRadioFormField({Key key}) : super(key: key);
-
-//   @override
-//   _ThemedRadioFormFieldState createState() => _ThemedRadioFormFieldState();
-// }
-
-// class _ThemedRadioFormFieldState extends State<ThemedRadioFormField> {
-//   int _currentTimeValue = 1;
-
-//   final _buttonOptions = [
-//     TimeValue(30, "30 minutes"),
-//     TimeValue(60, "1 hour"),
-//     TimeValue(120, "2 hours"),
-//     TimeValue(240, "4 hours"),
-//     TimeValue(480, "8 hours"),
-//     TimeValue(720, "12 hours"),
-//   ];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: <Widget>[
-//         Wrap(
-//           crossAxisAlignment: WrapCrossAlignment.center,
-//           children: <Widget>[
-//             SizedBox(
-//               height: 400.0,
-//               child: ListView(
-//                 shrinkWrap: true,
-//                 children: _buttonOptions
-//                     .map((timeValue) => RadioListTile(
-//                           dense: false,
-//                           groupValue: _currentTimeValue,
-//                           title:
-//                               Text(timeValue._value, textAlign: TextAlign.left),
-//                           value: timeValue._key,
-//                           onChanged: (val) {
-//                             setState(() {
-//                               debugPrint('VAL = $val');
-//                               _currentTimeValue = val;
-//                             });
-//                           },
-//                         ))
-//                     .toList(),
-//               ),
-//             )
-//           ],
-//         ),
-//       ],
-//     );
-//   }
-//
 }

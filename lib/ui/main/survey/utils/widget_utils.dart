@@ -27,7 +27,6 @@ class WidgetUtils {
         return AnswerWrap(
           children: <Widget>[
             Container(
-              ////padding: const EdgeInsets.all(2.0),
               child: Consumer<ResponseModel>(
                   builder: (context, response, child) => Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,
@@ -38,21 +37,12 @@ class WidgetUtils {
           ],
         );
       case 'text':
-        return Container(
-          //padding: const EdgeInsets.all(2.0),
-          child: TextItem(textComponent: itemComponent),
-        );
+        return TextItem(textComponent: itemComponent);
       case 'error':
-        return Container(
-          //padding: const EdgeInsets.all(2.0),
-          child: ErrorItem(errorComponent: itemComponent),
-        );
+        return ErrorItem(errorComponent: itemComponent);
 
       case 'warning':
-        return Container(
-          //padding: const EdgeInsets.all(2.0),
-          child: WarningItem(warningComponent: itemComponent),
-        );
+        return WarningItem(warningComponent: itemComponent);
 
       default:
         debugPrint('Invalid role/role not implemented');
@@ -63,41 +53,29 @@ class WidgetUtils {
   static Widget classifyResponseComponent(dynamic responseComponent) {
     switch (responseComponent['role']) {
       case 'input':
-        return Container(
-            //padding: const EdgeInsets.all(2.0),
-            child: Input(
-                hintText: Utils.getContent(responseComponent),
-                itemKey: responseComponent['key']));
+        return Input(
+            hintText: Utils.getContent(responseComponent),
+            itemKey: responseComponent['key']);
       case 'multilineTextInput':
-        return Container(
-            //padding: const EdgeInsets.all(2.0),
-            child: MultilineInput(
-                hintText: Utils.getContent(responseComponent),
-                itemKey: responseComponent['key']));
+        return MultilineInput(
+            hintText: Utils.getContent(responseComponent),
+            itemKey: responseComponent['key']);
       case 'numberInput':
-        return Container(
-            //padding: const EdgeInsets.all(2.0),
-            child: NumberInput(
-                hintText: Utils.getContent(responseComponent),
-                itemKey: responseComponent['key']));
+        return NumberInput(
+            hintText: Utils.getContent(responseComponent),
+            itemKey: responseComponent['key']);
       case 'singleChoiceGroup':
-        return Container(
-            //padding: const EdgeInsets.all(2.0),
-            child: SingleChoiceGroup(
-                singleChoiceGroupComponent: responseComponent,
-                itemKey: responseComponent['key']));
+        return SingleChoiceGroup(
+            singleChoiceGroupComponent: responseComponent,
+            itemKey: responseComponent['key']);
       case 'multipleChoiceGroup':
-        return Container(
-            //padding: const EdgeInsets.all(2.0),
-            child: MultipleChoiceGroup(
-                multipleChoiceGroupComponent: responseComponent,
-                itemKey: responseComponent['key']));
+        return MultipleChoiceGroup(
+            multipleChoiceGroupComponent: responseComponent,
+            itemKey: responseComponent['key']);
       case 'dropDownGroup':
-        return Container(
-            //padding: const EdgeInsets.all(2.0),
-            child: DropDownGroup(
-                dropDownGroupComponent: responseComponent,
-                itemKey: responseComponent['key']));
+        return DropDownGroup(
+            dropDownGroupComponent: responseComponent,
+            itemKey: responseComponent['key']);
       default:
         debugPrint('Invalid or not implemented response component');
         return null;
