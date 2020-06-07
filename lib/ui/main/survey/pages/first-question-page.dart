@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 
 class FirstQuestionPage extends ListPage {
   final void Function() onAnswered;
+  final _formKey = GlobalKey<FormState>();
 
   FirstQuestionPage({@required this.onAnswered})
       : super(
@@ -32,14 +33,14 @@ class FirstQuestionPage extends ListPage {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(
-              left: ThemeElements.pagePadding,
-              top: ThemeElements.pagePadding,
-              right: ThemeElements.pagePadding,
-            ),
-            child: FirstQuestionList(
-                surveySingleItem: surveySingleItemModel.surveySingleItem),
-          ),
+              padding: const EdgeInsets.only(
+                left: ThemeElements.pagePadding,
+                top: ThemeElements.pagePadding,
+                right: ThemeElements.pagePadding,
+              ),
+              child: FirstQuestionList(
+                  surveySingleItem: surveySingleItemModel.surveySingleItem,
+                  formKey: _formKey)),
         ],
       ),
     ];
@@ -55,7 +56,14 @@ class FirstQuestionPage extends ListPage {
           themeData,
           primaryColor: true,
           text: 'Next',
-          onPressed: onAnswered,
+          onPressed: () {
+            if (_formKey.currentState.validate()) {
+              //Scaffold.of(context).showSnackBar(
+              //SnackBar(content: Text('Fetching next Survey Item')));
+              debugPrint('Validating');
+            }
+            onAnswered();
+          },
         ),
       ],
     );
@@ -64,8 +72,10 @@ class FirstQuestionPage extends ListPage {
 
 class FirstQuestionList extends StatefulWidget {
   final dynamic surveySingleItem;
+  final dynamic formKey;
 
-  FirstQuestionList({Key key, this.surveySingleItem}) : super(key: key);
+  FirstQuestionList({Key key, this.surveySingleItem, this.formKey})
+      : super(key: key);
 
   @override
   _FirstQuestionListState createState() => _FirstQuestionListState();
@@ -78,10 +88,11 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
   dynamic question;
   dynamic helpGroup;
   dynamic bodyComponent;
-  final _formKey = GlobalKey<FormState>();
+  dynamic formKey;
   @override
   void initState() {
     surveySingleItem = widget.surveySingleItem;
+    formKey = widget.formKey;
     question = Utils.getSingleItemComponentsByRole(
         surveySingleItem['components']['items'], 'title');
     helpGroup = Utils.getSingleItemComponentsByRole(
@@ -93,7 +104,7 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Container(
         child: Column(
           children: <Widget>[

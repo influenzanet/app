@@ -8,7 +8,9 @@ import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/inp
 import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/multiline_input.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/multiple_choice_group.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/number_input.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/single_choice_group.dart';
+import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/single_choice_component/radio_input.dart';
+import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/single_choice_component/radio_number_input.dart';
+import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/single_choice_component/single_choice_group.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/answer-wrap.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +29,11 @@ class WidgetUtils {
             Container(
               ////padding: const EdgeInsets.all(2.0),
               child: Consumer<ResponseModel>(
-                  builder: (context, response, child) =>
-                      ResponseComponent(responseComponent: itemComponent)),
+                  builder: (context, response, child) => Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: <Widget>[
+                            ResponseComponent(responseComponent: itemComponent)
+                          ])),
             )
           ],
         );
@@ -99,15 +104,19 @@ class WidgetUtils {
     }
   }
 
-  static Widget classifySingleChoiceGroupComponent(dynamic choiceComponent) {
+  static Widget classifySingleChoiceGroupComponent(
+      {dynamic choiceComponent, String groupKey, String key}) {
     switch (choiceComponent['role']) {
       case 'option':
         return Text(Utils.getContent(choiceComponent),
             textAlign: TextAlign.left);
       case 'input':
-        return Input(hintText: Utils.getContent(choiceComponent));
+        return RadioInput(
+          hintText: Utils.getContent(choiceComponent),
+          groupKey: groupKey,
+        );
       case 'numberInput':
-        return NumberInput(hintText: Utils.getContent(choiceComponent));
+        return RadioNumberInput(hintText: Utils.getContent(choiceComponent));
       default:
         debugPrint('Invalid or not implemented response component');
         return null;

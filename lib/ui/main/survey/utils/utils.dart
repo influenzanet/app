@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/main/survey/models/constants.dart';
 import 'package:survey_engine.dart/api/api.dart';
 
 class Utils {
@@ -87,6 +88,15 @@ class Utils {
     int position =
         response['items'].indexWhere((item) => item['key'] == groupKey);
     response['items'][position]['items'] = [newResponse];
+    return response;
+  }
+
+  static constructSingleChoiceInputGroupItem(
+      {String groupKey, String value, ResponseItem responseItem}) {
+    dynamic response = responseItem.toMap();
+    int position =
+        response['items'].indexWhere((item) => item['key'] == groupKey);
+    response['items'][position]['items'][firstKey]['value'] = value;
     return response;
   }
 

@@ -37,7 +37,8 @@ class _MultilineInputState extends State<MultilineInput> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onSaved: (String value) {
+      textInputAction: TextInputAction.done,
+      onFieldSubmitted: (String value) {
         debugPrint('MultilineInput saved');
         ResponseModel responseModel =
             Provider.of<ResponseModel>(context, listen: false);

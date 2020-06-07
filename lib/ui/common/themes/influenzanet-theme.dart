@@ -66,6 +66,8 @@ class ThemeElements {
 
   static const TextStyle displayTextStyle = TextStyle(color: Colors.black);
   static const TextStyle bigButtonTextStyle = TextStyle(fontSize: 20.0);
+  static const TextStyle hintTextStyle = TextStyle();
+
   static const TextStyle longTextFormFieldTextStyle = TextStyle(fontSize: 14.0);
 
   static const EdgeInsetsGeometry bigButtonPaddingGeometry =

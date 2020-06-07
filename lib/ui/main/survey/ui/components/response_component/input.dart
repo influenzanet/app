@@ -38,7 +38,8 @@ class _InputState extends State<Input> {
   Widget build(BuildContext context) {
     // Use myController.text to get the text value
     return TextFormField(
-      onSaved: (String value) {
+      textInputAction: TextInputAction.done,
+      onFieldSubmitted: (String value) {
         debugPrint('Input saved: ' + value);
         ResponseModel responseModel =
             Provider.of<ResponseModel>(context, listen: false);

@@ -4,27 +4,27 @@ import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class NumberInput extends StatefulWidget {
+class RadioInput extends StatefulWidget {
   final String text;
   final String hintText;
-  final String itemKey;
+  final String groupKey;
 
-  NumberInput({this.text, this.hintText, this.itemKey});
+  RadioInput({this.text, this.hintText, this.groupKey});
   @override
-  _NumberInputState createState() => _NumberInputState();
+  _RadioInputState createState() => _RadioInputState();
 }
 
-class _NumberInputState extends State<NumberInput> {
+class _RadioInputState extends State<RadioInput> {
   String text;
   String hintText;
-  String itemKey;
+  String groupKey;
   final myController = TextEditingController();
 
   @override
   void initState() {
     text = widget.text;
     hintText = widget.hintText;
-    itemKey = widget.itemKey;
+    groupKey = widget.groupKey;
     super.initState();
   }
 
@@ -39,21 +39,20 @@ class _NumberInputState extends State<NumberInput> {
     return TextFormField(
       textInputAction: TextInputAction.done,
       onFieldSubmitted: (String value) {
-        debugPrint('NumberInput saved');
         ResponseModel responseModel =
             Provider.of<ResponseModel>(context, listen: false);
-        dynamic response = Utils.constructSingleResponseItem(
-            key: itemKey,
+        dynamic response = Utils.constructSingleChoiceInputGroupItem(
+            groupKey: groupKey,
             value: value,
             responseItem: responseModel.getResponseItem());
         responseModel.setResponseItem(response);
       },
       controller: myController,
-      style: ThemeElements.bigButtonTextStyle,
+      style: ThemeElements.hintTextStyle,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: ThemeElements.bigButtonTextStyle,
-        contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+        hintStyle: ThemeElements.hintTextStyle,
+        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
         filled: true,
         focusColor: ThemeElements.primaryColorLight,
         border: OutlineInputBorder(
@@ -62,7 +61,6 @@ class _NumberInputState extends State<NumberInput> {
         ),
       ),
       keyboardAppearance: Brightness.light,
-      keyboardType: TextInputType.number,
     );
   }
 }
