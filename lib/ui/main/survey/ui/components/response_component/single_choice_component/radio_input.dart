@@ -39,13 +39,13 @@ class _RadioInputState extends State<RadioInput> {
     return TextFormField(
       textInputAction: TextInputAction.done,
       onFieldSubmitted: (String value) {
-        ResponseModel responseModel =
-            Provider.of<ResponseModel>(context, listen: false);
+        SurveySingleItemProvider surveySingleItemProvider =
+            Provider.of<SurveySingleItemProvider>(context, listen: false);
         dynamic response = Utils.constructSingleChoiceInputGroupItem(
             groupKey: groupKey,
             value: value,
-            responseItem: responseModel.responseItem);
-        responseModel.responseItem = response;
+            responseItem: surveySingleItemProvider.responseItem);
+        surveySingleItemProvider.responseItem = response;
       },
       controller: myController,
       style: ThemeElements.hintTextStyle,

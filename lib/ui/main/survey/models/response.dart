@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:survey_engine.dart/api/api.dart';
 
-class ResponseModel with ChangeNotifier {
-  String surveyItemkey;
+class SurveySingleItemProvider with ChangeNotifier {
+  String _surveyItemkey;
   ResponseItem _responseItem;
-  //ResponseModel({this.surveyItemkey, this._responseItem});
 
   ResponseItem get responseItem {
     return _responseItem;
@@ -13,6 +12,16 @@ class ResponseModel with ChangeNotifier {
   set responseItem(dynamic response) {
     _responseItem = ResponseItem.fromMap(response);
     debugPrint('Response set=' + responseItem.toJson());
+    notifyListeners();
+  }
+
+  String get surveyKey {
+    return _surveyItemkey;
+  }
+
+  set surveyKey(String key) {
+    _surveyItemkey = key;
+    debugPrint('Survey key set=' + _surveyItemkey);
     notifyListeners();
   }
 

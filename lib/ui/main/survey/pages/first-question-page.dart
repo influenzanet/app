@@ -35,8 +35,11 @@ class FirstQuestionPage extends ListPage {
             top: ThemeElements.pagePadding,
             right: ThemeElements.pagePadding,
           ),
-          child: FirstQuestionList(
-              surveySingleItem: surveySingleItemModel.surveySingleItem)));
+          child: ChangeNotifierProvider(
+            create: (context) => SurveySingleItemProvider(),
+            child: SurveySingleItemView(
+                surveySingleItem: surveySingleItemModel.surveySingleItem),
+          )));
     });
     return surveySingleItemList;
   }
@@ -70,16 +73,16 @@ class FirstQuestionPage extends ListPage {
   }
 }
 
-class FirstQuestionList extends StatefulWidget {
+class SurveySingleItemView extends StatefulWidget {
   final dynamic surveySingleItem;
 
-  FirstQuestionList({Key key, this.surveySingleItem}) : super(key: key);
+  SurveySingleItemView({Key key, this.surveySingleItem}) : super(key: key);
 
   @override
-  _FirstQuestionListState createState() => _FirstQuestionListState();
+  _SurveySingleItemViewState createState() => _SurveySingleItemViewState();
 }
 
-class _FirstQuestionListState extends State<FirstQuestionList> {
+class _SurveySingleItemViewState extends State<SurveySingleItemView> {
   dynamic surveySingleItem;
   dynamic question;
   dynamic helpGroup;
@@ -123,9 +126,7 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
                     Container(
                       height: ThemeElements.cardContentPadding,
                     ),
-                    ChangeNotifierProvider(
-                        create: (context) => ResponseModel(),
-                        child: Body(bodyComponent: bodyComponent)),
+                    Body(bodyComponent: bodyComponent),
                   ],
                 ),
               ),

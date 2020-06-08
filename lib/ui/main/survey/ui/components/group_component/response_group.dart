@@ -33,7 +33,8 @@ class _ResponseComponentState extends State<ResponseComponent> {
       }
     });
     dynamic result = {'key': responseComponent['key'], 'items': responseList};
-    Provider.of<ResponseModel>(context, listen: false).initResponseItem(result);
+    Provider.of<SurveySingleItemProvider>(context, listen: false)
+        .initResponseItem(result);
   }
 
   List<Widget> responseItemsWidget(List itemList) {

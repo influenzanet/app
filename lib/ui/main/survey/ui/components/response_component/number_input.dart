@@ -40,13 +40,13 @@ class _NumberInputState extends State<NumberInput> {
       textInputAction: TextInputAction.done,
       onFieldSubmitted: (String value) {
         debugPrint('NumberInput saved');
-        ResponseModel responseModel =
-            Provider.of<ResponseModel>(context, listen: false);
+        SurveySingleItemProvider surveySingleItemProvider =
+            Provider.of<SurveySingleItemProvider>(context, listen: false);
         dynamic response = Utils.constructSingleResponseItem(
             key: itemKey,
             value: value,
-            responseItem: responseModel.responseItem);
-        responseModel.responseItem = response;
+            responseItem: surveySingleItemProvider.responseItem);
+        surveySingleItemProvider.responseItem = response;
       },
       controller: myController,
       style: ThemeElements.bigButtonTextStyle,

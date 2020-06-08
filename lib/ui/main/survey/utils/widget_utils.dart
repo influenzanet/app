@@ -28,7 +28,7 @@ class WidgetUtils {
         return AnswerWrap(
           children: <Widget>[
             Container(
-              child: Consumer<ResponseModel>(
+              child: Consumer<SurveySingleItemProvider>(
                   builder: (context, response, child) => Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: <Widget>[

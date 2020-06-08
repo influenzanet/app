@@ -110,7 +110,7 @@ class _SurveySingleItemWidgetState extends State<SurveySingleItemWidget> {
                     child: Question(questionComponent: question),
                   ),
                   ChangeNotifierProvider(
-                      create: (context) => ResponseModel(),
+                      create: (context) => SurveySingleItemProvider(),
                       child: Body(bodyComponent: bodyComponent)),
                   Container(
                     padding: const EdgeInsets.all(12.0),

@@ -38,13 +38,13 @@ class _SingleChoiceGroupState extends State<SingleChoiceGroup> {
           setState(() {
             debugPrint('Selected value = $val');
             optionValue = val;
-            ResponseModel responseModel =
-                Provider.of<ResponseModel>(context, listen: false);
+            SurveySingleItemProvider surveySingleItemProvider =
+                Provider.of<SurveySingleItemProvider>(context, listen: false);
             dynamic response = Utils.constructSingleChoiceGroupItem(
                 groupKey: itemKey,
                 key: val,
-                responseItem: responseModel.responseItem);
-            responseModel.responseItem = response;
+                responseItem: surveySingleItemProvider.responseItem);
+            surveySingleItemProvider.responseItem = response;
           });
         },
       );
