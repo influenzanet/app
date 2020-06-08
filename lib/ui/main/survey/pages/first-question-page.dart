@@ -24,23 +24,29 @@ class FirstQuestionPage extends ListPage {
             notificationButton: false,
             actions: <Widget>[ExitSurveyButton()]);
 
+  List<Widget> surveySingleItemBuilder(List flattendSurveyItems) {
+    List<Widget> surveySingleItemList = [];
+    flattendSurveyItems.forEach((item) {
+      SurveySingleItemModel surveySingleItemModel =
+          SurveySingleItemModel(surveySingleItem: item);
+      surveySingleItemList.add(Padding(
+          padding: const EdgeInsets.only(
+            left: ThemeElements.pagePadding,
+            top: ThemeElements.pagePadding,
+            right: ThemeElements.pagePadding,
+          ),
+          child: FirstQuestionList(
+              surveySingleItem: surveySingleItemModel.surveySingleItem)));
+    });
+    return surveySingleItemList;
+  }
+
   @override
   List<Widget> buildChildren(BuildContext context, ThemeData themeData) {
-    SurveySingleItemModel surveySingleItemModel =
-        SurveySingleItemModel(surveySingleItem: qp[0]);
     return <Widget>[
       Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Padding(
-              padding: const EdgeInsets.only(
-                left: ThemeElements.pagePadding,
-                top: ThemeElements.pagePadding,
-                right: ThemeElements.pagePadding,
-              ),
-              child: FirstQuestionList(
-                  surveySingleItem: surveySingleItemModel.surveySingleItem)),
-        ],
+        children: surveySingleItemBuilder(qp),
       ),
     ];
   }
