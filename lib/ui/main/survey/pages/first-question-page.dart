@@ -4,8 +4,9 @@ import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/flattened_rendered.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/response.dart';
+import 'package:InfluenzaNet/ui/main/survey/models/survey_page_view_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
+import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/survey/body_component.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/survey/question.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
@@ -24,7 +25,9 @@ class FirstQuestionPage extends ListPage {
             notificationButton: false,
             actions: <Widget>[ExitSurveyButton()]);
 
-  List<Widget> surveySingleItemBuilder(List flattendSurveyItems) {
+  List<Widget> surveySingleItemBuilder(
+      List flattendSurveyItems, BuildContext context) {
+    Provider.of<SurveyPageViewProvider>(context, listen: false);
     List<Widget> surveySingleItemList = [];
     flattendSurveyItems.forEach((item) {
       SurveySingleItemModel surveySingleItemModel =
@@ -49,7 +52,7 @@ class FirstQuestionPage extends ListPage {
     return <Widget>[
       Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: surveySingleItemBuilder(qp),
+        children: surveySingleItemBuilder(qp, context),
       ),
     ];
   }

@@ -1,10 +1,12 @@
 import 'package:InfluenzaNet/ui/common/widgets/navigators/navigator-page.dart';
+import 'package:InfluenzaNet/ui/main/survey/models/survey_page_view_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/first-question-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/second-question-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/survey-wecome-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/third-question-page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SurveyNavigator extends StatelessWidget {
   static const String surveyWelcomeRoute = 'survey/welcome';
@@ -38,31 +40,34 @@ class SurveyNavigator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NavigatorPage(
-      navigatorKey: navigatorKey,
-      initialRoute: surveyWelcomeRoute,
-      onGenerateRoute: (RouteSettings settings) {
-        WidgetBuilder builder;
+    return ChangeNotifierProvider(
+      create: (context) => SurveyPageViewProvider(),
+      child: NavigatorPage(
+        navigatorKey: navigatorKey,
+        initialRoute: surveyWelcomeRoute,
+        onGenerateRoute: (RouteSettings settings) {
+          WidgetBuilder builder;
 
-        switch (settings.name) {
-          case surveyWelcomeRoute:
-            builder = _surveyWelcomePage;
-            break;
-          case firstQuestionRoute:
-            builder = _firstQuestionPage;
-            break;
-          case secondQuestionRoute:
-            builder = _secondQuestionPage;
-            break;
-          case thirdQuestionRoute:
-            builder = _thirdQuestionPage;
-            break;
-          default:
-            print('Invalid route: ${settings.name}');
-        }
+          switch (settings.name) {
+            case surveyWelcomeRoute:
+              builder = _surveyWelcomePage;
+              break;
+            case firstQuestionRoute:
+              builder = _firstQuestionPage;
+              break;
+            case secondQuestionRoute:
+              builder = _secondQuestionPage;
+              break;
+            case thirdQuestionRoute:
+              builder = _thirdQuestionPage;
+              break;
+            default:
+              print('Invalid route: ${settings.name}');
+          }
 
-        return MaterialPageRoute(builder: builder, settings: settings);
-      },
+          return MaterialPageRoute(builder: builder, settings: settings);
+        },
+      ),
     );
   }
 

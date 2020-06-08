@@ -1,4 +1,4 @@
-import 'package:InfluenzaNet/ui/main/survey/models/response.dart';
+import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

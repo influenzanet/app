@@ -1,6 +1,6 @@
 import 'package:InfluenzaNet/ui/common/widgets/app-bars/themed-app-bar.dart';
 import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/response.dart';
+import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/survey/body_component.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/survey/question.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';

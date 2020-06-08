@@ -4,6 +4,10 @@ import 'package:survey_engine.dart/api/api.dart';
 class SurveySingleItemProvider with ChangeNotifier {
   String _surveyItemkey;
   ResponseItem _responseItem;
+  SurveySingleItemProvider({String surveyItemKey, ResponseItem responseItem}) {
+    this._surveyItemkey = surveyItemKey;
+    this._responseItem = responseItem;
+  }
 
   ResponseItem get responseItem {
     return _responseItem;

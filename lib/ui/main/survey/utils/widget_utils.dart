@@ -1,5 +1,5 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/response.dart';
+import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/error_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/text_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/warning_item.dart';
