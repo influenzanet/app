@@ -2,21 +2,6 @@ import 'package:InfluenzaNet/ui/main/survey/models/constants.dart';
 import 'package:survey_engine.dart/api/api.dart';
 
 class Utils {
-  // The function will be replaced by api fetched from backend
-  static List<dynamic> getFlattenedRenderedSurvey(dynamic questionGroup,
-      {String parentKey}) {
-    if (questionGroup == null) return null;
-    dynamic flatRenderedList = [];
-    for (final item in questionGroup['items']) {
-      if (item['items'] == null) {
-        flatRenderedList.add(item);
-      } else {
-        flatRenderedList.addAll(getFlattenedRenderedSurvey(item));
-      }
-    }
-    return flatRenderedList.toList();
-  }
-
   static getSingleItemComponentsByRole(dynamic itemComponents, String role,
       {String code = "en"}) {
     dynamic component = itemComponents
@@ -27,23 +12,6 @@ class Utils {
       return null;
     }
     return component;
-  }
-
-  static getListItemComponentsByRole(List itemComponents, String role,
-      {String code = "en"}) {
-    if (itemComponents == null) {
-      return null;
-    }
-    dynamic components =
-        itemComponents.where((comp) => comp['role'] == role).toList();
-    components = components
-        .where((comp) => (comp['displayCondition'] != false ||
-            comp['displayCondition'] != null))
-        .toList();
-    if (components == null || components?.length == 0) {
-      return null;
-    }
-    return components;
   }
 
   static getContent(dynamic itemComponents, {String code = "en"}) {
@@ -109,44 +77,4 @@ class Utils {
     response['items'][position]['items'] = newResponse;
     return response;
   }
-
-  // static getQuestionList(List surveySingleItem, {String code = "en"}) {
-  //   List<String> questions = [];
-  //   surveySingleItem.forEach((item) {
-  //     String question =
-  //         getContentByRole(item['components']['items'], 'title', code: code);
-  //     questions.add(question);
-  //   });
-  //   return questions;
-  // }
-
-  // static getContentListByRole(List itemComponents, String role,
-  //     {String code = "en"}) {
-  //   List<String> contentList = [];
-  //   if (itemComponents == null) {
-  //     return null;
-  //   }
-  //   List componentsByRole =
-  //       getListItemComponentsByRole(itemComponents, role, code: code);
-  //   componentsByRole.forEach((component) {
-  //     contentList.add(getPartsByCode(component['content'], code: code));
-  //   });
-  //   return contentList;
-  // }
-
-  // static getHelpGroupContents(List itemComponents, {String code = "en"}) {
-  //   return getContentListByRole(itemComponents, 'text', code: code);
-  // }
-
-  // static getHelpGroupList(List surveySingleItem, {String code = "en"}) {
-  //   List<List<String>> helpList = [];
-  //   surveySingleItem.forEach((question) {
-  //     dynamic helpGroup = getSingleItemComponentsByRole(
-  //         question['components']['items'], 'helpGroup');
-  //     List<String> contents = getHelpGroupContents(helpGroup['items']);
-  //     helpList.add(contents);
-  //     print('here');
-  //   });
-  //   return helpList;
-  // }
 }
