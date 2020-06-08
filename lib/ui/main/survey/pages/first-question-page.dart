@@ -16,7 +16,6 @@ import 'package:provider/provider.dart';
 
 class FirstQuestionPage extends ListPage {
   final void Function() onAnswered;
-  final _formKey = GlobalKey<FormState>();
 
   FirstQuestionPage({@required this.onAnswered})
       : super(
@@ -40,8 +39,7 @@ class FirstQuestionPage extends ListPage {
                 right: ThemeElements.pagePadding,
               ),
               child: FirstQuestionList(
-                  surveySingleItem: surveySingleItemModel.surveySingleItem,
-                  formKey: _formKey)),
+                  surveySingleItem: surveySingleItemModel.surveySingleItem)),
         ],
       ),
     ];
@@ -58,9 +56,6 @@ class FirstQuestionPage extends ListPage {
           primaryColor: true,
           text: 'Next',
           onPressed: () {
-            if (_formKey.currentState.validate()) {
-              debugPrint('Validating');
-            }
             onAnswered();
           },
         ),
@@ -71,10 +66,8 @@ class FirstQuestionPage extends ListPage {
 
 class FirstQuestionList extends StatefulWidget {
   final dynamic surveySingleItem;
-  final dynamic formKey;
 
-  FirstQuestionList({Key key, this.surveySingleItem, this.formKey})
-      : super(key: key);
+  FirstQuestionList({Key key, this.surveySingleItem}) : super(key: key);
 
   @override
   _FirstQuestionListState createState() => _FirstQuestionListState();
@@ -85,11 +78,9 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
   dynamic question;
   dynamic helpGroup;
   dynamic bodyComponent;
-  dynamic formKey;
   @override
   void initState() {
     surveySingleItem = widget.surveySingleItem;
-    formKey = widget.formKey;
     question = Utils.getSingleItemComponentsByRole(
         surveySingleItem['components']['items'], 'title');
     helpGroup = Utils.getSingleItemComponentsByRole(
@@ -101,7 +92,6 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
       child: Container(
         child: Column(
           children: <Widget>[
@@ -111,15 +101,19 @@ class _FirstQuestionListState extends State<FirstQuestionList> {
                 padding: EdgeInsets.all(12),
                 child: Column(
                   children: <Widget>[
-                    Wrap(alignment: WrapAlignment.end, children: <Widget>[
-                      Question(questionComponent: question),
-                      IconButton(
-                        icon: Icon(Icons.info_outline),
-                        onPressed: () async {
-                          _showHelpGroup(context);
-                        },
-                      ),
-                    ]),
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Expanded(
+                              child: Question(questionComponent: question)),
+                          IconButton(
+                            icon: Icon(Icons.info_outline),
+                            alignment: Alignment.topRight,
+                            onPressed: () async {
+                              _showHelpGroup(context);
+                            },
+                          ),
+                        ]),
                     Container(
                       height: ThemeElements.cardContentPadding,
                     ),
