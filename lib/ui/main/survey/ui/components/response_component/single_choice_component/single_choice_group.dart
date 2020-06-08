@@ -43,8 +43,8 @@ class _SingleChoiceGroupState extends State<SingleChoiceGroup> {
             dynamic response = Utils.constructSingleChoiceGroupItem(
                 groupKey: itemKey,
                 key: val,
-                responseItem: responseModel.getResponseItem());
-            responseModel.setResponseItem(response);
+                responseItem: responseModel.responseItem);
+            responseModel.responseItem = response;
           });
         },
       );

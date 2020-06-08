@@ -53,9 +53,9 @@ class _MultipleChoiceGroupState extends State<MultipleChoiceGroup> {
                 keys: optionValues.keys
                     .where((k) => optionValues[k] == true)
                     .toList(),
-                responseItem: responseModel.getResponseItem());
+                responseItem: responseModel.responseItem);
 
-            responseModel.setResponseItem(response);
+            responseModel.responseItem = response;
           });
         },
       );

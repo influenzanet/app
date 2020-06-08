@@ -44,8 +44,8 @@ class _RadioNumberInputState extends State<RadioNumberInput> {
         dynamic response = Utils.constructSingleChoiceInputGroupItem(
             groupKey: groupKey,
             value: value,
-            responseItem: responseModel.getResponseItem());
-        responseModel.setResponseItem(response);
+            responseItem: responseModel.responseItem);
+        responseModel.responseItem = response;
       },
       controller: myController,
       style: ThemeElements.hintTextStyle,

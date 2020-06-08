@@ -45,8 +45,8 @@ class _MultilineInputState extends State<MultilineInput> {
         dynamic response = Utils.constructSingleResponseItem(
             key: itemKey,
             value: value,
-            responseItem: responseModel.getResponseItem());
-        responseModel.setResponseItem(response);
+            responseItem: responseModel.responseItem);
+        responseModel.responseItem = response;
       },
       controller: myController,
       style: ThemeElements.longTextFormFieldTextStyle,

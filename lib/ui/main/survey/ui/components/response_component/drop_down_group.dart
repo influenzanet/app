@@ -61,8 +61,8 @@ class _DropDownGroupState extends State<DropDownGroup> {
                 dynamic response = Utils.constructSingleChoiceGroupItem(
                     groupKey: itemKey,
                     key: newValue,
-                    responseItem: responseModel.getResponseItem());
-                responseModel.setResponseItem(response);
+                    responseItem: responseModel.responseItem);
+                responseModel.responseItem = response;
               });
             },
             items: choiceItemsWidget(dropDownGroupComponent['items']),
