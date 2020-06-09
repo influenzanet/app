@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class Body extends StatefulWidget {
   final dynamic bodyComponent;
-  Body({Key key, this.bodyComponent}) : super(key: key);
+  final String surveyKey;
+  Body({Key key, this.bodyComponent, this.surveyKey}) : super(key: key);
 
   @override
   _BodyState createState() => _BodyState();
@@ -11,16 +12,18 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   dynamic bodyComponent;
+  String surveyKey;
   @override
   void initState() {
     bodyComponent = widget.bodyComponent;
+    surveyKey = widget.surveyKey;
     super.initState();
   }
 
   List<Widget> bodyItemsWidget(List itemList) {
     List<Widget> result = [];
     itemList.forEach((item) {
-      Widget itemWidget = WidgetUtils.classifyRootComponent(item);
+      Widget itemWidget = WidgetUtils.classifyRootComponent(item, surveyKey);
       if (itemWidget != null) {
         result.add(itemWidget);
       }

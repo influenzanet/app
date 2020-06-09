@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class WidgetUtils {
-  static Widget classifyRootComponent(dynamic itemComponent) {
+  static Widget classifyRootComponent(dynamic itemComponent, String surveyKey) {
     switch (itemComponent['role']) {
       case 'title':
         return null;
@@ -32,7 +32,9 @@ class WidgetUtils {
                   builder: (context, response, child) => Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: <Widget>[
-                            ResponseComponent(responseComponent: itemComponent)
+                            ResponseComponent(
+                                responseComponent: itemComponent,
+                                surveyKey: surveyKey)
                           ])),
             )
           ],
@@ -51,21 +53,28 @@ class WidgetUtils {
     }
   }
 
-  static Widget classifyResponseComponent(dynamic responseComponent) {
+  static Widget classifyResponseComponent(
+      dynamic responseComponent, String surveyKey) {
     switch (responseComponent['role']) {
       case 'input':
-        return Input(inputComponent: responseComponent);
+        return Input(inputComponent: responseComponent, surveyKey: surveyKey);
       case 'multilineTextInput':
-        return MultilineInput(inputComponent: responseComponent);
+        return MultilineInput(
+            inputComponent: responseComponent, surveyKey: surveyKey);
       case 'numberInput':
-        return NumberInput(inputComponent: responseComponent);
+        return NumberInput(
+            inputComponent: responseComponent, surveyKey: surveyKey);
       case 'singleChoiceGroup':
-        return SingleChoiceGroup(singleChoiceGroupComponent: responseComponent);
+        return SingleChoiceGroup(
+            singleChoiceGroupComponent: responseComponent,
+            surveyKey: surveyKey);
       case 'multipleChoiceGroup':
         return MultipleChoiceGroup(
-            multipleChoiceGroupComponent: responseComponent);
+            multipleChoiceGroupComponent: responseComponent,
+            surveyKey: surveyKey);
       case 'dropDownGroup':
-        return DropDownGroup(dropDownGroupComponent: responseComponent);
+        return DropDownGroup(
+            dropDownGroupComponent: responseComponent, surveyKey: surveyKey);
       default:
         debugPrint('Invalid or not implemented response component');
         return null;
@@ -115,7 +124,6 @@ class WidgetUtils {
       helpWidgets.add(Text(Utils.getContent(helpGroupItems[iter + 1]),
           style: themeData.textTheme.bodyText2));
     }
-
     return helpWidgets;
   }
 }

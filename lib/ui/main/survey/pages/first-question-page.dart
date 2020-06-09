@@ -129,7 +129,9 @@ class _SurveySingleItemViewState extends State<SurveySingleItemView> {
                     Container(
                       height: ThemeElements.cardContentPadding,
                     ),
-                    Body(bodyComponent: bodyComponent),
+                    Body(
+                        bodyComponent: bodyComponent,
+                        surveyKey: surveySingleItem['key']),
                   ],
                 ),
               ),

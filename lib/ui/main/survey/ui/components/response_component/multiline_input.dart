@@ -7,19 +7,22 @@ import 'package:provider/provider.dart';
 class MultilineInput extends StatefulWidget {
   final String text;
   final dynamic inputComponent;
+  final String surveyKey;
 
-  MultilineInput({this.text, this.inputComponent});
+  MultilineInput({this.text, this.inputComponent, this.surveyKey});
   @override
   _MultilineInputState createState() => _MultilineInputState();
 }
 
 class _MultilineInputState extends State<MultilineInput> {
   String itemKey;
+  String surveyKey;
   final myController = TextEditingController();
 
   @override
   void initState() {
     itemKey = widget.inputComponent['key'];
+    surveyKey = widget.surveyKey;
     super.initState();
   }
 
@@ -42,6 +45,7 @@ class _MultilineInputState extends State<MultilineInput> {
             value: value,
             responseItem: surveySingleItemProvider.responseItem);
         surveySingleItemProvider.responseItem = response;
+        debugPrint('we are' + surveySingleItemProvider.surveyKey);
       },
       controller: myController,
       style: ThemeElements.longTextFormFieldTextStyle,

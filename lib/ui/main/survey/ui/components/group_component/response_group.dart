@@ -5,7 +5,9 @@ import 'package:provider/provider.dart';
 
 class ResponseComponent extends StatefulWidget {
   final dynamic responseComponent;
-  ResponseComponent({Key key, this.responseComponent}) : super(key: key);
+  final String surveyKey;
+  ResponseComponent({Key key, this.responseComponent, this.surveyKey})
+      : super(key: key);
 
   @override
   _ResponseComponentState createState() => _ResponseComponentState();
@@ -13,9 +15,11 @@ class ResponseComponent extends StatefulWidget {
 
 class _ResponseComponentState extends State<ResponseComponent> {
   dynamic responseComponent;
+  String surveyKey;
   @override
   void initState() {
     responseComponent = widget.responseComponent;
+    surveyKey = widget.surveyKey;
     super.initState();
     WidgetsBinding.instance
         .addPostFrameCallback((_) => initialiseResponseRoot(context));
@@ -34,13 +38,19 @@ class _ResponseComponentState extends State<ResponseComponent> {
     });
     dynamic result = {'key': responseComponent['key'], 'items': responseList};
     Provider.of<SurveySingleItemProvider>(context, listen: false)
-        .initResponseItem(result);
+        .initResponseItem(result, surveyKey);
+    // var m = Provider.of<SurveyPageViewProvider>(context, listen: false)
+    //     .surveyPageList;
+    // debugPrint('Current survey key=' + surveyKey);
+    // var pos = m.indexWhere((prov) => prov.surveyKey == surveyKey);
+    // debugPrint('Page=' + m[pos].responseItem.toString());
   }
 
   List<Widget> responseItemsWidget(List itemList) {
     List<Widget> result = [];
     itemList.forEach((item) {
-      Widget itemWidget = WidgetUtils.classifyResponseComponent(item);
+      Widget itemWidget =
+          WidgetUtils.classifyResponseComponent(item, surveyKey);
       if (itemWidget != null) {
         result.add(itemWidget);
       }

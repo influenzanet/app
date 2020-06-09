@@ -29,9 +29,10 @@ class SurveySingleItemProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void initResponseItem(dynamic response) {
+  void initResponseItem(dynamic response, String key) {
     _responseItem = ResponseItem.fromMap(response);
-    debugPrint('Response init=' + _responseItem.toJson());
+    _surveyItemkey = key;
+    //debugPrint('Response init=' + _responseItem.toJson());
     notifyListeners();
   }
 }

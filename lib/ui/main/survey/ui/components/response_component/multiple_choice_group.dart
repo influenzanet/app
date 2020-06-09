@@ -6,8 +6,10 @@ import 'package:provider/provider.dart';
 
 class MultipleChoiceGroup extends StatefulWidget {
   final dynamic multipleChoiceGroupComponent;
+  final String surveyKey;
 
-  MultipleChoiceGroup({Key key, this.multipleChoiceGroupComponent})
+  MultipleChoiceGroup(
+      {Key key, this.multipleChoiceGroupComponent, this.surveyKey})
       : super(key: key);
 
   @override
@@ -17,6 +19,7 @@ class MultipleChoiceGroup extends StatefulWidget {
 class _MultipleChoiceGroupState extends State<MultipleChoiceGroup> {
   Map<String, bool> optionValues = {};
   String itemGroupKey;
+  String surveyKey;
 
   dynamic multipleChoiceGroupComponent;
   List choiceList;
@@ -26,6 +29,7 @@ class _MultipleChoiceGroupState extends State<MultipleChoiceGroup> {
     multipleChoiceGroupComponent = widget.multipleChoiceGroupComponent;
     itemGroupKey = multipleChoiceGroupComponent['key'];
     choiceList = multipleChoiceGroupComponent['items'];
+    surveyKey = widget.surveyKey;
     choiceList.forEach((item) {
       String key = item['key'];
       optionValues[key] = false;
@@ -55,6 +59,7 @@ class _MultipleChoiceGroupState extends State<MultipleChoiceGroup> {
                 responseItem: surveySingleItemProvider.responseItem);
 
             surveySingleItemProvider.responseItem = response;
+            debugPrint('we are' + surveySingleItemProvider.surveyKey);
           });
         },
       );
