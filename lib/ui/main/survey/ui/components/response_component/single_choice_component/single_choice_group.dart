@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 class SingleChoiceGroup extends StatefulWidget {
   final dynamic singleChoiceGroupComponent;
-  final String itemKey;
-  SingleChoiceGroup({Key key, this.singleChoiceGroupComponent, this.itemKey})
+
+  SingleChoiceGroup({Key key, this.singleChoiceGroupComponent})
       : super(key: key);
 
   @override
@@ -17,12 +17,12 @@ class SingleChoiceGroup extends StatefulWidget {
 class _SingleChoiceGroupState extends State<SingleChoiceGroup> {
   String optionValue;
   dynamic singleChoiceGroupComponent;
-  String itemKey;
+  String itemGroupKey;
 
   @override
   void initState() {
     singleChoiceGroupComponent = widget.singleChoiceGroupComponent;
-    itemKey = widget.itemKey;
+    itemGroupKey = singleChoiceGroupComponent['key'];
     super.initState();
   }
 
@@ -32,7 +32,7 @@ class _SingleChoiceGroupState extends State<SingleChoiceGroup> {
       Widget itemWidget = RadioListTile(
         groupValue: optionValue,
         title: WidgetUtils.classifySingleChoiceGroupComponent(
-            choiceComponent: item, groupKey: itemKey),
+            choiceComponent: item, groupKey: itemGroupKey),
         value: item['key'],
         onChanged: (val) {
           setState(() {
@@ -41,7 +41,7 @@ class _SingleChoiceGroupState extends State<SingleChoiceGroup> {
             SurveySingleItemProvider surveySingleItemProvider =
                 Provider.of<SurveySingleItemProvider>(context, listen: false);
             dynamic response = Utils.constructSingleChoiceGroupItem(
-                groupKey: itemKey,
+                groupKey: itemGroupKey,
                 key: val,
                 responseItem: surveySingleItemProvider.responseItem);
             surveySingleItemProvider.responseItem = response;

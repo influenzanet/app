@@ -60,17 +60,12 @@ class WidgetUtils {
       case 'numberInput':
         return NumberInput(inputComponent: responseComponent);
       case 'singleChoiceGroup':
-        return SingleChoiceGroup(
-            singleChoiceGroupComponent: responseComponent,
-            itemKey: responseComponent['key']);
+        return SingleChoiceGroup(singleChoiceGroupComponent: responseComponent);
       case 'multipleChoiceGroup':
         return MultipleChoiceGroup(
-            multipleChoiceGroupComponent: responseComponent,
-            itemKey: responseComponent['key']);
+            multipleChoiceGroupComponent: responseComponent);
       case 'dropDownGroup':
-        return DropDownGroup(
-            dropDownGroupComponent: responseComponent,
-            itemKey: responseComponent['key']);
+        return DropDownGroup(dropDownGroupComponent: responseComponent);
       default:
         debugPrint('Invalid or not implemented response component');
         return null;

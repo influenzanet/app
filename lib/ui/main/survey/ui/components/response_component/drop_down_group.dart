@@ -5,9 +5,8 @@ import 'package:provider/provider.dart';
 
 class DropDownGroup extends StatefulWidget {
   final dynamic dropDownGroupComponent;
-  final String itemKey;
-  DropDownGroup({Key key, this.dropDownGroupComponent, this.itemKey})
-      : super(key: key);
+
+  DropDownGroup({Key key, this.dropDownGroupComponent}) : super(key: key);
 
   @override
   _DropDownGroupState createState() => _DropDownGroupState();
@@ -16,12 +15,12 @@ class DropDownGroup extends StatefulWidget {
 class _DropDownGroupState extends State<DropDownGroup> {
   String optionValue;
   dynamic dropDownGroupComponent;
-  String itemKey;
+  String itemGroupKey;
 
   @override
   void initState() {
     dropDownGroupComponent = widget.dropDownGroupComponent;
-    itemKey = widget.itemKey;
+    itemGroupKey = dropDownGroupComponent['key'];
     super.initState();
   }
 
@@ -60,7 +59,7 @@ class _DropDownGroupState extends State<DropDownGroup> {
                     Provider.of<SurveySingleItemProvider>(context,
                         listen: false);
                 dynamic response = Utils.constructSingleChoiceGroupItem(
-                    groupKey: itemKey,
+                    groupKey: itemGroupKey,
                     key: newValue,
                     responseItem: surveySingleItemProvider.responseItem);
                 surveySingleItemProvider.responseItem = response;
