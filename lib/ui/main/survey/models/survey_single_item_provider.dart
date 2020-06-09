@@ -16,6 +16,7 @@ class SurveySingleItemProvider with ChangeNotifier {
   set responseItem(dynamic response) {
     _responseItem = ResponseItem.fromMap(response);
     debugPrint('Response set=' + responseItem.toJson());
+    debugPrint('Survey key=' + _surveyItemkey);
     notifyListeners();
   }
 
@@ -32,7 +33,6 @@ class SurveySingleItemProvider with ChangeNotifier {
   void initResponseItem(dynamic response, String key) {
     _responseItem = ResponseItem.fromMap(response);
     _surveyItemkey = key;
-    //debugPrint('Response init=' + _responseItem.toJson());
     notifyListeners();
   }
 }

@@ -40,7 +40,6 @@ class _RadioInputState extends State<RadioInput> {
             value: value,
             responseItem: surveySingleItemProvider.responseItem);
         surveySingleItemProvider.responseItem = response;
-        debugPrint('we are' + surveySingleItemProvider.surveyKey);
       },
       controller: myController,
       style: ThemeElements.hintTextStyle,

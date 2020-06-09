@@ -53,28 +53,21 @@ class WidgetUtils {
     }
   }
 
-  static Widget classifyResponseComponent(
-      dynamic responseComponent, String surveyKey) {
+  static Widget classifyResponseComponent(dynamic responseComponent) {
     switch (responseComponent['role']) {
       case 'input':
-        return Input(inputComponent: responseComponent, surveyKey: surveyKey);
+        return Input(inputComponent: responseComponent);
       case 'multilineTextInput':
-        return MultilineInput(
-            inputComponent: responseComponent, surveyKey: surveyKey);
+        return MultilineInput(inputComponent: responseComponent);
       case 'numberInput':
-        return NumberInput(
-            inputComponent: responseComponent, surveyKey: surveyKey);
+        return NumberInput(inputComponent: responseComponent);
       case 'singleChoiceGroup':
-        return SingleChoiceGroup(
-            singleChoiceGroupComponent: responseComponent,
-            surveyKey: surveyKey);
+        return SingleChoiceGroup(singleChoiceGroupComponent: responseComponent);
       case 'multipleChoiceGroup':
         return MultipleChoiceGroup(
-            multipleChoiceGroupComponent: responseComponent,
-            surveyKey: surveyKey);
+            multipleChoiceGroupComponent: responseComponent);
       case 'dropDownGroup':
-        return DropDownGroup(
-            dropDownGroupComponent: responseComponent, surveyKey: surveyKey);
+        return DropDownGroup(dropDownGroupComponent: responseComponent);
       default:
         debugPrint('Invalid or not implemented response component');
         return null;

@@ -6,22 +6,20 @@ import 'package:provider/provider.dart';
 
 class Input extends StatefulWidget {
   final dynamic inputComponent;
-  final String surveyKey;
 
-  Input({this.inputComponent, this.surveyKey});
+  Input({this.inputComponent});
   @override
   _InputState createState() => _InputState();
 }
 
 class _InputState extends State<Input> {
   String itemKey;
-  String surveyKey;
   final myController = TextEditingController();
 
   @override
   void initState() {
     itemKey = widget.inputComponent['key'];
-    surveyKey = widget.surveyKey;
+
     super.initState();
   }
 
@@ -45,12 +43,6 @@ class _InputState extends State<Input> {
             value: value,
             responseItem: surveySingleItemProvider.responseItem);
         surveySingleItemProvider.responseItem = response;
-        debugPrint('we are' + surveySingleItemProvider.surveyKey);
-        //debugPrint('we are' + surveySingleItemProvider.surveyKey);
-        // var m = Provider.of<SurveyPageViewProvider>(context, listen: false)
-        //     .surveyPageList;
-        // var pos = m.indexWhere((prov) => prov.surveyKey == surveyKey);
-        // debugPrint('Page=' + m[pos].responseItem.toString());
       },
       controller: myController,
       style: ThemeElements.bigButtonTextStyle,

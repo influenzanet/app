@@ -6,22 +6,21 @@ import 'package:provider/provider.dart';
 
 class NumberInput extends StatefulWidget {
   final dynamic inputComponent;
-  final String surveyKey;
 
-  NumberInput({this.inputComponent, this.surveyKey});
+  NumberInput({this.inputComponent});
   @override
   _NumberInputState createState() => _NumberInputState();
 }
 
 class _NumberInputState extends State<NumberInput> {
   String itemKey;
-  String surveyKey;
+
   final myController = TextEditingController();
 
   @override
   void initState() {
     itemKey = widget.inputComponent['key'];
-    surveyKey = widget.surveyKey;
+
     super.initState();
   }
 
@@ -44,7 +43,6 @@ class _NumberInputState extends State<NumberInput> {
             value: value,
             responseItem: surveySingleItemProvider.responseItem);
         surveySingleItemProvider.responseItem = response;
-        debugPrint('we are' + surveySingleItemProvider.surveyKey);
       },
       controller: myController,
       style: ThemeElements.bigButtonTextStyle,

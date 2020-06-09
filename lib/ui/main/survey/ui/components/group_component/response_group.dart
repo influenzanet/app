@@ -39,18 +39,12 @@ class _ResponseComponentState extends State<ResponseComponent> {
     dynamic result = {'key': responseComponent['key'], 'items': responseList};
     Provider.of<SurveySingleItemProvider>(context, listen: false)
         .initResponseItem(result, surveyKey);
-    // var m = Provider.of<SurveyPageViewProvider>(context, listen: false)
-    //     .surveyPageList;
-    // debugPrint('Current survey key=' + surveyKey);
-    // var pos = m.indexWhere((prov) => prov.surveyKey == surveyKey);
-    // debugPrint('Page=' + m[pos].responseItem.toString());
   }
 
   List<Widget> responseItemsWidget(List itemList) {
     List<Widget> result = [];
     itemList.forEach((item) {
-      Widget itemWidget =
-          WidgetUtils.classifyResponseComponent(item, surveyKey);
+      Widget itemWidget = WidgetUtils.classifyResponseComponent(item);
       if (itemWidget != null) {
         result.add(itemWidget);
       }

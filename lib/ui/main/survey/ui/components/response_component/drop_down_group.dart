@@ -5,10 +5,8 @@ import 'package:provider/provider.dart';
 
 class DropDownGroup extends StatefulWidget {
   final dynamic dropDownGroupComponent;
-  final String surveyKey;
 
-  DropDownGroup({Key key, this.dropDownGroupComponent, this.surveyKey})
-      : super(key: key);
+  DropDownGroup({Key key, this.dropDownGroupComponent}) : super(key: key);
 
   @override
   _DropDownGroupState createState() => _DropDownGroupState();
@@ -18,13 +16,12 @@ class _DropDownGroupState extends State<DropDownGroup> {
   String optionValue;
   dynamic dropDownGroupComponent;
   String itemGroupKey;
-  String surveyKey;
 
   @override
   void initState() {
     dropDownGroupComponent = widget.dropDownGroupComponent;
     itemGroupKey = dropDownGroupComponent['key'];
-    surveyKey = widget.surveyKey;
+
     super.initState();
   }
 
@@ -67,7 +64,6 @@ class _DropDownGroupState extends State<DropDownGroup> {
                     key: newValue,
                     responseItem: surveySingleItemProvider.responseItem);
                 surveySingleItemProvider.responseItem = response;
-                debugPrint('we are' + surveySingleItemProvider.surveyKey);
               });
             },
             items: choiceItemsWidget(dropDownGroupComponent['items']),
