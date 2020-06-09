@@ -6,24 +6,19 @@ import 'package:provider/provider.dart';
 
 class MultilineInput extends StatefulWidget {
   final String text;
-  final String hintText;
   final String itemKey;
 
-  MultilineInput({this.text, this.hintText, this.itemKey});
+  MultilineInput({this.text, this.itemKey});
   @override
   _MultilineInputState createState() => _MultilineInputState();
 }
 
 class _MultilineInputState extends State<MultilineInput> {
-  String text;
-  String hintText;
   String itemKey;
   final myController = TextEditingController();
 
   @override
   void initState() {
-    text = widget.text;
-    hintText = widget.hintText;
     itemKey = widget.itemKey;
     super.initState();
   }
@@ -51,7 +46,6 @@ class _MultilineInputState extends State<MultilineInput> {
       controller: myController,
       style: ThemeElements.longTextFormFieldTextStyle,
       decoration: InputDecoration(
-        hintText: hintText,
         hintStyle: ThemeElements.longTextFormFieldTextStyle,
         contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         filled: true,

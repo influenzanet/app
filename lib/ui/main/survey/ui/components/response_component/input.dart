@@ -5,25 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Input extends StatefulWidget {
-  final String text;
-  final String hintText;
   final String itemKey;
 
-  Input({this.text, this.hintText, this.itemKey});
+  Input({this.itemKey});
   @override
   _InputState createState() => _InputState();
 }
 
 class _InputState extends State<Input> {
-  String text;
-  String hintText;
   String itemKey;
   final myController = TextEditingController();
 
   @override
   void initState() {
-    text = widget.text;
-    hintText = widget.hintText;
     itemKey = widget.itemKey;
     super.initState();
   }
@@ -52,7 +46,6 @@ class _InputState extends State<Input> {
       controller: myController,
       style: ThemeElements.bigButtonTextStyle,
       decoration: InputDecoration(
-        hintText: hintText,
         hintStyle: ThemeElements.bigButtonTextStyle,
         contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
         filled: true,

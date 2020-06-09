@@ -5,25 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RadioInput extends StatefulWidget {
-  final String text;
-  final String hintText;
   final String groupKey;
 
-  RadioInput({this.text, this.hintText, this.groupKey});
+  RadioInput({this.groupKey});
   @override
   _RadioInputState createState() => _RadioInputState();
 }
 
 class _RadioInputState extends State<RadioInput> {
-  String text;
-  String hintText;
   String groupKey;
   final myController = TextEditingController();
 
   @override
   void initState() {
-    text = widget.text;
-    hintText = widget.hintText;
     groupKey = widget.groupKey;
     super.initState();
   }
@@ -50,7 +44,6 @@ class _RadioInputState extends State<RadioInput> {
       controller: myController,
       style: ThemeElements.hintTextStyle,
       decoration: InputDecoration(
-        hintText: hintText,
         hintStyle: ThemeElements.hintTextStyle,
         contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
         filled: true,

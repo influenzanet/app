@@ -5,25 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class NumberInput extends StatefulWidget {
-  final String text;
-  final String hintText;
   final String itemKey;
 
-  NumberInput({this.text, this.hintText, this.itemKey});
+  NumberInput({this.itemKey});
   @override
   _NumberInputState createState() => _NumberInputState();
 }
 
 class _NumberInputState extends State<NumberInput> {
-  String text;
-  String hintText;
   String itemKey;
   final myController = TextEditingController();
 
   @override
   void initState() {
-    text = widget.text;
-    hintText = widget.hintText;
     itemKey = widget.itemKey;
     super.initState();
   }
@@ -51,7 +45,6 @@ class _NumberInputState extends State<NumberInput> {
       controller: myController,
       style: ThemeElements.bigButtonTextStyle,
       decoration: InputDecoration(
-        hintText: hintText,
         hintStyle: ThemeElements.bigButtonTextStyle,
         contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
         filled: true,

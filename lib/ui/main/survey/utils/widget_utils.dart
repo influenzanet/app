@@ -54,17 +54,11 @@ class WidgetUtils {
   static Widget classifyResponseComponent(dynamic responseComponent) {
     switch (responseComponent['role']) {
       case 'input':
-        return Input(
-            hintText: Utils.getContent(responseComponent),
-            itemKey: responseComponent['key']);
+        return Input(itemKey: responseComponent['key']);
       case 'multilineTextInput':
-        return MultilineInput(
-            hintText: Utils.getContent(responseComponent),
-            itemKey: responseComponent['key']);
+        return MultilineInput(itemKey: responseComponent['key']);
       case 'numberInput':
-        return NumberInput(
-            hintText: Utils.getContent(responseComponent),
-            itemKey: responseComponent['key']);
+        return NumberInput(itemKey: responseComponent['key']);
       case 'singleChoiceGroup':
         return SingleChoiceGroup(
             singleChoiceGroupComponent: responseComponent,
@@ -91,11 +85,10 @@ class WidgetUtils {
             textAlign: TextAlign.left);
       case 'input':
         return RadioInput(
-          hintText: Utils.getContent(choiceComponent),
           groupKey: groupKey,
         );
       case 'numberInput':
-        return RadioNumberInput(hintText: Utils.getContent(choiceComponent));
+        return RadioNumberInput();
       default:
         debugPrint('Invalid or not implemented response component');
         return null;
@@ -108,7 +101,7 @@ class WidgetUtils {
         return Text(Utils.getContent(choiceComponent),
             textAlign: TextAlign.left);
       case 'input':
-        return Input(hintText: Utils.getContent(choiceComponent));
+        return Input();
       default:
         debugPrint('Invalid or not implemented response component');
         return null;

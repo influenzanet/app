@@ -1,4 +1,5 @@
 import 'package:InfluenzaNet/ui/main/survey/models/constants.dart';
+import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
 import 'package:survey_engine.dart/api/api.dart';
 
 class Utils {
@@ -76,5 +77,32 @@ class Utils {
         response['items'].indexWhere((item) => item['key'] == groupKey);
     response['items'][position]['items'] = newResponse;
     return response;
+  }
+
+  static initSurveyPageProvider(List flattenedSurveyItems) {
+    List<SurveySingleItemProvider> initProvider = [];
+    flattenedSurveyItems.forEach((item) {
+      SurveySingleItemProvider provider =
+          SurveySingleItemProvider(surveyItemKey: item['key']);
+      List responseList = [];
+      dynamic responseComponent = Utils.getSingleItemComponentsByRole(
+          item['components']['items'], 'responseGroup');
+      List itemList = responseComponent['items'];
+      itemList.forEach((item) {
+        switch (item['role']) {
+          case 'singleChoiceGroup':
+          case 'multipleChoiceGroup':
+          case 'dropDownGroup':
+            responseList.add({'key': item['key'], 'items': []});
+            break;
+          default:
+            break;
+        }
+      });
+      dynamic result = {'key': responseComponent['key'], 'items': responseList};
+      provider.responseItem = result;
+      initProvider.add(provider);
+    });
+    return initProvider;
   }
 }
