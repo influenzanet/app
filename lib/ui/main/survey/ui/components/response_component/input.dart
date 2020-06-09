@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Input extends StatefulWidget {
-  final String itemKey;
+  final dynamic inputComponent;
 
-  Input({this.itemKey});
+  Input({this.inputComponent});
   @override
   _InputState createState() => _InputState();
 }
@@ -18,7 +18,7 @@ class _InputState extends State<Input> {
 
   @override
   void initState() {
-    itemKey = widget.itemKey;
+    itemKey = widget.inputComponent['key'];
     super.initState();
   }
 

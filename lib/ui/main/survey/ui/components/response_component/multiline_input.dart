@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 
 class MultilineInput extends StatefulWidget {
   final String text;
-  final String itemKey;
+  final dynamic inputComponent;
 
-  MultilineInput({this.text, this.itemKey});
+  MultilineInput({this.text, this.inputComponent});
   @override
   _MultilineInputState createState() => _MultilineInputState();
 }
@@ -19,7 +19,7 @@ class _MultilineInputState extends State<MultilineInput> {
 
   @override
   void initState() {
-    itemKey = widget.itemKey;
+    itemKey = widget.inputComponent['key'];
     super.initState();
   }
 

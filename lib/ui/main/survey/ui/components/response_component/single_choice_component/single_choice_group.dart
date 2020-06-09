@@ -32,7 +32,7 @@ class _SingleChoiceGroupState extends State<SingleChoiceGroup> {
       Widget itemWidget = RadioListTile(
         groupValue: optionValue,
         title: WidgetUtils.classifySingleChoiceGroupComponent(
-            choiceComponent: item, groupKey: itemKey, key: optionValue),
+            choiceComponent: item, groupKey: itemKey),
         value: item['key'],
         onChanged: (val) {
           setState(() {
