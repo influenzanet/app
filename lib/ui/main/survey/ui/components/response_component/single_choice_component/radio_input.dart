@@ -7,8 +7,9 @@ import 'package:provider/provider.dart';
 class RadioInput extends StatefulWidget {
   final String groupKey;
   final String itemKey;
+  final String content;
 
-  RadioInput({this.groupKey, this.itemKey});
+  RadioInput({this.groupKey, this.itemKey, this.content});
   @override
   _RadioInputState createState() => _RadioInputState();
 }
@@ -16,12 +17,14 @@ class RadioInput extends StatefulWidget {
 class _RadioInputState extends State<RadioInput> {
   String groupKey;
   String itemKey;
+  String content;
   final myController = TextEditingController();
 
   @override
   void initState() {
     groupKey = widget.groupKey;
     itemKey = widget.itemKey;
+    content = widget.content;
     super.initState();
   }
 
@@ -33,33 +36,41 @@ class _RadioInputState extends State<RadioInput> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      textInputAction: TextInputAction.done,
-      onFieldSubmitted: (String value) {
-        // Provider.of<InputChoiceProvider>(context, listen: false).inputKey =
-        //     itemKey;
-        SurveySingleItemProvider surveySingleItemProvider =
-            Provider.of<SurveySingleItemProvider>(context, listen: false);
-        dynamic response = Utils.constructSingleChoiceInputGroupItem(
-            groupKey: groupKey,
-            key: itemKey,
-            value: value,
-            responseItem: surveySingleItemProvider.responseItem);
-        surveySingleItemProvider.responseItem = response;
-      },
-      controller: myController,
-      style: ThemeElements.hintTextStyle,
-      decoration: InputDecoration(
-        hintStyle: ThemeElements.hintTextStyle,
-        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-        filled: true,
-        focusColor: ThemeElements.primaryColorLight,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(100),
-          borderSide: BorderSide.none,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Text(content),
+        Expanded(
+          child: TextFormField(
+            textInputAction: TextInputAction.done,
+            onFieldSubmitted: (String value) {
+              // Provider.of<InputChoiceProvider>(context, listen: false).inputKey =
+              //     itemKey;
+              SurveySingleItemProvider surveySingleItemProvider =
+                  Provider.of<SurveySingleItemProvider>(context, listen: false);
+              dynamic response = Utils.constructSingleChoiceInputGroupItem(
+                  groupKey: groupKey,
+                  key: itemKey,
+                  value: value,
+                  responseItem: surveySingleItemProvider.responseItem);
+              surveySingleItemProvider.responseItem = response;
+            },
+            controller: myController,
+            style: ThemeElements.hintTextStyle,
+            decoration: InputDecoration(
+              hintStyle: ThemeElements.hintTextStyle,
+              contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+              filled: true,
+              focusColor: ThemeElements.primaryColorLight,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(100),
+                borderSide: BorderSide.none,
+              ),
+            ),
+            keyboardAppearance: Brightness.light,
+          ),
         ),
-      ),
-      keyboardAppearance: Brightness.light,
+      ],
     );
   }
 }

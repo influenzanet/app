@@ -78,13 +78,17 @@ class WidgetUtils {
   }
 
   static Widget classifySingleChoiceGroupComponent(
-      {dynamic choiceComponent, String groupKey, String itemKey}) {
+      {dynamic choiceComponent,
+      String groupKey,
+      String itemKey,
+      String content}) {
     switch (choiceComponent['role']) {
       case 'option':
         return Text(Utils.getContent(choiceComponent),
             textAlign: TextAlign.left);
       case 'input':
-        return RadioInput(groupKey: groupKey, itemKey: itemKey);
+        return RadioInput(
+            groupKey: groupKey, itemKey: itemKey, content: content);
       case 'numberInput':
         return RadioNumberInput(groupKey: groupKey, itemKey: itemKey);
       default:

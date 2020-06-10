@@ -34,7 +34,8 @@ class _SingleChoiceGroupState extends State<SingleChoiceGroup> {
                 title: WidgetUtils.classifySingleChoiceGroupComponent(
                     choiceComponent: item,
                     groupKey: itemGroupKey,
-                    itemKey: item['key']),
+                    itemKey: item['key'],
+                    content: Utils.getContent(item)),
                 value: item['key'],
                 onChanged: (val) {
                   setState(() {
