@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/main/survey/models/input_choice_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
@@ -56,8 +57,11 @@ class _ResponseComponentState extends State<ResponseComponent> {
   Widget build(BuildContext context) {
     return Container(
       child: SingleChildScrollView(
-          child: ListBody(
-        children: responseItemsWidget(responseComponent['items']),
+          child: ChangeNotifierProvider(
+        create: (context) => InputChoiceProvider(),
+        child: ListBody(
+          children: responseItemsWidget(responseComponent['items']),
+        ),
       )),
     );
   }

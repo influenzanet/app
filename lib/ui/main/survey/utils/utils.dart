@@ -61,11 +61,12 @@ class Utils {
   }
 
   static constructSingleChoiceInputGroupItem(
-      {String groupKey, String value, ResponseItem responseItem}) {
+      {String groupKey, String key, String value, ResponseItem responseItem}) {
     dynamic response = responseItem.toMap();
     int position =
         response['items'].indexWhere((item) => item['key'] == groupKey);
-    response['items'][position]['items'][firstKey]['value'] = value;
+    response['items'][position]['items']
+        [firstKey] = {'key': key, 'value': value};
     return response;
   }
 

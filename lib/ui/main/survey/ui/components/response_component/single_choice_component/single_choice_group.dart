@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/main/survey/models/input_choice_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
@@ -14,7 +15,6 @@ class SingleChoiceGroup extends StatefulWidget {
 }
 
 class _SingleChoiceGroupState extends State<SingleChoiceGroup> {
-  String optionValue;
   dynamic singleChoiceGroupComponent;
   String itemGroupKey;
 
@@ -22,32 +22,36 @@ class _SingleChoiceGroupState extends State<SingleChoiceGroup> {
   void initState() {
     singleChoiceGroupComponent = widget.singleChoiceGroupComponent;
     itemGroupKey = singleChoiceGroupComponent['key'];
-
     super.initState();
   }
 
   List<Widget> choiceItemsWidget(List itemList) {
     List<Widget> result = [];
     itemList.forEach((item) {
-      Widget itemWidget = RadioListTile(
-        groupValue: optionValue,
-        title: WidgetUtils.classifySingleChoiceGroupComponent(
-            choiceComponent: item, groupKey: itemGroupKey),
-        value: item['key'],
-        onChanged: (val) {
-          setState(() {
-            debugPrint('Selected value = $val');
-            optionValue = val;
-            SurveySingleItemProvider surveySingleItemProvider =
-                Provider.of<SurveySingleItemProvider>(context, listen: false);
-            dynamic response = Utils.constructSingleChoiceGroupItem(
-                groupKey: itemGroupKey,
-                key: val,
-                responseItem: surveySingleItemProvider.responseItem);
-            surveySingleItemProvider.responseItem = response;
-          });
-        },
-      );
+      Widget itemWidget = Consumer<InputChoiceProvider>(
+          builder: (context, choice, child) => RadioListTile(
+                groupValue: choice.inputKey,
+                title: WidgetUtils.classifySingleChoiceGroupComponent(
+                    choiceComponent: item,
+                    groupKey: itemGroupKey,
+                    itemKey: item['key']),
+                value: item['key'],
+                onChanged: (val) {
+                  setState(() {
+                    debugPrint('Selected value = $val');
+                    choice.inputKey = val;
+                    SurveySingleItemProvider surveySingleItemProvider =
+                        Provider.of<SurveySingleItemProvider>(context,
+                            listen: false);
+
+                    dynamic response = Utils.constructSingleChoiceGroupItem(
+                        groupKey: itemGroupKey,
+                        key: val,
+                        responseItem: surveySingleItemProvider.responseItem);
+                    surveySingleItemProvider.responseItem = response;
+                  });
+                },
+              ));
 
       if (itemWidget != null) {
         result.add(itemWidget);

@@ -6,19 +6,22 @@ import 'package:provider/provider.dart';
 
 class RadioInput extends StatefulWidget {
   final String groupKey;
+  final String itemKey;
 
-  RadioInput({this.groupKey});
+  RadioInput({this.groupKey, this.itemKey});
   @override
   _RadioInputState createState() => _RadioInputState();
 }
 
 class _RadioInputState extends State<RadioInput> {
   String groupKey;
+  String itemKey;
   final myController = TextEditingController();
 
   @override
   void initState() {
     groupKey = widget.groupKey;
+    itemKey = widget.itemKey;
     super.initState();
   }
 
@@ -33,10 +36,13 @@ class _RadioInputState extends State<RadioInput> {
     return TextFormField(
       textInputAction: TextInputAction.done,
       onFieldSubmitted: (String value) {
+        // Provider.of<InputChoiceProvider>(context, listen: false).inputKey =
+        //     itemKey;
         SurveySingleItemProvider surveySingleItemProvider =
             Provider.of<SurveySingleItemProvider>(context, listen: false);
         dynamic response = Utils.constructSingleChoiceInputGroupItem(
             groupKey: groupKey,
+            key: itemKey,
             value: value,
             responseItem: surveySingleItemProvider.responseItem);
         surveySingleItemProvider.responseItem = response;

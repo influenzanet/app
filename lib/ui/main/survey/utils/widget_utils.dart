@@ -1,4 +1,5 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
+import 'package:InfluenzaNet/ui/main/survey/models/input_choice_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/error_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/text_item.dart';
@@ -62,7 +63,9 @@ class WidgetUtils {
       case 'numberInput':
         return NumberInput(inputComponent: responseComponent);
       case 'singleChoiceGroup':
-        return SingleChoiceGroup(singleChoiceGroupComponent: responseComponent);
+        return Consumer<InputChoiceProvider>(
+            builder: (context, response, child) => SingleChoiceGroup(
+                singleChoiceGroupComponent: responseComponent));
       case 'multipleChoiceGroup':
         return MultipleChoiceGroup(
             multipleChoiceGroupComponent: responseComponent);
@@ -75,15 +78,15 @@ class WidgetUtils {
   }
 
   static Widget classifySingleChoiceGroupComponent(
-      {dynamic choiceComponent, String groupKey}) {
+      {dynamic choiceComponent, String groupKey, String itemKey}) {
     switch (choiceComponent['role']) {
       case 'option':
         return Text(Utils.getContent(choiceComponent),
             textAlign: TextAlign.left);
       case 'input':
-        return RadioInput(groupKey: groupKey);
+        return RadioInput(groupKey: groupKey, itemKey: itemKey);
       case 'numberInput':
-        return RadioNumberInput(groupKey: groupKey);
+        return RadioNumberInput(groupKey: groupKey, itemKey: itemKey);
       default:
         debugPrint('Invalid or not implemented response component');
         return null;
