@@ -1,13 +1,18 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:flutter/material.dart';
 
-class ThemedLongTextFormField extends TextField {
+class ThemedLongTextFormField extends TextFormField {
   ThemedLongTextFormField(
       {String hintText,
       int maxlines,
       bool readOnly: false,
-      bool autocorrect: false})
+      bool autocorrect: false,
+      Function onFieldSubmitted,
+      TextEditingController controller})
       : super(
+          onFieldSubmitted: onFieldSubmitted,
+          textInputAction: TextInputAction.done,
+          controller: controller,
           style: ThemeElements.longTextFormFieldTextStyle,
           decoration: InputDecoration(
             hintText: hintText,
@@ -22,7 +27,7 @@ class ThemedLongTextFormField extends TextField {
           ),
           keyboardType: TextInputType.multiline,
           keyboardAppearance: Brightness.light,
-          maxLines: maxlines,
+          maxLines: maxlines ?? 4,
           readOnly: readOnly,
           autocorrect: autocorrect,
         );

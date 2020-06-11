@@ -1,4 +1,4 @@
-import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
+import 'package:InfluenzaNet/ui/common/widgets/forms/themed-text-form-field.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -41,8 +41,8 @@ class _RadioNumberInputState extends State<RadioNumberInput> {
       children: <Widget>[
         Text(content),
         Expanded(
-          child: TextFormField(
-            textInputAction: TextInputAction.done,
+          child: ThemedTextFormField(
+            keyboardType: TextInputType.number,
             onFieldSubmitted: (String value) {
               SurveySingleItemProvider surveySingleItemProvider =
                   Provider.of<SurveySingleItemProvider>(context, listen: false);
@@ -54,19 +54,6 @@ class _RadioNumberInputState extends State<RadioNumberInput> {
               surveySingleItemProvider.responseItem = response;
             },
             controller: myController,
-            style: ThemeElements.hintTextStyle,
-            decoration: InputDecoration(
-              hintStyle: ThemeElements.hintTextStyle,
-              contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-              filled: true,
-              focusColor: ThemeElements.primaryColorLight,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(100),
-                borderSide: BorderSide.none,
-              ),
-            ),
-            keyboardAppearance: Brightness.light,
-            keyboardType: TextInputType.number,
           ),
         ),
       ],

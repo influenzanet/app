@@ -8,8 +8,13 @@ class ThemedTextFormField extends TextFormField {
       bool obscureText = false,
       TextInputType keyboardType,
       bool readOnly: false,
-      bool autocorrect: false})
+      bool autocorrect: false,
+      Function onFieldSubmitted,
+      TextEditingController controller})
       : super(
+          onFieldSubmitted: onFieldSubmitted,
+          textInputAction: TextInputAction.done,
+          controller: controller,
           initialValue: initialValue,
           style: ThemeElements.bigButtonTextStyle,
           decoration: InputDecoration(

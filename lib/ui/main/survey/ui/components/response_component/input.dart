@@ -1,4 +1,4 @@
-import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
+import 'package:InfluenzaNet/ui/common/widgets/forms/themed-text-form-field.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -31,9 +31,7 @@ class _InputState extends State<Input> {
 
   @override
   Widget build(BuildContext context) {
-    // Use myController.text to get the text value
-    return TextFormField(
-      textInputAction: TextInputAction.done,
+    return ThemedTextFormField(
       onFieldSubmitted: (String value) {
         debugPrint('Input saved: ' + value);
         SurveySingleItemProvider surveySingleItemProvider =
@@ -45,18 +43,6 @@ class _InputState extends State<Input> {
         surveySingleItemProvider.responseItem = response;
       },
       controller: myController,
-      style: ThemeElements.bigButtonTextStyle,
-      decoration: InputDecoration(
-        hintStyle: ThemeElements.bigButtonTextStyle,
-        contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-        filled: true,
-        focusColor: ThemeElements.primaryColorLight,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(100),
-          borderSide: BorderSide.none,
-        ),
-      ),
-      keyboardAppearance: Brightness.light,
     );
   }
 }
