@@ -8,7 +8,8 @@ import 'package:InfluenzaNet/ui/main/survey/ui/components/group_component/respon
 import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/drop_down_group.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/input.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/multiline_input.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/multiple_choice_group.dart';
+import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/multiple_choice_component/checkbox_input.dart';
+import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/multiple_choice_component/multiple_choice_group.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/number_input.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/single_choice_component/radio_input.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/single_choice_component/radio_number_input.dart';
@@ -97,13 +98,18 @@ class WidgetUtils {
     }
   }
 
-  static Widget classifyMultipleChoiceGroupComponent(dynamic choiceComponent) {
+  static Widget classifyMultipleChoiceGroupComponent(
+      {dynamic choiceComponent,
+      String groupKey,
+      String itemKey,
+      String content}) {
     switch (choiceComponent['role']) {
       case 'option':
         return Text(Utils.getContent(choiceComponent),
             textAlign: TextAlign.left);
       case 'input':
-        return Input(inputComponent: choiceComponent);
+        return CheckBoxInput(
+            groupKey: groupKey, itemKey: itemKey, content: content);
       default:
         debugPrint('Invalid or not implemented response component');
         return null;

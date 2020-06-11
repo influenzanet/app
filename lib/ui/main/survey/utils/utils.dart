@@ -70,6 +70,18 @@ class Utils {
     return response;
   }
 
+  static constructMultipleChoiceInputGroupItem(
+      {String groupKey, String key, String value, ResponseItem responseItem}) {
+    dynamic response = responseItem.toMap();
+    int groupPosition =
+        response['items'].indexWhere((item) => item['key'] == groupKey);
+    int position = response['items'][groupPosition]['items']
+        .indexWhere((item) => item['key'] == key);
+    response['items'][groupPosition]['items']
+        [position] = {'key': key, 'value': value};
+    return response;
+  }
+
   static constructMultipleChoiceGroupItem(
       {String groupKey, List keys, List values, ResponseItem responseItem}) {
     dynamic response = responseItem.toMap();

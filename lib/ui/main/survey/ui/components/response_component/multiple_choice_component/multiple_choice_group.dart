@@ -40,7 +40,11 @@ class _MultipleChoiceGroupState extends State<MultipleChoiceGroup> {
       String key = item['key'];
       Widget itemWidget = CheckboxListTile(
         controlAffinity: ListTileControlAffinity.leading,
-        title: WidgetUtils.classifyMultipleChoiceGroupComponent(item),
+        title: WidgetUtils.classifyMultipleChoiceGroupComponent(
+            choiceComponent: item,
+            groupKey: itemGroupKey,
+            itemKey: item['key'],
+            content: Utils.getContent(item)),
         value: optionValues[key],
         onChanged: (bool value) {
           setState(() {
@@ -69,7 +73,6 @@ class _MultipleChoiceGroupState extends State<MultipleChoiceGroup> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(2.0),
       child: SingleChildScrollView(
         child: ListBody(
           children: choiceItemsWidget(),
