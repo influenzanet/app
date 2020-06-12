@@ -2,11 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:survey_engine.dart/api/api.dart';
 
 class SurveySingleItemProvider with ChangeNotifier {
+  dynamic _surveySingleItemModel;
   String _surveyItemkey;
   ResponseItem _responseItem;
   SurveySingleItemProvider({String surveyItemKey, ResponseItem responseItem}) {
     this._surveyItemkey = surveyItemKey;
     this._responseItem = responseItem;
+  }
+
+  get surveySingleItem {
+    return _surveySingleItemModel;
+  }
+
+  set surveySingleItem(dynamic item) {
+    _surveySingleItemModel = item;
+    debugPrint('Single item set with=' + item['key'].toString());
+    notifyListeners();
   }
 
   ResponseItem get responseItem {
@@ -33,6 +44,7 @@ class SurveySingleItemProvider with ChangeNotifier {
   void initResponseItem(dynamic response, String key) {
     _responseItem = ResponseItem.fromMap(response);
     _surveyItemkey = key;
+    debugPrint('Init function for key' + _surveyItemkey);
     notifyListeners();
   }
 }

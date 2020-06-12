@@ -4,8 +4,6 @@ import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/flattened_rendered.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/survey_page_view_provider.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/survey/body_component.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/survey/question.dart';
@@ -25,34 +23,31 @@ class FirstQuestionPage extends ListPage {
             notificationButton: false,
             actions: <Widget>[ExitSurveyButton()]);
 
-  List<Widget> surveySingleItemBuilder(
-      List flattendSurveyItems, BuildContext context) {
-    Provider.of<SurveyPageViewProvider>(context, listen: false);
-    List<Widget> surveySingleItemList = [];
-    flattendSurveyItems.forEach((item) {
-      SurveySingleItemModel surveySingleItemModel =
-          SurveySingleItemModel(surveySingleItem: item);
-      surveySingleItemList.add(Padding(
-          padding: const EdgeInsets.only(
-            left: ThemeElements.pagePadding,
-            top: ThemeElements.pagePadding,
-            right: ThemeElements.pagePadding,
-          ),
-          child: ChangeNotifierProvider(
-            create: (context) => SurveySingleItemProvider(),
-            child: SurveySingleItemView(
-                surveySingleItem: surveySingleItemModel.surveySingleItem),
-          )));
-    });
-    return surveySingleItemList;
-  }
-
   @override
   List<Widget> buildChildren(BuildContext context, ThemeData themeData) {
+    List flattendSurveyItems = qp;
     return <Widget>[
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: surveySingleItemBuilder(qp, context),
+      Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: flattendSurveyItems
+              .map((item) => Padding(
+                  padding: const EdgeInsets.only(
+                    left: ThemeElements.pagePadding,
+                    top: ThemeElements.pagePadding,
+                    right: ThemeElements.pagePadding,
+                  ),
+                  child: ChangeNotifierProvider(
+                    create: (context) => SurveySingleItemProvider(),
+                    child: Container(
+                      child: Consumer<SurveySingleItemProvider>(
+                        builder: (context, _, child) =>
+                            SurveySingleItemView(surveySingleItem: item),
+                      ),
+                    ),
+                  )))
+              .toList(),
+        ),
       ),
     ];
   }
@@ -99,6 +94,13 @@ class _SurveySingleItemViewState extends State<SurveySingleItemView> {
         surveySingleItem['components']['items'], 'helpGroup');
     bodyComponent = surveySingleItem['components']['items'];
     super.initState();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => initialiseItem(context));
+  }
+
+  void initialiseItem(BuildContext context) {
+    Provider.of<SurveySingleItemProvider>(context, listen: false)
+        .surveySingleItem = surveySingleItem;
   }
 
   @override
