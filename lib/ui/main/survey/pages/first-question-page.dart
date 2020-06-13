@@ -71,40 +71,17 @@ class FirstQuestionPage extends ListPage {
   }
 }
 
-class SurveySingleItemView extends StatefulWidget {
-  final dynamic surveySingleItem;
-
-  SurveySingleItemView({Key key, this.surveySingleItem}) : super(key: key);
-
-  @override
-  _SurveySingleItemViewState createState() => _SurveySingleItemViewState();
-}
-
-class _SurveySingleItemViewState extends State<SurveySingleItemView> {
-  dynamic surveySingleItem;
-  dynamic question;
-  dynamic helpGroup;
-  dynamic bodyComponent;
-  @override
-  void initState() {
-    surveySingleItem = widget.surveySingleItem;
-    question = Utils.getSingleItemComponentsByRole(
-        surveySingleItem['components']['items'], 'title');
-    helpGroup = Utils.getSingleItemComponentsByRole(
-        surveySingleItem['components']['items'], 'helpGroup');
-    bodyComponent = surveySingleItem['components']['items'];
-    super.initState();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => initialiseItem(context));
-  }
-
-  void initialiseItem(BuildContext context) {
-    Provider.of<SurveySingleItemProvider>(context, listen: false)
-        .surveySingleItem = surveySingleItem;
-  }
+class SurveySingleItemView extends StatelessWidget {
+  final surveySingleItem;
+  SurveySingleItemView({Key key, this.surveySingleItem});
 
   @override
   Widget build(BuildContext context) {
+    dynamic surveySingleItem = this.surveySingleItem;
+    dynamic question = Utils.getSingleItemComponentsByRole(
+        surveySingleItem['components']['items'], 'title');
+
+    dynamic bodyComponent = surveySingleItem['components']['items'];
     return Form(
       child: Container(
         child: Column(
@@ -124,7 +101,11 @@ class _SurveySingleItemViewState extends State<SurveySingleItemView> {
                             icon: Icon(Icons.info_outline),
                             alignment: Alignment.topRight,
                             onPressed: () async {
-                              _showHelpGroup(context);
+                              _showHelpGroup(
+                                  context,
+                                  Utils.getSingleItemComponentsByRole(
+                                      surveySingleItem['components']['items'],
+                                      'helpGroup'));
                             },
                           ),
                         ]),
@@ -144,7 +125,7 @@ class _SurveySingleItemViewState extends State<SurveySingleItemView> {
     );
   }
 
-  Future<void> _showHelpGroup(context) async {
+  Future<void> _showHelpGroup(context, dynamic helpGroup) async {
     List<Widget> helpWidgets =
         WidgetUtils.getHelpGroupContents(helpGroup, context);
     return showDialog<void>(
