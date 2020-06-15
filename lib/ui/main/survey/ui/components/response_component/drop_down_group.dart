@@ -50,20 +50,7 @@ class _DropDownGroupState extends State<DropDownGroup> {
               height: 2,
               color: Colors.black87,
             ),
-            onChanged: (newValue) {
-              setState(() {
-                // optionValue = newValue;
-                // debugPrint('value=' + newValue);
-                // SurveySingleItemProvider surveySingleItemProvider =
-                //     Provider.of<SurveySingleItemProvider>(context,
-                //         listen: false);
-                // dynamic response = Utils.constructSingleChoiceGroupItem(
-                //     groupKey: itemGroupKey,
-                //     key: newValue,
-                //     responseItem: surveySingleItemProvider.responseItem);
-                // surveySingleItemProvider.responseItem = response;
-              });
-            },
+            onChanged: (newValue) {},
             items: choiceItemsWidget(dropDownGroupComponent['items']),
           )
         ]),

@@ -44,22 +44,7 @@ class _MultipleChoiceGroupState extends State<MultipleChoiceGroup> {
             itemKey: item['key'],
             content: Utils.getContent(item)),
         value: optionValues[key],
-        onChanged: (bool value) {
-          setState(() {
-            // optionValues[key] = value;
-            // debugPrint(optionValues.toString());
-            // SurveySingleItemProvider surveySingleItemProvider =
-            //     Provider.of<SurveySingleItemProvider>(context, listen: false);
-            // dynamic response = Utils.constructMultipleChoiceGroupItem(
-            //     groupKey: itemGroupKey,
-            //     keys: optionValues.keys
-            //         .where((k) => optionValues[k] == true)
-            //         .toList(),
-            //     responseItem: surveySingleItemProvider.responseItem);
-
-            // surveySingleItemProvider.responseItem = response;
-          });
-        },
+        onChanged: (bool value) {},
       );
       if (itemWidget != null) {
         result.add(itemWidget);

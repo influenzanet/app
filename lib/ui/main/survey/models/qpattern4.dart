@@ -1,116 +1,5 @@
 const q4 = [
   {
-    "key": "4",
-    "version": 1,
-    "components": {
-      "role": "root",
-      "items": [
-        {
-          "role": "title",
-          "content": [
-            {
-              "code": "en",
-              "parts": ["Activity?"]
-            },
-            {
-              "code": "de",
-              "parts": ["Was ist Ihre Haupttätigkeit?"]
-            }
-          ]
-        },
-        {
-          "role": "helpGroup",
-          "items": [
-            {
-              "role": "text",
-              "content": [
-                {
-                  "code": "en",
-                  "parts": ["Reason?"]
-                },
-                {
-                  "code": "de",
-                  "parts": ["Warum fragen wir das?"]
-                }
-              ]
-            },
-            {
-              "role": "text",
-              "content": [
-                {
-                  "code": "en",
-                  "parts": [
-                    "To check how representative our sample is compared to the population as a whole, and to find out whether the chance of getting flu is different for people in different types of occupation."
-                  ]
-                },
-                {
-                  "code": "de",
-                  "parts": [
-                    "Um zu überprüfen, wie repräsentativ unsere Stichprobe im Vergleich zur Gesamtbevölkerung ist, und um herauszufinden, ob die Chance, eine Grippe zu bekommen, für Menschen in verschiedenen Berufsfeldern unterschiedlich hoch ist."
-                  ]
-                }
-              ]
-            },
-            {
-              "role": "text",
-              "content": [
-                {
-                  "code": "en",
-                  "parts": ["How?"]
-                },
-                {
-                  "code": "de",
-                  "parts": ["Wie soll ich darauf antworten?"]
-                }
-              ]
-            },
-            {
-              "role": "text",
-              "content": [
-                {
-                  "code": "en",
-                  "parts": [
-                    "Please tick the box that most closely resembles your main occupation. For pre-school children who don’t go to daycare tick the “other” box."
-                  ]
-                },
-                {
-                  "code": "de",
-                  "parts": [
-                    "Bitte kreuzen Sie das Kästchen an, das Ihrer Hauptbeschäftigung am nächsten kommt. Bei Vorschulkindern, die nicht in die Kindertagesstätte gehen, kreuzen Sie bitte das Kästchen \"andere\" an."
-                  ]
-                }
-              ]
-            }
-          ],
-          "order": {"name": "sequential"}
-        },
-        {
-          "role": "responseGroup",
-          "key": "4",
-          "items": [
-            {
-              "role": "input",
-              "content": [
-                {
-                  "code": "en",
-                  "parts": ["Other: "]
-                },
-                {
-                  "code": "de",
-                  "parts": ["Andere:"]
-                }
-              ],
-              "key": "2.0"
-            },
-          ],
-          "order": {"name": "sequential"}
-        }
-      ],
-      "order": {"name": "sequential"}
-    },
-    "validations": []
-  },
-  {
     "key": "5",
     "version": 1,
     "components": {
@@ -331,5 +220,116 @@ const q4 = [
     "validations": [
       {"rule": true, "type": "soft", "key": "V1"}
     ]
+  },
+  {
+    "key": "4",
+    "version": 1,
+    "components": {
+      "role": "root",
+      "items": [
+        {
+          "role": "title",
+          "content": [
+            {
+              "code": "en",
+              "parts": ["Activity?"]
+            },
+            {
+              "code": "de",
+              "parts": ["Was ist Ihre Haupttätigkeit?"]
+            }
+          ]
+        },
+        {
+          "role": "helpGroup",
+          "items": [
+            {
+              "role": "text",
+              "content": [
+                {
+                  "code": "en",
+                  "parts": ["Reason?"]
+                },
+                {
+                  "code": "de",
+                  "parts": ["Warum fragen wir das?"]
+                }
+              ]
+            },
+            {
+              "role": "text",
+              "content": [
+                {
+                  "code": "en",
+                  "parts": [
+                    "To check how representative our sample is compared to the population as a whole, and to find out whether the chance of getting flu is different for people in different types of occupation."
+                  ]
+                },
+                {
+                  "code": "de",
+                  "parts": [
+                    "Um zu überprüfen, wie repräsentativ unsere Stichprobe im Vergleich zur Gesamtbevölkerung ist, und um herauszufinden, ob die Chance, eine Grippe zu bekommen, für Menschen in verschiedenen Berufsfeldern unterschiedlich hoch ist."
+                  ]
+                }
+              ]
+            },
+            {
+              "role": "text",
+              "content": [
+                {
+                  "code": "en",
+                  "parts": ["How?"]
+                },
+                {
+                  "code": "de",
+                  "parts": ["Wie soll ich darauf antworten?"]
+                }
+              ]
+            },
+            {
+              "role": "text",
+              "content": [
+                {
+                  "code": "en",
+                  "parts": [
+                    "Please tick the box that most closely resembles your main occupation. For pre-school children who don’t go to daycare tick the “other” box."
+                  ]
+                },
+                {
+                  "code": "de",
+                  "parts": [
+                    "Bitte kreuzen Sie das Kästchen an, das Ihrer Hauptbeschäftigung am nächsten kommt. Bei Vorschulkindern, die nicht in die Kindertagesstätte gehen, kreuzen Sie bitte das Kästchen \"andere\" an."
+                  ]
+                }
+              ]
+            }
+          ],
+          "order": {"name": "sequential"}
+        },
+        {
+          "role": "responseGroup",
+          "key": "4",
+          "items": [
+            {
+              "role": "input",
+              "content": [
+                {
+                  "code": "en",
+                  "parts": ["Other: "]
+                },
+                {
+                  "code": "de",
+                  "parts": ["Andere:"]
+                }
+              ],
+              "key": "2.0"
+            },
+          ],
+          "order": {"name": "sequential"}
+        }
+      ],
+      "order": {"name": "sequential"}
+    },
+    "validations": []
   },
 ];

@@ -1,29 +1,22 @@
-import 'package:InfluenzaNet/ui/main/survey/models/input_choice_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class ResponseComponent extends StatefulWidget {
+class ResponseComponent extends StatelessWidget {
   final dynamic responseComponent;
   final String surveyKey;
-  ResponseComponent({Key key, this.responseComponent, this.surveyKey})
-      : super(key: key);
-
-  @override
-  _ResponseComponentState createState() => _ResponseComponentState();
-}
-
-class _ResponseComponentState extends State<ResponseComponent> {
-  dynamic responseComponent;
-  String surveyKey;
-  @override
-  void initState() {
-    responseComponent = widget.responseComponent;
-    surveyKey = widget.surveyKey;
-    super.initState();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => initialiseResponseRoot(context));
-  }
+  const ResponseComponent({
+    Key key,
+    this.responseComponent,
+    this.surveyKey,
+  }) : super(key: key);
+  // @override
+  // void initState() {
+  //   responseComponent = widget.responseComponent;
+  //   surveyKey = widget.surveyKey;
+  //   super.initState();
+  //   WidgetsBinding.instance
+  //       .addPostFrameCallback((_) => initialiseResponseRoot(context));
+  // }
 
   void initialiseResponseRoot(BuildContext context) {
     List responseList = [];
@@ -56,11 +49,8 @@ class _ResponseComponentState extends State<ResponseComponent> {
   Widget build(BuildContext context) {
     return Container(
       child: SingleChildScrollView(
-          child: ChangeNotifierProvider(
-        create: (context) => InputChoiceProvider(),
-        child: ListBody(
-          children: responseItemsWidget(responseComponent['items']),
-        ),
+          child: ListBody(
+        children: responseItemsWidget(responseComponent['items']),
       )),
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 class SurveyPageViewProvider with ChangeNotifier {
   List _surveyPage;
+
   SurveyPageViewProvider({List page}) {
     this._surveyPage = page ?? qp;
     debugPrint('init something');

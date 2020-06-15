@@ -1,6 +1,4 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/input_choice_provider.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/survey_page_view_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/error_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/text_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/warning_item.dart';
@@ -17,7 +15,6 @@ import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/sin
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/answer-wrap.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class WidgetUtils {
   static Widget classifyRootComponent(dynamic itemComponent, String surveyKey) {
@@ -33,14 +30,8 @@ class WidgetUtils {
               child: Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: <Widget>[
-                    Consumer<SurveyPageViewProvider>(
-                      builder: (context, items, child) {
-                        debugPrint('Called for' + surveyKey);
-                        return ResponseComponent(
-                            responseComponent: itemComponent,
-                            surveyKey: surveyKey);
-                      },
-                    )
+                    ResponseComponent(
+                        responseComponent: itemComponent, surveyKey: surveyKey)
                   ]),
             )
           ],
@@ -68,9 +59,7 @@ class WidgetUtils {
       case 'numberInput':
         return NumberInput(inputComponent: responseComponent);
       case 'singleChoiceGroup':
-        return Consumer<InputChoiceProvider>(
-            builder: (context, response, child) => SingleChoiceGroup(
-                singleChoiceGroupComponent: responseComponent));
+        return SingleChoiceGroup(singleChoiceGroupComponent: responseComponent);
       case 'multipleChoiceGroup':
         return MultipleChoiceGroup(
             multipleChoiceGroupComponent: responseComponent);
