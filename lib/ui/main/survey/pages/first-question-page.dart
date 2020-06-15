@@ -3,8 +3,7 @@ import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dar
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/flattened_rendered.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
+import 'package:InfluenzaNet/ui/main/survey/models/survey_page_view_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/survey/body_component.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/survey/question.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
@@ -23,30 +22,30 @@ class FirstQuestionPage extends ListPage {
             notificationButton: false,
             actions: <Widget>[ExitSurveyButton()]);
 
+  List<Widget> itemBuildArray({List array}) {
+    List result = array
+        .map((e) => Padding(
+            padding: const EdgeInsets.only(
+              left: ThemeElements.pagePadding,
+              top: ThemeElements.pagePadding,
+              right: ThemeElements.pagePadding,
+            ),
+            child: Container(
+              child: SurveySingleItemView(surveySingleItem: e),
+            )))
+        .toList();
+    return result;
+  }
+
   @override
   List<Widget> buildChildren(BuildContext context, ThemeData themeData) {
-    List flattendSurveyItems = qp;
     return <Widget>[
       Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: flattendSurveyItems
-              .map((item) => Padding(
-                  padding: const EdgeInsets.only(
-                    left: ThemeElements.pagePadding,
-                    top: ThemeElements.pagePadding,
-                    right: ThemeElements.pagePadding,
-                  ),
-                  child: ChangeNotifierProvider(
-                    create: (context) => SurveySingleItemProvider(),
-                    child: Container(
-                      child: Consumer<SurveySingleItemProvider>(
-                        builder: (context, _, child) =>
-                            SurveySingleItemView(surveySingleItem: item),
-                      ),
-                    ),
-                  )))
-              .toList(),
+        child: Consumer<SurveyPageViewProvider>(
+          builder: (context, items, child) => Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: itemBuildArray(array: items.surveyPageList),
+          ),
         ),
       ),
     ];
@@ -80,7 +79,6 @@ class SurveySingleItemView extends StatelessWidget {
     dynamic surveySingleItem = this.surveySingleItem;
     dynamic question = Utils.getSingleItemComponentsByRole(
         surveySingleItem['components']['items'], 'title');
-
     dynamic bodyComponent = surveySingleItem['components']['items'];
     return Form(
       child: Container(

@@ -1,8 +1,5 @@
 import 'package:InfluenzaNet/ui/common/widgets/forms/themed-long-text-form-field.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
-import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MultilineInput extends StatefulWidget {
   final String text;
@@ -35,13 +32,13 @@ class _MultilineInputState extends State<MultilineInput> {
     return ThemedLongTextFormField(
       onFieldSubmitted: (String value) {
         debugPrint('Input saved: ' + value);
-        SurveySingleItemProvider surveySingleItemProvider =
-            Provider.of<SurveySingleItemProvider>(context, listen: false);
-        dynamic response = Utils.constructSingleResponseItem(
-            key: itemKey,
-            value: value,
-            responseItem: surveySingleItemProvider.responseItem);
-        surveySingleItemProvider.responseItem = response;
+        // SurveySingleItemProvider surveySingleItemProvider =
+        //     Provider.of<SurveySingleItemProvider>(context, listen: false);
+        // dynamic response = Utils.constructSingleResponseItem(
+        //     key: itemKey,
+        //     value: value,
+        //     responseItem: surveySingleItemProvider.responseItem);
+        // surveySingleItemProvider.responseItem = response;
       },
       controller: myController,
     );

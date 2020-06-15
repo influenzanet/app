@@ -1,8 +1,5 @@
 import 'package:InfluenzaNet/ui/common/widgets/forms/themed-text-form-field.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
-import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class RadioInput extends StatefulWidget {
   final String groupKey;
@@ -43,16 +40,16 @@ class _RadioInputState extends State<RadioInput> {
         Expanded(
           child: ThemedTextFormField(
             onFieldSubmitted: (String value) {
-              // Provider.of<InputChoiceProvider>(context, listen: false).inputKey =
-              //     itemKey;
-              SurveySingleItemProvider surveySingleItemProvider =
-                  Provider.of<SurveySingleItemProvider>(context, listen: false);
-              dynamic response = Utils.constructSingleChoiceInputGroupItem(
-                  groupKey: groupKey,
-                  key: itemKey,
-                  value: value,
-                  responseItem: surveySingleItemProvider.responseItem);
-              surveySingleItemProvider.responseItem = response;
+              // // Provider.of<InputChoiceProvider>(context, listen: false).inputKey =
+              // //     itemKey;
+              // SurveySingleItemProvider surveySingleItemProvider =
+              //     Provider.of<SurveySingleItemProvider>(context, listen: false);
+              // dynamic response = Utils.constructSingleChoiceInputGroupItem(
+              //     groupKey: groupKey,
+              //     key: itemKey,
+              //     value: value,
+              //     responseItem: surveySingleItemProvider.responseItem);
+              // surveySingleItemProvider.responseItem = response;
             },
             controller: myController,
           ),

@@ -1,5 +1,6 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/input_choice_provider.dart';
+import 'package:InfluenzaNet/ui/main/survey/models/survey_page_view_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/error_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/text_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/warning_item.dart';
@@ -32,8 +33,14 @@ class WidgetUtils {
               child: Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: <Widget>[
-                    ResponseComponent(
-                        responseComponent: itemComponent, surveyKey: surveyKey)
+                    Consumer<SurveyPageViewProvider>(
+                      builder: (context, items, child) {
+                        debugPrint('Called for' + surveyKey);
+                        return ResponseComponent(
+                            responseComponent: itemComponent,
+                            surveyKey: surveyKey);
+                      },
+                    )
                   ]),
             )
           ],

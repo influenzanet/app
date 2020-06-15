@@ -1,50 +1,50 @@
-import 'package:flutter/material.dart';
-import 'package:survey_engine.dart/api/api.dart';
+// import 'package:flutter/material.dart';
+// import 'package:survey_engine.dart/api/api.dart';
 
-class SurveySingleItemProvider with ChangeNotifier {
-  dynamic _surveySingleItemModel;
-  String _surveyItemkey;
-  ResponseItem _responseItem;
-  SurveySingleItemProvider({String surveyItemKey, ResponseItem responseItem}) {
-    this._surveyItemkey = surveyItemKey;
-    this._responseItem = responseItem;
-  }
+// class SurveySingleItemProvider with ChangeNotifier {
+//   dynamic _surveySingleItemModel;
+//   String _surveyItemkey;
+//   ResponseItem _responseItem;
+//   SurveySingleItemProvider({String surveyItemKey, ResponseItem responseItem}) {
+//     this._surveyItemkey = surveyItemKey;
+//     this._responseItem = responseItem;
+//   }
 
-  get surveySingleItem {
-    return _surveySingleItemModel;
-  }
+//   get surveySingleItem {
+//     return _surveySingleItemModel;
+//   }
 
-  set surveySingleItem(dynamic item) {
-    _surveySingleItemModel = item;
-    debugPrint('Single item set with=' + item['key'].toString());
-    notifyListeners();
-  }
+//   set surveySingleItem(dynamic item) {
+//     _surveySingleItemModel = item;
+//     debugPrint('Single item set with=' + item['key'].toString());
+//     notifyListeners();
+//   }
 
-  ResponseItem get responseItem {
-    return _responseItem;
-  }
+//   ResponseItem get responseItem {
+//     return _responseItem;
+//   }
 
-  set responseItem(dynamic response) {
-    _responseItem = ResponseItem.fromMap(response);
-    debugPrint('Response set=' + responseItem.toJson());
-    debugPrint('Survey key=' + _surveyItemkey);
-    notifyListeners();
-  }
+//   set responseItem(dynamic response) {
+//     _responseItem = ResponseItem.fromMap(response);
+//     debugPrint('Response set=' + responseItem.toJson());
+//     debugPrint('Survey key=' + _surveyItemkey);
+//     notifyListeners();
+//   }
 
-  String get surveyKey {
-    return _surveyItemkey;
-  }
+//   String get surveyKey {
+//     return _surveyItemkey;
+//   }
 
-  set surveyKey(String key) {
-    _surveyItemkey = key;
-    debugPrint('Survey key set=' + _surveyItemkey);
-    notifyListeners();
-  }
+//   set surveyKey(String key) {
+//     _surveyItemkey = key;
+//     debugPrint('Survey key set=' + _surveyItemkey);
+//     notifyListeners();
+//   }
 
-  void initResponseItem(dynamic response, String key) {
-    _responseItem = ResponseItem.fromMap(response);
-    _surveyItemkey = key;
-    debugPrint('Init function for key' + _surveyItemkey);
-    notifyListeners();
-  }
-}
+//   void initResponseItem(dynamic response, String key) {
+//     _responseItem = ResponseItem.fromMap(response);
+//     _surveyItemkey = key;
+//     debugPrint('Init function for key' + _surveyItemkey);
+//     notifyListeners();
+//   }
+// }

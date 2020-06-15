@@ -1,8 +1,6 @@
-import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MultipleChoiceGroup extends StatefulWidget {
   final dynamic multipleChoiceGroupComponent;
@@ -48,18 +46,18 @@ class _MultipleChoiceGroupState extends State<MultipleChoiceGroup> {
         value: optionValues[key],
         onChanged: (bool value) {
           setState(() {
-            optionValues[key] = value;
-            debugPrint(optionValues.toString());
-            SurveySingleItemProvider surveySingleItemProvider =
-                Provider.of<SurveySingleItemProvider>(context, listen: false);
-            dynamic response = Utils.constructMultipleChoiceGroupItem(
-                groupKey: itemGroupKey,
-                keys: optionValues.keys
-                    .where((k) => optionValues[k] == true)
-                    .toList(),
-                responseItem: surveySingleItemProvider.responseItem);
+            // optionValues[key] = value;
+            // debugPrint(optionValues.toString());
+            // SurveySingleItemProvider surveySingleItemProvider =
+            //     Provider.of<SurveySingleItemProvider>(context, listen: false);
+            // dynamic response = Utils.constructMultipleChoiceGroupItem(
+            //     groupKey: itemGroupKey,
+            //     keys: optionValues.keys
+            //         .where((k) => optionValues[k] == true)
+            //         .toList(),
+            //     responseItem: surveySingleItemProvider.responseItem);
 
-            surveySingleItemProvider.responseItem = response;
+            // surveySingleItemProvider.responseItem = response;
           });
         },
       );
