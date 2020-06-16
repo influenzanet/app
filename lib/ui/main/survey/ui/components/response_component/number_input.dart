@@ -1,31 +1,13 @@
 import 'package:InfluenzaNet/ui/common/widgets/forms/themed-text-form-field.dart';
 import 'package:flutter/material.dart';
 
-class NumberInput extends StatefulWidget {
+class NumberInput extends StatelessWidget {
+  final String itemKey;
   final dynamic inputComponent;
-
-  NumberInput({this.inputComponent});
-  @override
-  _NumberInputState createState() => _NumberInputState();
-}
-
-class _NumberInputState extends State<NumberInput> {
-  String itemKey;
 
   final myController = TextEditingController();
 
-  @override
-  void initState() {
-    itemKey = widget.inputComponent['key'];
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    myController.dispose();
-    super.dispose();
-  }
+  NumberInput({Key key, this.itemKey, this.inputComponent}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

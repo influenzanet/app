@@ -1,27 +1,16 @@
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-class DropDownGroup extends StatefulWidget {
+class DropDownGroup extends StatelessWidget {
+  final String optionValue;
   final dynamic dropDownGroupComponent;
-
-  DropDownGroup({Key key, this.dropDownGroupComponent}) : super(key: key);
-
-  @override
-  _DropDownGroupState createState() => _DropDownGroupState();
-}
-
-class _DropDownGroupState extends State<DropDownGroup> {
-  String optionValue;
-  dynamic dropDownGroupComponent;
-  String itemGroupKey;
-
-  @override
-  void initState() {
-    dropDownGroupComponent = widget.dropDownGroupComponent;
-    itemGroupKey = dropDownGroupComponent['key'];
-
-    super.initState();
-  }
+  final String itemGroupKey;
+  DropDownGroup({
+    Key key,
+    this.optionValue,
+    this.dropDownGroupComponent,
+    this.itemGroupKey,
+  }) : super(key: key);
 
   List<DropdownMenuItem<String>> choiceItemsWidget(List itemList) {
     List<DropdownMenuItem<String>> result = [];

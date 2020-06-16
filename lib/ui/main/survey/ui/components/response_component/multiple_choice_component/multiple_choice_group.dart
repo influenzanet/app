@@ -2,38 +2,19 @@ import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
 
-class MultipleChoiceGroup extends StatefulWidget {
+class MultipleChoiceGroup extends StatelessWidget {
   final dynamic multipleChoiceGroupComponent;
 
   MultipleChoiceGroup({Key key, this.multipleChoiceGroupComponent})
       : super(key: key);
 
-  @override
-  _MultipleChoiceGroupState createState() => _MultipleChoiceGroupState();
-}
-
-class _MultipleChoiceGroupState extends State<MultipleChoiceGroup> {
-  Map<String, bool> optionValues = {};
-  String itemGroupKey;
-
-  dynamic multipleChoiceGroupComponent;
-  List choiceList;
-
-  @override
-  void initState() {
-    multipleChoiceGroupComponent = widget.multipleChoiceGroupComponent;
-    itemGroupKey = multipleChoiceGroupComponent['key'];
-    choiceList = multipleChoiceGroupComponent['items'];
-
+  List<Widget> choiceItemsWidget(List choiceList, String itemGroupKey) {
+    List<Widget> result = [];
+    Map<String, bool> optionValues = {};
     choiceList.forEach((item) {
       String key = item['key'];
       optionValues[key] = false;
     });
-    super.initState();
-  }
-
-  List<Widget> choiceItemsWidget() {
-    List<Widget> result = [];
     choiceList.forEach((item) {
       String key = item['key'];
       Widget itemWidget = CheckboxListTile(
@@ -58,7 +39,8 @@ class _MultipleChoiceGroupState extends State<MultipleChoiceGroup> {
     return Container(
       child: SingleChildScrollView(
         child: ListBody(
-          children: choiceItemsWidget(),
+          children: choiceItemsWidget(multipleChoiceGroupComponent['items'],
+              multipleChoiceGroupComponent['key']),
         ),
       ),
     );

@@ -5,27 +5,14 @@ import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SingleChoiceGroup extends StatefulWidget {
+class SingleChoiceGroup extends StatelessWidget {
   final dynamic singleChoiceGroupComponent;
+
   SingleChoiceGroup({Key key, this.singleChoiceGroupComponent})
       : super(key: key);
 
-  @override
-  _SingleChoiceGroupState createState() => _SingleChoiceGroupState();
-}
-
-class _SingleChoiceGroupState extends State<SingleChoiceGroup> {
-  dynamic singleChoiceGroupComponent;
-  String itemGroupKey;
-
-  @override
-  void initState() {
-    singleChoiceGroupComponent = widget.singleChoiceGroupComponent;
-    itemGroupKey = singleChoiceGroupComponent['key'];
-    super.initState();
-  }
-
-  List<Widget> choiceItemsWidget(List itemList) {
+  List<Widget> choiceItemsWidget(List itemList, BuildContext context) {
+    String itemGroupKey = singleChoiceGroupComponent['key'];
     List<Widget> result = [];
     itemList.forEach((item) {
       Widget itemWidget = RadioListTile(
@@ -37,6 +24,8 @@ class _SingleChoiceGroupState extends State<SingleChoiceGroup> {
             content: Utils.getContent(item)),
         value: item['key'],
         onChanged: (val) {
+          itemGroupKey = val;
+
           Provider.of<SurveyPageViewProvider>(context, listen: false)
               .surveyPageList = q4;
         },
@@ -54,7 +43,8 @@ class _SingleChoiceGroupState extends State<SingleChoiceGroup> {
     return Container(
       child: SingleChildScrollView(
         child: ListBody(
-          children: choiceItemsWidget(singleChoiceGroupComponent['items']),
+          children:
+              choiceItemsWidget(singleChoiceGroupComponent['items'], context),
         ),
       ),
     );

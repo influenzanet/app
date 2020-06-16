@@ -1,35 +1,14 @@
 import 'package:InfluenzaNet/ui/common/widgets/forms/themed-text-form-field.dart';
 import 'package:flutter/material.dart';
 
-class CheckBoxInput extends StatefulWidget {
+class CheckBoxInput extends StatelessWidget {
   final String groupKey;
   final String itemKey;
   final String content;
-
-  CheckBoxInput({this.groupKey, this.itemKey, this.content});
-  @override
-  _CheckBoxInputState createState() => _CheckBoxInputState();
-}
-
-class _CheckBoxInputState extends State<CheckBoxInput> {
-  String groupKey;
-  String itemKey;
-  String content;
   final myController = TextEditingController();
 
-  @override
-  void initState() {
-    groupKey = widget.groupKey;
-    itemKey = widget.itemKey;
-    content = widget.content;
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    myController.dispose();
-    super.dispose();
-  }
+  CheckBoxInput({Key key, this.groupKey, this.itemKey, this.content})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

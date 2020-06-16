@@ -1,31 +1,14 @@
 import 'package:InfluenzaNet/ui/common/widgets/forms/themed-long-text-form-field.dart';
 import 'package:flutter/material.dart';
 
-class MultilineInput extends StatefulWidget {
-  final String text;
+class MultilineInput extends StatelessWidget {
+  final String itemKey;
   final dynamic inputComponent;
 
-  MultilineInput({this.text, this.inputComponent});
-  @override
-  _MultilineInputState createState() => _MultilineInputState();
-}
-
-class _MultilineInputState extends State<MultilineInput> {
-  String itemKey;
   final myController = TextEditingController();
 
-  @override
-  void initState() {
-    itemKey = widget.inputComponent['key'];
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    myController.dispose();
-    super.dispose();
-  }
+  MultilineInput({Key key, this.itemKey, this.inputComponent})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

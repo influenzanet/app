@@ -1,15 +1,6 @@
 import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
 
-// class Body extends StatefulWidget {
-//   final dynamic bodyComponent;
-//   final String surveyKey;
-//   Body({Key key, this.bodyComponent, this.surveyKey}) : super(key: key);
-
-//   @override
-//   _BodyState createState() => _BodyState();
-// }
-
 class Body extends StatelessWidget {
   final dynamic bodyComponent;
   final String surveyKey;
