@@ -1,19 +1,19 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/error_item.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/text_item.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/display_component/warning_item.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/group_component/response_group.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/drop_down_group.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/input.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/multiline_input.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/multiple_choice_component/checkbox_input.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/multiple_choice_component/multiple_choice_group.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/number_input.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/single_choice_component/radio_input.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/single_choice_component/radio_number_input.dart';
-import 'package:InfluenzaNet/ui/main/survey/ui/components/response_component/single_choice_component/single_choice_group.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
-import 'package:InfluenzaNet/ui/main/survey/widgets/answer-wrap.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/error_item.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/text_item.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/warning_item.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/group_component/response_group.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/response_component/drop_down_group.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/response_component/input.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/response_component/multiline_input.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/response_component/multiple_choice_component/checkbox_input.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/response_component/multiple_choice_component/multiple_choice_group.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/response_component/number_input.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/response_component/single_choice_component/radio_input.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/response_component/single_choice_component/radio_number_input.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/response_component/single_choice_component/single_choice_group.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/survey_item_view/answer-wrap.dart';
 import 'package:flutter/material.dart';
 
 class WidgetUtils {

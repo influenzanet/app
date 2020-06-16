@@ -1,10 +1,10 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
-import 'package:InfluenzaNet/ui/main/survey/pages/survey/body_component.dart';
-import 'package:InfluenzaNet/ui/main/survey/pages/survey/question.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/survey_item_view/body_component.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/survey_item_view/question.dart';
 import 'package:flutter/material.dart';
 
 class SurveySingleItemView extends StatelessWidget {
