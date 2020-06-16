@@ -1,4 +1,5 @@
 import 'package:InfluenzaNet/ui/main/survey/models/flattened_rendered.dart';
+import 'package:InfluenzaNet/ui/main/survey/models/qpattern4.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,10 +27,19 @@ class SurveyPageViewProvider with ChangeNotifier {
     return _surveyPage;
   }
 
-  void setResponded(String key) {
-    SurveySingleItemModel item = getSurveyItemByKey(key);
+  void setResponded(String key, {dynamic presetValue, dynamic responseItem}) {
+    int position =
+        _surveyPage.indexWhere((item) => item.surveySingleItem['key'] == key);
+    SurveySingleItemModel item = _surveyPage[position];
     item.responded = true;
+    item.presetValue = presetValue;
+    item.setResponseItem(responseItem);
+    _surveyPage[position] = item;
     debugPrint('Responded key=' + key);
+  }
+
+  void reRenderSimulate() {
+    _surveyPage = Utils.rerenderSurveyPageProvider(_surveyPage, q4);
   }
 
   SurveySingleItemModel getSurveyItemByKey(String key) {

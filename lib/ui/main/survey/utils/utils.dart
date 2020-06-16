@@ -42,11 +42,10 @@ class Utils {
     return parts;
   }
 
-  static constructSingleResponseItem(
-      {String key, String value, ResponseItem responseItem}) {
+  static constructSingleValueResponseItem(
+      {dynamic valuePair, ResponseItem responseItem}) {
     dynamic response = responseItem.toMap();
-    dynamic newResponse = {'key': key, 'value': value};
-    response['items'] = [newResponse];
+    response['items'] = [valuePair];
     return response;
   }
 
@@ -95,6 +94,41 @@ class Utils {
   static initSurveyPageProvider(List surveyItems) {
     List<SurveySingleItemModel> items = [];
     surveyItems.forEach((surveyItem) {
+      SurveySingleItemModel surveySingleItem = SurveySingleItemModel(
+          responseSet: false, surveySingleItemModel: surveyItem);
+      List responseList = [];
+      dynamic responseComponent = Utils.getSingleItemComponentsByRole(
+          surveyItem['components']['items'], 'responseGroup');
+      List itemList = responseComponent['items'];
+      itemList.forEach((item) {
+        switch (item['role']) {
+          case 'singleChoiceGroup':
+          case 'multipleChoiceGroup':
+          case 'dropDownGroup':
+            responseList.add({'key': item['key'], 'items': []});
+            break;
+          default:
+            break;
+        }
+      });
+      dynamic result = {'key': responseComponent['key'], 'items': responseList};
+      surveySingleItem.setResponseItem(result);
+      items.add(surveySingleItem);
+    });
+    return items;
+  }
+
+  static rerenderSurveyPageProvider(
+      List<SurveySingleItemModel> originalModels, List surveyItems) {
+    List<SurveySingleItemModel> items = [];
+    surveyItems.forEach((surveyItem) {
+      SurveySingleItemModel updatedSurveyModel = originalModels.singleWhere(
+          (model) => (model.surveySingleItem['key'] == surveyItem['key']),
+          orElse: () => null);
+      if (updatedSurveyModel != null) {
+        items.add(updatedSurveyModel);
+        return;
+      }
       SurveySingleItemModel surveySingleItem = SurveySingleItemModel(
           responseSet: false, surveySingleItemModel: surveyItem);
       List responseList = [];

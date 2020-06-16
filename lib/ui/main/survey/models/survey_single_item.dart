@@ -5,13 +5,22 @@ class SurveySingleItemModel {
   dynamic _surveySingleItemModel;
   bool responseSet;
   ResponseItem _responseItem;
+  dynamic presetValue;
   SurveySingleItemModel(
       {ResponseItem responseItem,
       dynamic surveySingleItemModel,
-      bool responseSet}) {
+      bool responseSet,
+      dynamic presetValue}) {
     this._responseItem = responseItem;
     this._surveySingleItemModel = surveySingleItemModel;
     this.responseSet = responseSet;
+    this.presetValue = presetValue;
+  }
+
+  get preset => presetValue;
+
+  set preset(dynamic value) {
+    presetValue = value;
   }
 
   get responded {
@@ -42,5 +51,20 @@ class SurveySingleItemModel {
 
   void initResponseItem(dynamic response, String key) {
     _responseItem = ResponseItem.fromMap(response);
+  }
+
+  SurveySingleItemModel copyWith({
+    dynamic surveySingleItemModel,
+    bool responseSet,
+    ResponseItem responseItem,
+    dynamic presetValue,
+  }) {
+    return SurveySingleItemModel(
+      surveySingleItemModel:
+          surveySingleItemModel ?? this._surveySingleItemModel,
+      responseSet: responseSet ?? this.responseSet,
+      responseItem: responseItem ?? this._responseItem,
+      presetValue: presetValue ?? this.presetValue,
+    );
   }
 }
