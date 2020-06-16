@@ -8,7 +8,7 @@ import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
 
 class SurveySingleItemView extends StatelessWidget {
-  final SurveySingleItem surveyItem;
+  final SurveySingleItemModel surveyItem;
   SurveySingleItemView({Key key, this.surveyItem});
 
   @override

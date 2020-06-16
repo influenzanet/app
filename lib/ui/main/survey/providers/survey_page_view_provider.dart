@@ -1,18 +1,18 @@
 import 'package:InfluenzaNet/ui/main/survey/models/flattened_rendered.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
+import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 
 class SurveyPageViewProvider with ChangeNotifier {
-  List<SurveySingleItem> _surveyPage;
+  List<SurveySingleItemModel> _surveyPage;
 
   SurveyPageViewProvider({List page}) {
     _surveyPage = [];
-    var items = page ?? qp;
-    items.forEach((item) {
-      _surveyPage
-          .add(SurveySingleItem(response: false, surveySingleItemModel: item));
-    });
+    initialisePageItems(page ?? qp);
     this._surveyPage = _surveyPage;
+  }
+  void initialisePageItems(List page) {
+    _surveyPage = Utils.initSurveyPageProvider(page);
     debugPrint('init something');
     notifyListeners();
   }
@@ -27,12 +27,12 @@ class SurveyPageViewProvider with ChangeNotifier {
   }
 
   void setResponded(String key) {
-    SurveySingleItem item = getSurveyItemByKey(key);
+    SurveySingleItemModel item = getSurveyItemByKey(key);
     item.responded = true;
     debugPrint('Responded key=' + key);
   }
 
-  SurveySingleItem getSurveyItemByKey(String key) {
+  SurveySingleItemModel getSurveyItemByKey(String key) {
     int position =
         _surveyPage.indexWhere((item) => item.surveySingleItem['key'] == key);
     return _surveyPage[position];

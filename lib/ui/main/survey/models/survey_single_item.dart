@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:survey_engine.dart/api/api.dart';
 
-class SurveySingleItem {
+class SurveySingleItemModel {
   dynamic _surveySingleItemModel;
   bool responseSet;
-  String _surveyItemkey;
   ResponseItem _responseItem;
-  SurveySingleItem(
-      {String surveyItemKey,
-      ResponseItem responseItem,
+  SurveySingleItemModel(
+      {ResponseItem responseItem,
       dynamic surveySingleItemModel,
-      bool response}) {
-    this._surveyItemkey = surveyItemKey;
+      bool responseSet}) {
     this._responseItem = responseItem;
     this._surveySingleItemModel = surveySingleItemModel;
-    this.responseSet = response;
+    this.responseSet = responseSet;
   }
 
   get responded {
@@ -34,28 +31,16 @@ class SurveySingleItem {
     debugPrint('Single item set with=' + item['key'].toString());
   }
 
-  ResponseItem get responseItem {
+  ResponseItem getResponseItem() {
     return _responseItem;
   }
 
-  set responseItem(dynamic response) {
+  void setResponseItem(dynamic response) {
     _responseItem = ResponseItem.fromMap(response);
-    debugPrint('Response set=' + responseItem.toJson());
-    debugPrint('Survey key=' + _surveyItemkey);
-  }
-
-  String get surveyKey {
-    return _surveyItemkey;
-  }
-
-  set surveyKey(String key) {
-    _surveyItemkey = key;
-    debugPrint('Survey key set=' + _surveyItemkey);
+    debugPrint('Response set=' + _responseItem.toJson());
   }
 
   void initResponseItem(dynamic response, String key) {
     _responseItem = ResponseItem.fromMap(response);
-    _surveyItemkey = key;
-    debugPrint('Init function for key' + _surveyItemkey);
   }
 }
