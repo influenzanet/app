@@ -1,9 +1,6 @@
-import 'package:InfluenzaNet/ui/main/survey/models/qpattern4.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/survey_page_view_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class SingleChoiceGroup extends StatelessWidget {
   final dynamic singleChoiceGroupComponent;
@@ -25,9 +22,6 @@ class SingleChoiceGroup extends StatelessWidget {
         value: item['key'],
         onChanged: (val) {
           itemGroupKey = val;
-
-          Provider.of<SurveyPageViewProvider>(context, listen: false)
-              .surveyPageList = q4;
         },
       );
 

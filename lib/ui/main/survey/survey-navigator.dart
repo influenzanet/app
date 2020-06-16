@@ -1,9 +1,9 @@
 import 'package:InfluenzaNet/ui/common/widgets/navigators/navigator-page.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/survey_page_view_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/first-question-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/second-question-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/survey-wecome-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/third-question-page.dart';
+import 'package:InfluenzaNet/ui/main/survey/providers/survey_page_view_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
