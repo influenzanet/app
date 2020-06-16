@@ -1,13 +1,18 @@
 import 'package:InfluenzaNet/ui/common/widgets/forms/themed-text-form-field.dart';
+import 'package:InfluenzaNet/ui/main/survey/providers/survey_page_view_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RadioInput extends StatelessWidget {
   final String groupKey;
   final String itemKey;
   final String content;
+  final String surveyKey;
+
   final myController = TextEditingController();
 
-  RadioInput({Key key, this.groupKey, this.itemKey, this.content})
+  RadioInput(
+      {Key key, this.groupKey, this.itemKey, this.content, this.surveyKey})
       : super(key: key);
 
   @override
@@ -19,6 +24,8 @@ class RadioInput extends StatelessWidget {
         Expanded(
           child: ThemedTextFormField(
             onFieldSubmitted: (String value) {
+              Provider.of<SurveyPageViewProvider>(context, listen: false)
+                  .setResponded(surveyKey);
               // // Provider.of<InputChoiceProvider>(context, listen: false).inputKey =
               // //     itemKey;
               // SurveySingleItemProvider surveySingleItemProvider =

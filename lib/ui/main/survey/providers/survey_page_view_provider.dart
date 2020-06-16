@@ -29,6 +29,7 @@ class SurveyPageViewProvider with ChangeNotifier {
   void setResponded(String key) {
     SurveySingleItem item = getSurveyItemByKey(key);
     item.responded = true;
+    debugPrint('Responded key=' + key);
   }
 
   SurveySingleItem getSurveyItemByKey(String key) {

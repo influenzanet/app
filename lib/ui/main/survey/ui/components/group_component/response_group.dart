@@ -37,7 +37,8 @@ class ResponseComponent extends StatelessWidget {
   List<Widget> responseItemsWidget(List itemList) {
     List<Widget> result = [];
     itemList.forEach((item) {
-      Widget itemWidget = WidgetUtils.classifyResponseComponent(item);
+      Widget itemWidget =
+          WidgetUtils.classifyResponseComponent(item, surveyKey);
       if (itemWidget != null) {
         result.add(itemWidget);
       }

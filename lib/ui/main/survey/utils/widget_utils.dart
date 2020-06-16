@@ -50,21 +50,28 @@ class WidgetUtils {
     }
   }
 
-  static Widget classifyResponseComponent(dynamic responseComponent) {
+  static Widget classifyResponseComponent(
+      dynamic responseComponent, String surveyKey) {
     switch (responseComponent['role']) {
       case 'input':
-        return Input(inputComponent: responseComponent);
+        return Input(inputComponent: responseComponent, surveyKey: surveyKey);
       case 'multilineTextInput':
-        return MultilineInput(inputComponent: responseComponent);
+        return MultilineInput(
+            inputComponent: responseComponent, surveyKey: surveyKey);
       case 'numberInput':
-        return NumberInput(inputComponent: responseComponent);
+        return NumberInput(
+            inputComponent: responseComponent, surveyKey: surveyKey);
       case 'singleChoiceGroup':
-        return SingleChoiceGroup(singleChoiceGroupComponent: responseComponent);
+        return SingleChoiceGroup(
+            singleChoiceGroupComponent: responseComponent,
+            surveyKey: surveyKey);
       case 'multipleChoiceGroup':
         return MultipleChoiceGroup(
-            multipleChoiceGroupComponent: responseComponent);
+            multipleChoiceGroupComponent: responseComponent,
+            surveyKey: surveyKey);
       case 'dropDownGroup':
-        return DropDownGroup(dropDownGroupComponent: responseComponent);
+        return DropDownGroup(
+            dropDownGroupComponent: responseComponent, surveyKey: surveyKey);
       default:
         debugPrint('Invalid or not implemented response component');
         return null;
@@ -75,16 +82,21 @@ class WidgetUtils {
       {dynamic choiceComponent,
       String groupKey,
       String itemKey,
-      String content}) {
+      String content,
+      String surveyKey}) {
     switch (choiceComponent['role']) {
       case 'option':
         return Text(Utils.getContent(choiceComponent),
             textAlign: TextAlign.left);
       case 'input':
         return RadioInput(
-            groupKey: groupKey, itemKey: itemKey, content: content);
+            groupKey: groupKey,
+            itemKey: itemKey,
+            content: content,
+            surveyKey: surveyKey);
       case 'numberInput':
-        return RadioNumberInput(groupKey: groupKey, itemKey: itemKey);
+        return RadioNumberInput(
+            groupKey: groupKey, itemKey: itemKey, surveyKey: surveyKey);
       default:
         debugPrint('Invalid or not implemented response component');
         return null;
@@ -95,14 +107,18 @@ class WidgetUtils {
       {dynamic choiceComponent,
       String groupKey,
       String itemKey,
-      String content}) {
+      String content,
+      String surveyKey}) {
     switch (choiceComponent['role']) {
       case 'option':
         return Text(Utils.getContent(choiceComponent),
             textAlign: TextAlign.left);
       case 'input':
         return CheckBoxInput(
-            groupKey: groupKey, itemKey: itemKey, content: content);
+            groupKey: groupKey,
+            itemKey: itemKey,
+            content: content,
+            surveyKey: surveyKey);
       default:
         debugPrint('Invalid or not implemented response component');
         return null;
