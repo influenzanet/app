@@ -28,23 +28,26 @@ class SurveyPageViewProvider with ChangeNotifier {
   }
 
   void setResponded(String key, {dynamic presetValue, dynamic responseItem}) {
-    int position =
-        _surveyPage.indexWhere((item) => item.surveySingleItem['key'] == key);
+    int position = getItemPosition(key);
     SurveySingleItemModel item = _surveyPage[position];
     item.responded = true;
     item.presetValue = presetValue;
     item.setResponseItem(responseItem);
     _surveyPage[position] = item;
     debugPrint('Responded key=' + key);
+    reRenderSimulate();
   }
 
   void reRenderSimulate() {
     _surveyPage = Utils.rerenderSurveyPageProvider(_surveyPage, q4);
   }
 
+  int getItemPosition(String key) {
+    return _surveyPage
+        .indexWhere((item) => item.surveySingleItem['key'] == key);
+  }
+
   SurveySingleItemModel getSurveyItemByKey(String key) {
-    int position =
-        _surveyPage.indexWhere((item) => item.surveySingleItem['key'] == key);
-    return _surveyPage[position];
+    return _surveyPage[getItemPosition(key)];
   }
 }

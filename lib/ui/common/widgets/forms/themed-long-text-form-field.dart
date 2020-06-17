@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 
 class ThemedLongTextFormField extends TextFormField {
   ThemedLongTextFormField(
-      {String hintText,
+      {String initialValue,
+      String hintText,
       int maxlines,
       bool readOnly: false,
       bool autocorrect: false,
       Function onFieldSubmitted,
       TextEditingController controller})
       : super(
+          initialValue: initialValue,
           onFieldSubmitted: onFieldSubmitted,
           textInputAction: TextInputAction.done,
           controller: controller,

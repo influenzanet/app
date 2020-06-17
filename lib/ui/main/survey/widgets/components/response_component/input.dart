@@ -29,15 +29,15 @@ class Input extends StatelessWidget {
         Provider.of<SurveyPageViewProvider>(context, listen: false)
             .setResponded(surveyKey,
                 presetValue: valuePair, responseItem: response);
-        // debugPrint('Input saved: ' + value);
-        // SurveySingleItemProvider surveySingleItemProvider =
-        //     Provider.of<SurveySingleItemProvider>(context, listen: false);
-        // dynamic response = Utils.constructSingleResponseItem(
-        //     key: itemKey,
-        //     value: value,
-        //     responseItem: surveySingleItemProvider.responseItem);
-        // surveySingleItemProvider.responseItem = response;
       },
+      // debugPrint('Input saved: ' + value);
+      // SurveySingleItemProvider surveySingleItemProvider =
+      //     Provider.of<SurveySingleItemProvider>(context, listen: false);
+      // dynamic response = Utils.constructSingleResponseItem(
+      //     key: itemKey,
+      //     value: value,
+      //     responseItem: surveySingleItemProvider.responseItem);
+      // surveySingleItemProvider.responseItem = response;
     );
   }
 }
