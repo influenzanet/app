@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/providers/survey_page_view_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
@@ -12,21 +13,30 @@ class SingleChoiceGroup extends StatelessWidget {
       : super(key: key);
 
   List<Widget> choiceItemsWidget(List itemList, BuildContext context) {
+    SurveySingleItemModel surveySingleItemModel =
+        Provider.of<SurveyPageViewProvider>(context, listen: false)
+            .getSurveyItemByKey(surveyKey);
+    dynamic preset = surveySingleItemModel.preset;
     String itemGroupKey = singleChoiceGroupComponent['key'];
     List<Widget> result = [];
     itemList.forEach((item) {
       Widget itemWidget = RadioListTile(
-        groupValue: itemGroupKey,
+        groupValue: ((preset == null) ? null : preset['key']),
         title: WidgetUtils.classifySingleChoiceGroupComponent(
             choiceComponent: item,
             groupKey: itemGroupKey,
             itemKey: item['key'],
             content: Utils.getContent(item)),
         value: item['key'],
-        onChanged: (val) {
-          itemGroupKey = val;
+        onChanged: (newValue) {
+          dynamic valuePair = {'key': newValue, 'value': null};
+          dynamic response = Utils.constructSingleChoiceGroupItem(
+              groupKey: itemGroupKey,
+              valuePair: valuePair,
+              responseItem: surveySingleItemModel.getResponseItem());
           Provider.of<SurveyPageViewProvider>(context, listen: false)
-              .setResponded(surveyKey);
+              .setResponded(surveyKey,
+                  presetValue: valuePair, responseItem: response);
         },
       );
 

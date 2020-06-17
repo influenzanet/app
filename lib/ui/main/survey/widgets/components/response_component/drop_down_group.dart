@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class DropDownGroup extends StatelessWidget {
-  final String optionValue;
   final dynamic dropDownGroupComponent;
   final String surveyKey;
 
-  DropDownGroup(
-      {Key key, this.optionValue, this.dropDownGroupComponent, this.surveyKey})
+  DropDownGroup({Key key, this.dropDownGroupComponent, this.surveyKey})
       : super(key: key);
 
   List<DropdownMenuItem<String>> choiceItemsWidget(List itemList) {
@@ -43,7 +41,7 @@ class DropDownGroup extends StatelessWidget {
                 Expanded(
                     child: Text(
                   Utils.getDescription(dropDownGroupComponent) ?? '',
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.center,
                 ))
               ],
             ),
