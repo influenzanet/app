@@ -30,6 +30,21 @@ class Utils {
     return parts;
   }
 
+  static getDescription(dynamic itemComponents, {String code = "en"}) {
+    if (itemComponents == null || itemComponents['description'] == null) {
+      return null;
+    }
+    dynamic localisedObject = itemComponents['description'].firstWhere(
+        (localizedObject) => localizedObject['code'] == code, orElse: () {
+      print('No content found');
+      return null;
+    });
+    String parts = (localisedObject == null)
+        ? 'No content found'
+        : localisedObject['parts'].join();
+    return parts;
+  }
+
   static getPartsByCode(dynamic content, {String code = "en"}) {
     dynamic localisedObject = content.firstWhere(
         (localizedObject) => localizedObject['code'] == code, orElse: () {
@@ -50,12 +65,11 @@ class Utils {
   }
 
   static constructSingleChoiceGroupItem(
-      {String groupKey, String key, String value, ResponseItem responseItem}) {
+      {String groupKey, dynamic valuePair, ResponseItem responseItem}) {
     dynamic response = responseItem.toMap();
-    dynamic newResponse = {'key': key, 'value': value};
     int position =
         response['items'].indexWhere((item) => item['key'] == groupKey);
-    response['items'][position]['items'] = [newResponse];
+    response['items'][position]['items'] = [valuePair];
     return response;
   }
 

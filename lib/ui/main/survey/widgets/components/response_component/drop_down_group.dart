@@ -6,15 +6,10 @@ import 'package:provider/provider.dart';
 class DropDownGroup extends StatelessWidget {
   final String optionValue;
   final dynamic dropDownGroupComponent;
-  final String itemGroupKey;
   final String surveyKey;
 
   DropDownGroup(
-      {Key key,
-      this.optionValue,
-      this.dropDownGroupComponent,
-      this.itemGroupKey,
-      this.surveyKey})
+      {Key key, this.optionValue, this.dropDownGroupComponent, this.surveyKey})
       : super(key: key);
 
   List<DropdownMenuItem<String>> choiceItemsWidget(List itemList) {
@@ -33,25 +28,42 @@ class DropDownGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(2.0),
-      child: SingleChildScrollView(
-        child: ListBody(children: <Widget>[
-          DropdownButton<String>(
-            isExpanded: true,
-            value: optionValue,
-            underline: Container(
-              height: 2,
-              color: Colors.black87,
+    return Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Expanded(
+                child: Text(
+              Utils.getDescription(dropDownGroupComponent) ?? '',
+              textAlign: TextAlign.right,
+            ))
+          ],
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+                child: Text(
+              Utils.getContent(dropDownGroupComponent) ?? '',
+              textAlign: TextAlign.left,
+            )),
+            Expanded(
+              child: DropdownButton<String>(
+                value: null,
+                underline: Container(
+                  height: 2,
+                  color: Colors.black87,
+                ),
+                onChanged: (newValue) {
+                  Provider.of<SurveyPageViewProvider>(context, listen: false)
+                      .setResponded(surveyKey);
+                },
+                items: choiceItemsWidget(dropDownGroupComponent['items']),
+              ),
             ),
-            onChanged: (newValue) {
-              Provider.of<SurveyPageViewProvider>(context, listen: false)
-                  .setResponded(surveyKey);
-            },
-            items: choiceItemsWidget(dropDownGroupComponent['items']),
-          )
-        ]),
-      ),
+          ],
+        ),
+      ],
     );
   }
 }
