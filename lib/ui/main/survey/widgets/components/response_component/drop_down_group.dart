@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/providers/survey_page_view_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -28,42 +29,59 @@ class DropDownGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Row(
+    SurveySingleItemModel surveySingleItemModel =
+        Provider.of<SurveyPageViewProvider>(context, listen: false)
+            .getSurveyItemByKey(surveyKey);
+    dynamic preset = surveySingleItemModel.preset;
+
+    return Container(
+      child: SingleChildScrollView(
+        child: Column(
           children: <Widget>[
-            Expanded(
-                child: Text(
-              Utils.getDescription(dropDownGroupComponent) ?? '',
-              textAlign: TextAlign.right,
-            ))
-          ],
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-                child: Text(
-              Utils.getContent(dropDownGroupComponent) ?? '',
-              textAlign: TextAlign.left,
-            )),
-            Expanded(
-              child: DropdownButton<String>(
-                value: null,
-                underline: Container(
-                  height: 2,
-                  color: Colors.black87,
+            Row(
+              children: <Widget>[
+                Expanded(
+                    child: Text(
+                  Utils.getDescription(dropDownGroupComponent) ?? '',
+                  textAlign: TextAlign.right,
+                ))
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                    child: Text(
+                  Utils.getContent(dropDownGroupComponent) ?? '',
+                  textAlign: TextAlign.left,
+                )),
+                Expanded(
+                  child: DropdownButton<String>(
+                    value: ((preset == null) ? null : preset['key']),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.black87,
+                    ),
+                    onChanged: (newValue) {
+                      dynamic valuePair = {'key': newValue, 'value': null};
+                      dynamic response = Utils.constructSingleChoiceGroupItem(
+                          groupKey: dropDownGroupComponent['key'],
+                          valuePair: valuePair,
+                          responseItem:
+                              surveySingleItemModel.getResponseItem());
+                      Provider.of<SurveyPageViewProvider>(context,
+                              listen: false)
+                          .setResponded(surveyKey,
+                              presetValue: valuePair, responseItem: response);
+                    },
+                    items: choiceItemsWidget(dropDownGroupComponent['items']),
+                  ),
                 ),
-                onChanged: (newValue) {
-                  Provider.of<SurveyPageViewProvider>(context, listen: false)
-                      .setResponded(surveyKey);
-                },
-                items: choiceItemsWidget(dropDownGroupComponent['items']),
-              ),
+              ],
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 }

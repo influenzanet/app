@@ -36,6 +36,7 @@ class SurveyPageViewProvider with ChangeNotifier {
     _surveyPage[position] = item;
     debugPrint('Responded key=' + key);
     reRenderSimulate();
+    notifyListeners();
   }
 
   void reRenderSimulate() {
