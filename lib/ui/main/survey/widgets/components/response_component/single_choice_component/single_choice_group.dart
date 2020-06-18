@@ -26,7 +26,8 @@ class SingleChoiceGroup extends StatelessWidget {
             choiceComponent: item,
             groupKey: itemGroupKey,
             itemKey: item['key'],
-            content: Utils.getContent(item)),
+            content: Utils.getContent(item),
+            surveyKey: surveyKey),
         value: item['key'],
         onChanged: (newValue) {
           dynamic valuePair = {'key': newValue, 'value': null};

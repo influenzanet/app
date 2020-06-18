@@ -90,13 +90,16 @@ class WidgetUtils {
             textAlign: TextAlign.left);
       case 'input':
         return RadioInput(
-            groupKey: groupKey,
+            itemGroupKey: groupKey,
             itemKey: itemKey,
             content: content,
             surveyKey: surveyKey);
       case 'numberInput':
         return RadioNumberInput(
-            groupKey: groupKey, itemKey: itemKey, surveyKey: surveyKey);
+            itemGroupKey: groupKey,
+            itemKey: itemKey,
+            content: content,
+            surveyKey: surveyKey);
       default:
         debugPrint('Invalid or not implemented response component');
         return null;
