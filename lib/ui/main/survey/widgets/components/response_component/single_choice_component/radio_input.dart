@@ -27,7 +27,9 @@ class RadioInput extends StatelessWidget {
         Text(content),
         Expanded(
           child: ThemedTextFormField(
-            initialValue: (preset == null) ? null : preset['value'] ?? '',
+            initialValue: (preset == null || preset['key'] != itemKey)
+                ? null
+                : preset['value'] ?? '',
             onFieldSubmitted: (String newValue) {
               dynamic valuePair = {'key': itemKey, 'value': newValue};
               dynamic response = Utils.constructSingleChoiceGroupItem(
