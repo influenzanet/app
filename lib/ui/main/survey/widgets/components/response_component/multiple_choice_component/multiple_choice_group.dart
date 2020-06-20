@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/providers/survey_page_view_provider.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/widget_utils.dart';
@@ -12,14 +13,30 @@ class MultipleChoiceGroup extends StatelessWidget {
       {Key key, this.multipleChoiceGroupComponent, this.surveyKey})
       : super(key: key);
 
-  List<Widget> choiceItemsWidget(
-      List choiceList, String itemGroupKey, BuildContext context) {
+  List<Widget> choiceItemsWidget(List choiceList, BuildContext context) {
+    SurveySingleItemModel surveySingleItemModel =
+        Provider.of<SurveyPageViewProvider>(context, listen: false)
+            .getSurveyItemByKey(surveyKey);
+    dynamic preset = surveySingleItemModel.preset;
+    String itemGroupKey = multipleChoiceGroupComponent['key'];
     List<Widget> result = [];
     Map<String, bool> optionValues = {};
-    choiceList.forEach((item) {
-      String key = item['key'];
-      optionValues[key] = false;
-    });
+    if (preset == [] || preset == null) {
+      choiceList.forEach((item) {
+        optionValues[item['key'].toString()] = false;
+      });
+    } else {
+      choiceList.forEach((item) {
+        String key = item['key'];
+        var setValuePair =
+            preset.singleWhere((vp) => vp['key'] == key, orElse: () => null);
+        if (setValuePair == null) {
+          optionValues[key] = false;
+        } else {
+          optionValues[key] = true;
+        }
+      });
+    }
     choiceList.forEach((item) {
       String key = item['key'];
       Widget itemWidget = CheckboxListTile(
@@ -31,8 +48,18 @@ class MultipleChoiceGroup extends StatelessWidget {
             content: Utils.getContent(item)),
         value: optionValues[key],
         onChanged: (bool value) {
+          optionValues[key] = !optionValues[key];
+          List activeKeys =
+              optionValues.keys.where((k) => optionValues[k] == true).toList();
+          List valuePairs =
+              activeKeys.map((key) => {'key': key, 'value': null}).toList();
+          dynamic response = Utils.constructMultipleChoiceGroupItem(
+              groupKey: itemGroupKey,
+              valuePairs: valuePairs,
+              responseItem: surveySingleItemModel.getResponseItem());
           Provider.of<SurveyPageViewProvider>(context, listen: false)
-              .setResponded(surveyKey);
+              .setResponded(surveyKey,
+                  presetValue: valuePairs, responseItem: response);
         },
       );
       if (itemWidget != null) {
@@ -47,9 +74,8 @@ class MultipleChoiceGroup extends StatelessWidget {
     return Container(
       child: SingleChildScrollView(
         child: ListBody(
-          children: choiceItemsWidget(multipleChoiceGroupComponent['items'],
-              multipleChoiceGroupComponent['key'], context),
-        ),
+            children: choiceItemsWidget(
+                multipleChoiceGroupComponent['items'], context)),
       ),
     );
   }

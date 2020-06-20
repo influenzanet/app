@@ -73,6 +73,15 @@ class Utils {
     return response;
   }
 
+  static constructMultipleChoiceGroupItem(
+      {String groupKey, List valuePairs, ResponseItem responseItem}) {
+    dynamic response = responseItem.toMap();
+    int position =
+        response['items'].indexWhere((item) => item['key'] == groupKey);
+    response['items'][position]['items'] = valuePairs;
+    return response;
+  }
+
   static constructSingleChoiceInputGroupItem(
       {String groupKey, dynamic valuePair, ResponseItem responseItem}) {
     dynamic response = responseItem.toMap();
@@ -91,16 +100,6 @@ class Utils {
         .indexWhere((item) => item['key'] == key);
     response['items'][groupPosition]['items']
         [position] = {'key': key, 'value': value};
-    return response;
-  }
-
-  static constructMultipleChoiceGroupItem(
-      {String groupKey, List keys, List values, ResponseItem responseItem}) {
-    dynamic response = responseItem.toMap();
-    List newResponse = keys.map((key) => {'key': key.toString()}).toList();
-    int position =
-        response['items'].indexWhere((item) => item['key'] == groupKey);
-    response['items'][position]['items'] = newResponse;
     return response;
   }
 
