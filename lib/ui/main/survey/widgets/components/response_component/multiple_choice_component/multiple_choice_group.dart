@@ -45,7 +45,8 @@ class MultipleChoiceGroup extends StatelessWidget {
             choiceComponent: item,
             groupKey: itemGroupKey,
             itemKey: item['key'],
-            content: Utils.getContent(item)),
+            content: Utils.getContent(item),
+            surveyKey: surveyKey),
         value: optionValues[key],
         onChanged: (bool value) {
           optionValues[key] = !optionValues[key];

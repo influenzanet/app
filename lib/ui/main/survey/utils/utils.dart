@@ -92,14 +92,13 @@ class Utils {
   }
 
   static constructMultipleChoiceInputGroupItem(
-      {String groupKey, String key, String value, ResponseItem responseItem}) {
+      {String groupKey, dynamic valuePair, ResponseItem responseItem}) {
     dynamic response = responseItem.toMap();
     int groupPosition =
         response['items'].indexWhere((item) => item['key'] == groupKey);
     int position = response['items'][groupPosition]['items']
-        .indexWhere((item) => item['key'] == key);
-    response['items'][groupPosition]['items']
-        [position] = {'key': key, 'value': value};
+        .indexWhere((item) => item['key'] == valuePair['key']);
+    response['items'][groupPosition]['items'][position] = valuePair;
     return response;
   }
 
