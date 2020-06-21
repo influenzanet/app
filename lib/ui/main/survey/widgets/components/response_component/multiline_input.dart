@@ -10,10 +10,20 @@ class MultilineInput extends StatelessWidget {
   final dynamic inputComponent;
   final String surveyKey;
 
-  final myController = TextEditingController();
-
   MultilineInput({Key key, this.itemKey, this.inputComponent, this.surveyKey})
       : super(key: key);
+
+  void _submitResponse(BuildContext context, String value,
+      SurveySingleItemModel surveySingleItemModel) {
+    dynamic valuePair = {'key': inputComponent['key'], 'value': value};
+    dynamic response = Utils.constructSingleValueResponseItem(
+        valuePair: valuePair,
+        responseItem: surveySingleItemModel.getResponseItem());
+    Provider.of<SurveyPageViewProvider>(context, listen: false).setResponded(
+        surveyKey,
+        presetValue: valuePair,
+        responseItem: response);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +33,8 @@ class MultilineInput extends StatelessWidget {
     dynamic preset = surveySingleItemModel.preset;
     return ThemedLongTextFormField(
       initialValue: (preset == null) ? null : preset['value'],
-      onFieldSubmitted: (String value) {
-        dynamic valuePair = {'key': inputComponent['key'], 'value': value};
-        dynamic response = Utils.constructSingleValueResponseItem(
-            valuePair: valuePair,
-            responseItem: surveySingleItemModel.getResponseItem());
-        Provider.of<SurveyPageViewProvider>(context, listen: false)
-            .setResponded(surveyKey,
-                presetValue: valuePair, responseItem: response);
-      },
-      controller: myController,
+      onFieldSubmitted: (String value) =>
+          _submitResponse(context, value, surveySingleItemModel),
     );
   }
 }
