@@ -15,6 +15,19 @@ class RadioInput extends StatelessWidget {
       {Key key, this.itemGroupKey, this.itemKey, this.content, this.surveyKey})
       : super(key: key);
 
+  void _submitResponse(BuildContext context, String value,
+      SurveySingleItemModel surveySingleItemModel) {
+    dynamic valuePair = {'key': itemKey, 'value': value};
+    dynamic response = Utils.constructSingleChoiceGroupItem(
+        groupKey: itemGroupKey,
+        valuePair: valuePair,
+        responseItem: surveySingleItemModel.getResponseItem());
+    Provider.of<SurveyPageViewProvider>(context, listen: false).setResponded(
+        surveyKey,
+        presetValue: valuePair,
+        responseItem: response);
+  }
+
   @override
   Widget build(BuildContext context) {
     SurveySingleItemModel surveySingleItemModel =
@@ -30,16 +43,8 @@ class RadioInput extends StatelessWidget {
             initialValue: (preset == null || preset['key'] != itemKey)
                 ? null
                 : preset['value'] ?? '',
-            onFieldSubmitted: (String newValue) {
-              dynamic valuePair = {'key': itemKey, 'value': newValue};
-              dynamic response = Utils.constructSingleChoiceGroupItem(
-                  groupKey: itemGroupKey,
-                  valuePair: valuePair,
-                  responseItem: surveySingleItemModel.getResponseItem());
-              Provider.of<SurveyPageViewProvider>(context, listen: false)
-                  .setResponded(surveyKey,
-                      presetValue: valuePair, responseItem: response);
-            },
+            onFieldSubmitted: (String value) =>
+                _submitResponse(context, value, surveySingleItemModel),
           ),
         ),
       ],

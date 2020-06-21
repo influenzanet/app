@@ -12,7 +12,20 @@ class SingleChoiceGroup extends StatelessWidget {
   SingleChoiceGroup({Key key, this.singleChoiceGroupComponent, this.surveyKey})
       : super(key: key);
 
-  List<Widget> choiceItemsWidget(List itemList, BuildContext context) {
+  void _submitResponse(BuildContext context, String value,
+      SurveySingleItemModel surveySingleItemModel) {
+    dynamic valuePair = {'key': value, 'value': null};
+    dynamic response = Utils.constructSingleChoiceGroupItem(
+        groupKey: singleChoiceGroupComponent['key'],
+        valuePair: valuePair,
+        responseItem: surveySingleItemModel.getResponseItem());
+    Provider.of<SurveyPageViewProvider>(context, listen: false).setResponded(
+        surveyKey,
+        presetValue: valuePair,
+        responseItem: response);
+  }
+
+  List<Widget> _choiceItemsWidget(List itemList, BuildContext context) {
     SurveySingleItemModel surveySingleItemModel =
         Provider.of<SurveyPageViewProvider>(context, listen: false)
             .getSurveyItemByKey(surveyKey);
@@ -29,16 +42,8 @@ class SingleChoiceGroup extends StatelessWidget {
             content: Utils.getContent(item),
             surveyKey: surveyKey),
         value: item['key'],
-        onChanged: (newValue) {
-          dynamic valuePair = {'key': newValue, 'value': null};
-          dynamic response = Utils.constructSingleChoiceGroupItem(
-              groupKey: itemGroupKey,
-              valuePair: valuePair,
-              responseItem: surveySingleItemModel.getResponseItem());
-          Provider.of<SurveyPageViewProvider>(context, listen: false)
-              .setResponded(surveyKey,
-                  presetValue: valuePair, responseItem: response);
-        },
+        onChanged: (value) =>
+            _submitResponse(context, value, surveySingleItemModel),
       );
 
       if (itemWidget != null) {
@@ -54,7 +59,7 @@ class SingleChoiceGroup extends StatelessWidget {
       child: SingleChildScrollView(
         child: ListBody(
           children:
-              choiceItemsWidget(singleChoiceGroupComponent['items'], context),
+              _choiceItemsWidget(singleChoiceGroupComponent['items'], context),
         ),
       ),
     );
