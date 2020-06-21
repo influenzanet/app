@@ -13,7 +13,7 @@ class MultipleChoiceGroup extends StatelessWidget {
       {Key key, this.multipleChoiceGroupComponent, this.surveyKey})
       : super(key: key);
 
-  List<Widget> choiceItemsWidget(List choiceList, BuildContext context) {
+  List<Widget> _choiceItemsWidget(List choiceList, BuildContext context) {
     SurveySingleItemModel surveySingleItemModel =
         Provider.of<SurveyPageViewProvider>(context, listen: false)
             .getSurveyItemByKey(surveyKey);
@@ -75,7 +75,7 @@ class MultipleChoiceGroup extends StatelessWidget {
     return Container(
       child: SingleChildScrollView(
         child: ListBody(
-            children: choiceItemsWidget(
+            children: _choiceItemsWidget(
                 multipleChoiceGroupComponent['items'], context)),
       ),
     );

@@ -15,6 +15,28 @@ class CheckBoxInput extends StatelessWidget {
       {Key key, this.groupKey, this.itemKey, this.content, this.surveyKey})
       : super(key: key);
 
+  void _submitResponse(BuildContext context, String value, dynamic preset,
+      SurveySingleItemModel surveySingleItemModel) {
+    List valuePairs = [];
+    dynamic valuePair = {'key': itemKey, 'value': value};
+    dynamic response;
+    if (preset == null) {
+      valuePairs = [valuePair];
+    } else {
+      int position =
+          valuePairs.indexWhere((element) => element['key'] == itemKey);
+      valuePairs[position] = valuePair;
+    }
+    response = Utils.constructMultipleChoiceGroupItem(
+        groupKey: groupKey,
+        valuePairs: valuePairs,
+        responseItem: surveySingleItemModel.getResponseItem());
+    Provider.of<SurveyPageViewProvider>(context, listen: false).setResponded(
+        surveyKey,
+        presetValue: valuePairs,
+        responseItem: response);
+  }
+
   @override
   Widget build(BuildContext context) {
     SurveySingleItemModel surveySingleItemModel =
@@ -27,25 +49,8 @@ class CheckBoxInput extends StatelessWidget {
         Text(content),
         Expanded(
           child: ThemedTextFormField(
-            onFieldSubmitted: (String newValue) {
-              List valuePairs = [];
-              dynamic valuePair = {'key': itemKey, 'value': newValue};
-              dynamic response;
-              if (preset == null) {
-                valuePairs = [valuePair];
-              } else {
-                int position = valuePairs
-                    .indexWhere((element) => element['key'] == itemKey);
-                valuePairs[position] = valuePair;
-              }
-              response = Utils.constructMultipleChoiceGroupItem(
-                  groupKey: groupKey,
-                  valuePairs: valuePairs,
-                  responseItem: surveySingleItemModel.getResponseItem());
-              Provider.of<SurveyPageViewProvider>(context, listen: false)
-                  .setResponded(surveyKey,
-                      presetValue: valuePairs, responseItem: response);
-            },
+            onFieldSubmitted: (String value) =>
+                _submitResponse(context, value, preset, surveySingleItemModel),
           ),
         ),
       ],
