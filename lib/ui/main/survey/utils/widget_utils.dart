@@ -40,10 +40,8 @@ class WidgetUtils {
         return TextItem(textComponent: itemComponent);
       case 'error':
         return ErrorItem(errorComponent: itemComponent);
-
       case 'warning':
         return WarningItem(warningComponent: itemComponent);
-
       default:
         debugPrint('Invalid role/role not implemented');
         return null;

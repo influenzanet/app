@@ -8,6 +8,6 @@ class ErrorItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(Utils.getContent(this.errorComponent),
-        style: TextStyle(color: Color(0xB00020)));
+        style: TextStyle(color: Color(0xffb00020)));
   }
 }
