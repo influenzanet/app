@@ -1,4 +1,3 @@
-import 'package:InfluenzaNet/ui/main/survey/models/constants.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
 import 'package:survey_engine.dart/api/api.dart';
 
@@ -58,6 +57,10 @@ class Utils {
 
   static constructSingleValueResponseItem(
       {dynamic valuePair, ResponseItem responseItem}) {
+    if (responseItem == null) {
+      print('Response item is null and response cannot be constructed');
+      return null;
+    }
     dynamic response = responseItem.toMap();
     response['items'] = [valuePair];
     return response;
@@ -65,6 +68,10 @@ class Utils {
 
   static constructSingleChoiceGroupItem(
       {String groupKey, dynamic valuePair, ResponseItem responseItem}) {
+    if (responseItem == null) {
+      print('Response item is null and response cannot be constructed');
+      return null;
+    }
     dynamic response = responseItem.toMap();
     int position =
         response['items'].indexWhere((item) => item['key'] == groupKey);
@@ -74,6 +81,10 @@ class Utils {
 
   static constructMultipleChoiceGroupItem(
       {String groupKey, List valuePairs, ResponseItem responseItem}) {
+    if (responseItem == null) {
+      print('Response item is null and response cannot be constructed');
+      return null;
+    }
     dynamic response = responseItem.toMap();
     int position =
         response['items'].indexWhere((item) => item['key'] == groupKey);
@@ -81,17 +92,12 @@ class Utils {
     return response;
   }
 
-  static constructSingleChoiceInputGroupItem(
-      {String groupKey, dynamic valuePair, ResponseItem responseItem}) {
-    dynamic response = responseItem.toMap();
-    int position =
-        response['items'].indexWhere((item) => item['key'] == groupKey);
-    response['items'][position]['items'][firstKey] = valuePair;
-    return response;
-  }
-
   static constructMultipleChoiceInputGroupItem(
       {String groupKey, dynamic valuePair, ResponseItem responseItem}) {
+    if (responseItem == null) {
+      print('Response item is null and response cannot be constructed');
+      return null;
+    }
     dynamic response = responseItem.toMap();
     int groupPosition =
         response['items'].indexWhere((item) => item['key'] == groupKey);
