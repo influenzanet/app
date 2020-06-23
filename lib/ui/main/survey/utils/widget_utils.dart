@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/error_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/text_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/warning_item.dart';
@@ -80,27 +81,34 @@ class WidgetUtils {
       String itemKey,
       String content,
       String surveyKey}) {
+    Widget choiceWidget;
     switch (choiceComponent['role']) {
       case 'option':
-        return TextItem(
+        choiceWidget = TextItem(
           textComponent: choiceComponent,
         );
+        break;
       case 'input':
-        return RadioInput(
+        choiceWidget = RadioInput(
             itemGroupKey: groupKey,
             itemKey: itemKey,
             content: content,
             surveyKey: surveyKey);
+        break;
       case 'numberInput':
-        return RadioNumberInput(
+        choiceWidget = RadioNumberInput(
             itemGroupKey: groupKey,
             itemKey: itemKey,
             content: content,
             surveyKey: surveyKey);
+        break;
       default:
         debugPrint('Invalid or not implemented response component');
         return null;
     }
+    return Tooltip(
+        message: Utils.getDescription(choiceComponent) ?? '',
+        child: choiceWidget);
   }
 
   static Widget classifyMultipleChoiceGroupComponent(
@@ -109,19 +117,25 @@ class WidgetUtils {
       String itemKey,
       String content,
       String surveyKey}) {
+    Widget choiceWidget;
     switch (choiceComponent['role']) {
       case 'option':
-        return TextItem(textComponent: choiceComponent);
+        choiceWidget = TextItem(textComponent: choiceComponent);
+        break;
       case 'input':
-        return CheckBoxInput(
+        choiceWidget = CheckBoxInput(
             groupKey: groupKey,
             itemKey: itemKey,
             content: content,
             surveyKey: surveyKey);
+        break;
       default:
         debugPrint('Invalid or not implemented response component');
         return null;
     }
+    return Tooltip(
+        message: Utils.getDescription(choiceComponent) ?? '',
+        child: choiceWidget);
   }
 
   static List<Widget> getHelpGroupContents(

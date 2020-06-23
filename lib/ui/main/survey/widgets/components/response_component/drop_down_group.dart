@@ -37,21 +37,15 @@ class DropDownGroup extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Row(
-              children: <Widget>[
-                Expanded(
-                    child: Text(
-                  Utils.getDescription(dropDownGroupComponent) ?? '',
-                  textAlign: TextAlign.center,
-                ))
-              ],
-            ),
-            Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Expanded(
-                    child: Text(
-                  Utils.getContent(dropDownGroupComponent) ?? '',
-                  textAlign: TextAlign.left,
+                    child: Tooltip(
+                  message: Utils.getDescription(dropDownGroupComponent) ?? '',
+                  child: Text(
+                    Utils.getContent(dropDownGroupComponent) ?? '',
+                    textAlign: TextAlign.left,
+                  ),
                 )),
                 Expanded(
                   child: DropdownButton<String>(
