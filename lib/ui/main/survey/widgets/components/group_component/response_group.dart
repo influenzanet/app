@@ -9,14 +9,6 @@ class ResponseComponent extends StatelessWidget {
     this.responseComponent,
     this.surveyKey,
   }) : super(key: key);
-  // @override
-  // void initState() {
-  //   responseComponent = widget.responseComponent;
-  //   surveyKey = widget.surveyKey;
-  //   super.initState();
-  //   WidgetsBinding.instance
-  //       .addPostFrameCallback((_) => initialiseResponseRoot(context));
-  // }
 
   void initialiseResponseRoot(BuildContext context) {
     List responseList = [];
@@ -29,9 +21,6 @@ class ResponseComponent extends StatelessWidget {
           responseList.add({'key': item['key'], 'items': []});
       }
     });
-    //dynamic result = {'key': responseComponent['key'], 'items': responseList};
-    // Provider.of<SurveySingleItemProvider>(context, listen: false)
-    //     .initResponseItem(result, surveyKey);
   }
 
   List<Widget> responseItemsWidget(List itemList) {

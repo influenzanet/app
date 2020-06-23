@@ -1,5 +1,4 @@
 import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
-import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/error_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/text_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/warning_item.dart';
@@ -84,8 +83,9 @@ class WidgetUtils {
       String surveyKey}) {
     switch (choiceComponent['role']) {
       case 'option':
-        return Text(Utils.getContent(choiceComponent),
-            textAlign: TextAlign.left);
+        return TextItem(
+          textComponent: choiceComponent,
+        );
       case 'input':
         return RadioInput(
             itemGroupKey: groupKey,
@@ -112,8 +112,7 @@ class WidgetUtils {
       String surveyKey}) {
     switch (choiceComponent['role']) {
       case 'option':
-        return Text(Utils.getContent(choiceComponent),
-            textAlign: TextAlign.left);
+        return TextItem(textComponent: choiceComponent);
       case 'input':
         return CheckBoxInput(
             groupKey: groupKey,
@@ -128,18 +127,14 @@ class WidgetUtils {
 
   static List<Widget> getHelpGroupContents(
       dynamic helpGroupComponent, BuildContext context) {
-    ThemeData themeData = Theme.of(context);
     List<Widget> helpWidgets = [];
     List helpGroupItems = helpGroupComponent['items'];
-    for (int iter = 0; iter < helpGroupComponent.length; iter += 2) {
-      helpWidgets.add(Text(Utils.getContent(helpGroupItems[iter]),
-          style: themeData.textTheme.headline6));
+    helpGroupItems.forEach((item) {
+      helpWidgets.add(TextItem(textComponent: item));
       helpWidgets.add(Container(
         height: ThemeElements.cardContentPadding,
       ));
-      helpWidgets.add(Text(Utils.getContent(helpGroupItems[iter + 1]),
-          style: themeData.textTheme.bodyText2));
-    }
+    });
     return helpWidgets;
   }
 }

@@ -23,6 +23,9 @@ const qp = [
           "items": [
             {
               "role": "text",
+              "style": [
+                {"key": 'variant', "value": "subtitle2"}
+              ],
               "content": [
                 {
                   "code": "en",

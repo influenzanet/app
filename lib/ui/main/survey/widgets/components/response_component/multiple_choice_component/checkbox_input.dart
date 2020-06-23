@@ -39,6 +39,7 @@ class CheckBoxInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     SurveySingleItemModel surveySingleItemModel =
         Provider.of<SurveyPageViewProvider>(context, listen: false)
             .getSurveyItemByKey(surveyKey);
@@ -46,7 +47,7 @@ class CheckBoxInput extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Text(content),
+        Text(content, style: themeData.textTheme.bodyText2),
         Expanded(
           child: ThemedTextFormField(
             onFieldSubmitted: (String value) =>
