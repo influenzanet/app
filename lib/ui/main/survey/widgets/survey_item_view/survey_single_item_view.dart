@@ -68,6 +68,7 @@ class SurveySingleItemView extends StatelessWidget {
       barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: ThemeElements.helpBackgroundColor,
           title: Text(
             'Help',
             textAlign: TextAlign.center,
