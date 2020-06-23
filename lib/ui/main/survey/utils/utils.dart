@@ -16,7 +16,7 @@ class Utils {
   }
 
   static getContent(dynamic itemComponents, {String code = "en"}) {
-    if (itemComponents == null) {
+    if (itemComponents == null || itemComponents['content'] == null) {
       return null;
     }
     dynamic localisedObject = itemComponents['content'].firstWhere(
@@ -24,9 +24,7 @@ class Utils {
       print('No content found');
       return null;
     });
-    String parts = (localisedObject == null)
-        ? 'No content found'
-        : localisedObject['parts'].join();
+    String parts = localisedObject['parts'].join();
     return parts;
   }
 
@@ -36,16 +34,17 @@ class Utils {
     }
     dynamic localisedObject = itemComponents['description'].firstWhere(
         (localizedObject) => localizedObject['code'] == code, orElse: () {
-      print('No content found');
+      print('No description found');
       return null;
     });
-    String parts = (localisedObject == null)
-        ? 'No content found'
-        : localisedObject['parts'].join();
+    String parts = localisedObject['parts'].join();
     return parts;
   }
 
   static getPartsByCode(dynamic content, {String code = "en"}) {
+    if (content == null) {
+      return '';
+    }
     dynamic localisedObject = content.firstWhere(
         (localizedObject) => localizedObject['code'] == code, orElse: () {
       print('No content found');
