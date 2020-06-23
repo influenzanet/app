@@ -21,11 +21,11 @@ class TextItem extends StatelessWidget {
 
     switch (variant) {
       case 'bodyText1':
-      case 'body1':
+      case 'body2':
         return Text(content,
             textAlign: TextAlign.left, style: themeData.textTheme.bodyText1);
       case 'bodyText2':
-      case 'body2':
+      case 'body1':
         return Text(content,
             textAlign: TextAlign.left, style: themeData.textTheme.bodyText2);
       case 'headline1':
@@ -41,6 +41,7 @@ class TextItem extends StatelessWidget {
         return Text(content,
             textAlign: TextAlign.left, style: themeData.textTheme.headline4);
       case 'headline5':
+      case 'headline':
         return Text(content,
             textAlign: TextAlign.left, style: themeData.textTheme.headline5);
       case 'headline6':
