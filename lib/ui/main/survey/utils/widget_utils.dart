@@ -1,4 +1,3 @@
-import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/error_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/text_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/warning_item.dart';
@@ -129,12 +128,8 @@ class WidgetUtils {
       dynamic helpGroupComponent, BuildContext context) {
     List<Widget> helpWidgets = [];
     List helpGroupItems = helpGroupComponent['items'];
-    helpGroupItems.forEach((item) {
-      helpWidgets.add(TextItem(textComponent: item));
-      helpWidgets.add(Container(
-        height: ThemeElements.cardContentPadding,
-      ));
-    });
+    helpWidgets =
+        helpGroupItems.map((item) => TextItem(textComponent: item)).toList();
     return helpWidgets;
   }
 }
