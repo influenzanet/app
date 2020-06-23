@@ -67,6 +67,10 @@ class ThemeElements {
   static const TextStyle displayTextStyle = TextStyle(color: Colors.black);
   static const TextStyle bigButtonTextStyle = TextStyle(fontSize: 20.0);
   static const TextStyle hintTextStyle = TextStyle();
+  static const TextStyle errorTextStyle =
+      TextStyle(color: Color(0xffb02300), fontWeight: FontWeight.bold);
+  static const TextStyle warningTextStyle =
+      TextStyle(color: Color(0xffffce00), fontWeight: FontWeight.bold);
 
   static const TextStyle longTextFormFieldTextStyle = TextStyle(fontSize: 14.0);
 

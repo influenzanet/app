@@ -1,3 +1,4 @@
+import 'package:InfluenzaNet/ui/common/themes/influenzanet-theme.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,6 @@ class WarningItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(Utils.getContent(this.warningComponent),
-        style: TextStyle(color: const Color(0xffff2300)));
+        style: ThemeElements.warningTextStyle);
   }
 }
