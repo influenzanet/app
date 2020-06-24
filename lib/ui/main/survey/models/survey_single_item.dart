@@ -17,6 +17,7 @@ class SurveySingleItemModel {
     this.presetValue = presetValue;
   }
 
+  get surveyKey => _surveySingleItemModel['key'];
   get preset => presetValue;
 
   set preset(dynamic value) {

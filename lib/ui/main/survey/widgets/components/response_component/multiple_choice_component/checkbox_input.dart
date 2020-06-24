@@ -47,7 +47,7 @@ class CheckBoxInput extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Text(content, style: themeData.textTheme.bodyText2),
+        Text(content ?? '', style: themeData.textTheme.bodyText2),
         Expanded(
           child: ThemedTextFormField(
             onFieldSubmitted: (String value) =>

@@ -1,20 +1,23 @@
-import 'package:InfluenzaNet/ui/main/survey/models/flattened_rendered.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/qpattern4.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
+import 'package:InfluenzaNet/ui/main/survey/models/unrendered/qp.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:survey_engine.dart/api/api.dart';
 
 class SurveyPageViewProvider with ChangeNotifier {
   List<SurveySingleItemModel> _surveyPage;
-
+  SurveyEngineCore surveyEngineCore;
   SurveyPageViewProvider({List page}) {
+    SurveyGroupItem actual = SurveyGroupItem.fromMap(qpTest);
+    surveyEngineCore = SurveyEngineCore(surveyDef: actual);
+    dynamic rendered = surveyEngineCore.flattenSurveyItemtree();
     _surveyPage = [];
-    initialisePageItems(page ?? qp);
+    initialisePageItems(page ?? rendered);
     this._surveyPage = _surveyPage;
   }
   void initialisePageItems(List page) {
     _surveyPage = Utils.initSurveyPageProvider(page);
-    debugPrint('init something');
+    debugPrint('Init page items');
     notifyListeners();
   }
 
@@ -27,20 +30,11 @@ class SurveyPageViewProvider with ChangeNotifier {
     return _surveyPage;
   }
 
-  void setResponded(String key, {dynamic presetValue, dynamic responseItem}) {
-    int position = getItemPosition(key);
-    SurveySingleItemModel item = _surveyPage[position];
-    item.responded = true;
-    item.presetValue = presetValue;
-    item.setResponseItem(responseItem);
-    _surveyPage[position] = item;
-    debugPrint('Responded key=' + key);
-    reRenderSimulate();
-    notifyListeners();
-  }
-
-  void reRenderSimulate() {
-    _surveyPage = Utils.rerenderSurveyPageProvider(_surveyPage, q4);
+  void reRender(String key, dynamic responseItem) {
+    surveyEngineCore.setResponse(
+        key: key, response: ResponseItem.fromMap(responseItem));
+    dynamic rendered = surveyEngineCore.flattenSurveyItemtree();
+    _surveyPage = Utils.rerenderSurveyPageProvider(_surveyPage, rendered);
   }
 
   int getItemPosition(String key) {
@@ -50,5 +44,17 @@ class SurveyPageViewProvider with ChangeNotifier {
 
   SurveySingleItemModel getSurveyItemByKey(String key) {
     return _surveyPage[getItemPosition(key)];
+  }
+
+  void setResponded(String key, {dynamic presetValue, dynamic responseItem}) {
+    int position = getItemPosition(key);
+    SurveySingleItemModel item = _surveyPage[position];
+    item.responded = true;
+    item.presetValue = presetValue;
+    item.setResponseItem(responseItem);
+    _surveyPage[position] = item;
+    debugPrint('Responded key=' + key);
+    reRender(key, responseItem);
+    notifyListeners();
   }
 }
