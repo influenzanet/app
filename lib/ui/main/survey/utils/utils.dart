@@ -15,8 +15,11 @@ class Utils {
   }
 
   static getContent(dynamic itemComponents, {String code = "en"}) {
-    if (itemComponents == null || itemComponents['content'] == null) {
-      return null;
+    if (itemComponents == null ||
+        itemComponents['content'] == null ||
+        (itemComponents['displayCondition'] != null &&
+            itemComponents['displayCondition'] == false)) {
+      return '';
     }
     dynamic localisedObject = itemComponents['content'].firstWhere(
         (localizedObject) => localizedObject['code'] == code, orElse: () {
@@ -28,8 +31,11 @@ class Utils {
   }
 
   static getDescription(dynamic itemComponents, {String code = "en"}) {
-    if (itemComponents == null || itemComponents['description'] == null) {
-      return null;
+    if (itemComponents == null ||
+        itemComponents['description'] == null ||
+        (itemComponents['displayCondition'] != null &&
+            itemComponents['displayCondition'] == false)) {
+      return '';
     }
     dynamic localisedObject = itemComponents['description'].firstWhere(
         (localizedObject) => localizedObject['code'] == code, orElse: () {

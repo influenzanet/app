@@ -67,10 +67,10 @@ void main() {
       print("Components=" + components.toString());
     });
     test('Check if null is returned if itemComponents are null', () {
-      expect(Utils.getContent(null), isNull);
+      expect(Utils.getContent(null), '');
     });
     test('Check if null is returned if content is null', () {
-      expect(Utils.getContent({'content': null}), isNull);
+      expect(Utils.getContent({'content': null}), '');
     });
     test('Check if English parts are fetched from `text`', () {
       expect(Utils.getContent(components),
@@ -104,10 +104,10 @@ void main() {
       print("Components=" + components.toString());
     });
     test('Check if null is returned if itemComponents are null', () {
-      expect(Utils.getDescription(null), isNull);
+      expect(Utils.getDescription(null), '');
     });
     test('Check if null is returned if description is null', () {
-      expect(Utils.getDescription({'description': null}), isNull);
+      expect(Utils.getDescription({'description': null}), '');
     });
     test('Check if English parts are fetched from `text`', () {
       expect(Utils.getDescription(components),
