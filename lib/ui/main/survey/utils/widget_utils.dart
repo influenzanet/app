@@ -1,7 +1,7 @@
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
-import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/error_item.dart';
-import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/text_item.dart';
-import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/warning_item.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/error_component.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/text_view_component.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/components/display_component/warning_component.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/components/group_component/response_group.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/components/response_component/drop_down_group.dart';
 import 'package:InfluenzaNet/ui/main/survey/widgets/components/response_component/input.dart';
@@ -36,11 +36,11 @@ class WidgetUtils {
           ],
         );
       case 'text':
-        return TextItem(textComponent: itemComponent);
+        return TextViewComponent(textComponent: itemComponent);
       case 'error':
-        return ErrorItem(errorComponent: itemComponent);
+        return ErrorComponent(errorComponent: itemComponent);
       case 'warning':
-        return WarningItem(warningComponent: itemComponent);
+        return WarningComponent(warningComponent: itemComponent);
       default:
         debugPrint('Invalid role/role not implemented');
         return null;
@@ -84,7 +84,7 @@ class WidgetUtils {
     Widget choiceWidget;
     switch (choiceComponent['role']) {
       case 'option':
-        choiceWidget = TextItem(
+        choiceWidget = TextViewComponent(
           textComponent: choiceComponent,
         );
         break;
@@ -120,7 +120,7 @@ class WidgetUtils {
     Widget choiceWidget;
     switch (choiceComponent['role']) {
       case 'option':
-        choiceWidget = TextItem(textComponent: choiceComponent);
+        choiceWidget = TextViewComponent(textComponent: choiceComponent);
         break;
       case 'input':
         choiceWidget = CheckBoxInput(
@@ -142,8 +142,9 @@ class WidgetUtils {
       dynamic helpGroupComponent, BuildContext context) {
     List<Widget> helpWidgets = [];
     List helpGroupItems = helpGroupComponent['items'];
-    helpWidgets =
-        helpGroupItems.map((item) => TextItem(textComponent: item)).toList();
+    helpWidgets = helpGroupItems
+        .map((item) => TextViewComponent(textComponent: item))
+        .toList();
     return helpWidgets;
   }
 }

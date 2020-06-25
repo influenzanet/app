@@ -1,9 +1,9 @@
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-class TextItem extends StatelessWidget {
+class TextViewComponent extends StatelessWidget {
   final dynamic textComponent;
-  const TextItem({Key key, this.textComponent}) : super(key: key);
+  const TextViewComponent({Key key, this.textComponent}) : super(key: key);
 
   Widget _classifyStyles(BuildContext context, dynamic textComponent) {
     List styles = textComponent['style'];
