@@ -58,6 +58,12 @@ class FirstQuestionPage extends ListPage {
           primaryColor: true,
           text: 'Next',
           onPressed: () {
+            debugPrint('Sending responses');
+            dynamic responses =
+                Provider.of<SurveyPageViewProvider>(context, listen: false)
+                    .surveyEngineCore
+                    .getResponses();
+            debugPrint(responses.toString());
             onAnswered();
           },
         ),

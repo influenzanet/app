@@ -8,13 +8,14 @@ class SurveyPageViewProvider with ChangeNotifier {
   List<SurveySingleItemModel> _surveyPage;
   SurveyEngineCore surveyEngineCore;
   SurveyPageViewProvider({List page}) {
-    SurveyGroupItem actual = SurveyGroupItem.fromMap(qpTest);
-    surveyEngineCore = SurveyEngineCore(surveyDef: actual);
+    SurveyGroupItem surveyGroupItem = SurveyGroupItem.fromMap(qpTest);
+    surveyEngineCore = SurveyEngineCore(surveyDef: surveyGroupItem);
     dynamic rendered = surveyEngineCore.flattenSurveyItemtree();
     _surveyPage = [];
     initialisePageItems(page ?? rendered);
     this._surveyPage = _surveyPage;
   }
+
   void initialisePageItems(List page) {
     _surveyPage = Utils.initSurveyPageProvider(page);
     debugPrint('Init page items');
@@ -30,13 +31,6 @@ class SurveyPageViewProvider with ChangeNotifier {
     return _surveyPage;
   }
 
-  void reRender(String key, dynamic responseItem) {
-    surveyEngineCore.setResponse(
-        key: key, response: ResponseItem.fromMap(responseItem));
-    dynamic rendered = surveyEngineCore.flattenSurveyItemtree();
-    _surveyPage = Utils.rerenderSurveyPageProvider(_surveyPage, rendered);
-  }
-
   int getItemPosition(String key) {
     return _surveyPage
         .indexWhere((item) => item.surveySingleItem['key'] == key);
@@ -44,6 +38,13 @@ class SurveyPageViewProvider with ChangeNotifier {
 
   SurveySingleItemModel getSurveyItemByKey(String key) {
     return _surveyPage[getItemPosition(key)];
+  }
+
+  void reRender(String key, dynamic responseItem) {
+    surveyEngineCore.setResponse(
+        key: key, response: ResponseItem.fromMap(responseItem));
+    dynamic rendered = surveyEngineCore.flattenSurveyItemtree();
+    _surveyPage = Utils.rerenderSurveyPageProvider(_surveyPage, rendered);
   }
 
   void setResponded(String key, {dynamic presetValue, dynamic responseItem}) {
