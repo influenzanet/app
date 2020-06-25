@@ -148,7 +148,11 @@ class Utils {
           (model) => (model.surveySingleItem['key'] == surveyItem['key']),
           orElse: () => null);
       if (updatedSurveyModel != null) {
-        items.add(updatedSurveyModel);
+        SurveySingleItemModel surveySingleItem = SurveySingleItemModel(
+            responseSet: true, surveySingleItemModel: surveyItem);
+        surveySingleItem.preset = updatedSurveyModel.preset;
+        surveySingleItem.responseItem = updatedSurveyModel.getResponseItem();
+        items.add(surveySingleItem);
         return;
       }
       SurveySingleItemModel surveySingleItem = SurveySingleItemModel(

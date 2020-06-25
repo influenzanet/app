@@ -41,13 +41,17 @@ class SurveySingleItemModel {
     debugPrint('Single item set with=' + item['key'].toString());
   }
 
+  set responseItem(ResponseItem responseItem) {
+    _responseItem = responseItem;
+  }
+
   ResponseItem getResponseItem() {
     return _responseItem;
   }
 
   void setResponseItem(dynamic response) {
     _responseItem = ResponseItem.fromMap(response);
-    debugPrint('Response set=' + _responseItem.toJson());
+    debugPrint('Response set=' + _responseItem?.toJson());
   }
 
   void initResponseItem(dynamic response, String key) {
