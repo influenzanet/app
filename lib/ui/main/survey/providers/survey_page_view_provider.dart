@@ -6,10 +6,10 @@ import 'package:survey_engine.dart/api/api.dart';
 
 class SurveyPageViewProvider with ChangeNotifier {
   List<SurveySingleItemModel> _surveyPage;
-  SurveyEngineCore surveyEngineCore;
+  SurveyEngineCoreApi surveyEngineCore;
   SurveyPageViewProvider({List page}) {
     SurveyGroupItem surveyGroupItem = SurveyGroupItem.fromMap(qpTest);
-    surveyEngineCore = SurveyEngineCore(surveyDef: surveyGroupItem);
+    surveyEngineCore = SurveyEngineCoreApi(surveyDef: surveyGroupItem);
     dynamic rendered = surveyEngineCore.flattenSurveyItemtree();
     _surveyPage = [];
     initialisePageItems(page ?? rendered);
