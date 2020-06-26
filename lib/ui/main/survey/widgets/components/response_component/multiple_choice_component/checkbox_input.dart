@@ -10,9 +10,15 @@ class CheckBoxInput extends StatelessWidget {
   final String itemKey;
   final String content;
   final String surveyKey;
+  final bool disabled;
 
   CheckBoxInput(
-      {Key key, this.groupKey, this.itemKey, this.content, this.surveyKey})
+      {Key key,
+      this.groupKey,
+      this.itemKey,
+      this.content,
+      this.surveyKey,
+      this.disabled})
       : super(key: key);
 
   void _submitResponse(BuildContext context, String value, dynamic preset,
@@ -40,6 +46,13 @@ class CheckBoxInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
+    TextTheme textTheme = themeData.textTheme;
+
+    if (disabled == true) {
+      textTheme = themeData.textTheme.apply(
+          displayColor: themeData.disabledColor,
+          bodyColor: themeData.disabledColor);
+    }
     SurveySingleItemModel surveySingleItemModel =
         Provider.of<SurveyPageViewProvider>(context, listen: false)
             .getSurveyItemByKey(surveyKey);
@@ -47,9 +60,10 @@ class CheckBoxInput extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Text(content ?? '', style: themeData.textTheme.bodyText2),
+        Text(content ?? '', style: textTheme.bodyText2),
         Expanded(
           child: ThemedTextFormField(
+            enabled: (!(disabled ?? false)),
             onFieldSubmitted: (String value) =>
                 _submitResponse(context, value, preset, surveySingleItemModel),
           ),

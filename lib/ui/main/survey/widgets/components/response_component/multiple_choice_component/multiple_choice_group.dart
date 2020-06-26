@@ -39,30 +39,50 @@ class MultipleChoiceGroup extends StatelessWidget {
     }
     choiceList.forEach((item) {
       String key = item['key'];
-      Widget itemWidget = CheckboxListTile(
-        controlAffinity: ListTileControlAffinity.leading,
-        title: WidgetUtils.classifyMultipleChoiceGroupComponent(
-            choiceComponent: item,
-            groupKey: itemGroupKey,
-            itemKey: item['key'],
-            content: Utils.getContent(item),
-            surveyKey: surveyKey),
-        value: optionValues[key],
-        onChanged: (bool value) {
-          optionValues[key] = !optionValues[key];
-          List activeKeys =
-              optionValues.keys.where((k) => optionValues[k] == true).toList();
-          List valuePairs =
-              activeKeys.map((key) => {'key': key, 'value': null}).toList();
-          dynamic response = Utils.constructMultipleChoiceGroupItem(
+      var disabled = item['disabled'] ?? false;
+      debugPrint('Disabled=' + disabled.toString());
+      Widget itemWidget;
+      if (disabled == true) {
+        itemWidget = CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: WidgetUtils.classifyMultipleChoiceGroupComponent(
+              choiceComponent: item,
               groupKey: itemGroupKey,
-              valuePairs: valuePairs,
-              responseItem: surveySingleItemModel.getResponseItem());
-          Provider.of<SurveyPageViewProvider>(context, listen: false)
-              .setResponded(surveyKey,
-                  presetValue: valuePairs, responseItem: response);
-        },
-      );
+              itemKey: item['key'],
+              content: Utils.getContent(item),
+              surveyKey: surveyKey,
+              disabled: true),
+          value: false,
+          onChanged: null,
+        );
+      } else {
+        itemWidget = CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: WidgetUtils.classifyMultipleChoiceGroupComponent(
+              choiceComponent: item,
+              groupKey: itemGroupKey,
+              itemKey: item['key'],
+              content: Utils.getContent(item),
+              surveyKey: surveyKey),
+          value: optionValues[key],
+          onChanged: (bool value) {
+            optionValues[key] = !optionValues[key];
+            List activeKeys = optionValues.keys
+                .where((k) => optionValues[k] == true)
+                .toList();
+            List valuePairs =
+                activeKeys.map((key) => {'key': key, 'value': null}).toList();
+            dynamic response = Utils.constructMultipleChoiceGroupItem(
+                groupKey: itemGroupKey,
+                valuePairs: valuePairs,
+                responseItem: surveySingleItemModel.getResponseItem());
+            Provider.of<SurveyPageViewProvider>(context, listen: false)
+                .setResponded(surveyKey,
+                    presetValue: valuePairs, responseItem: response);
+          },
+        );
+      }
+
       if (itemWidget != null) {
         result.add(itemWidget);
       }

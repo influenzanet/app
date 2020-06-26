@@ -116,18 +116,21 @@ class WidgetUtils {
       String groupKey,
       String itemKey,
       String content,
-      String surveyKey}) {
+      String surveyKey,
+      bool disabled}) {
     Widget choiceWidget;
     switch (choiceComponent['role']) {
       case 'option':
-        choiceWidget = TextViewComponent(textComponent: choiceComponent);
+        choiceWidget = TextViewComponent(
+            textComponent: choiceComponent, disabled: disabled);
         break;
       case 'input':
         choiceWidget = CheckBoxInput(
             groupKey: groupKey,
             itemKey: itemKey,
             content: content,
-            surveyKey: surveyKey);
+            surveyKey: surveyKey,
+            disabled: disabled);
         break;
       default:
         debugPrint('Invalid or not implemented response component');

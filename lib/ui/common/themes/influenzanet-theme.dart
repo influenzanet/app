@@ -9,6 +9,13 @@ ThemeData influenzaNetTheme = ThemeData(
   canvasColor: ThemeElements.canvasColor,
   disabledColor: Colors.grey[350],
   textTheme: TextTheme(
+      caption: ThemeElements.displayTextStyle,
+      button: ThemeElements.displayTextStyle,
+      overline: ThemeElements.displayTextStyle,
+      subtitle2: ThemeElements.displayTextStyle,
+      subtitle1: ThemeElements.displayTextStyle,
+      headline6: ThemeElements.displayTextStyle,
+      headline5: ThemeElements.displayTextStyle,
       headline4: ThemeElements.displayTextStyle,
       headline3: ThemeElements.displayTextStyle,
       headline2: ThemeElements.displayTextStyle,

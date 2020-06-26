@@ -10,8 +10,10 @@ class ThemedTextFormField extends TextFormField {
       bool readOnly: false,
       bool autocorrect: false,
       Function onFieldSubmitted,
-      TextEditingController controller})
+      TextEditingController controller,
+      bool enabled})
       : super(
+          enabled: enabled,
           onFieldSubmitted: onFieldSubmitted,
           textInputAction: TextInputAction.done,
           controller: controller,
