@@ -33,18 +33,35 @@ class SingleChoiceGroup extends StatelessWidget {
     String itemGroupKey = singleChoiceGroupComponent['key'];
     List<Widget> result = [];
     itemList.forEach((item) {
-      Widget itemWidget = RadioListTile(
-        groupValue: ((preset == null) ? null : preset['key']),
-        title: WidgetUtils.classifySingleChoiceGroupComponent(
-            choiceComponent: item,
-            groupKey: itemGroupKey,
-            itemKey: item['key'],
-            content: Utils.getContent(item),
-            surveyKey: surveyKey),
-        value: item['key'],
-        onChanged: (value) =>
-            _submitResponse(context, value, surveySingleItemModel),
-      );
+      bool disabled = item['disabled'] ?? false;
+      Widget itemWidget;
+      if (disabled == true) {
+        itemWidget = RadioListTile(
+          groupValue: ((preset == null) ? null : preset['key']),
+          title: WidgetUtils.classifySingleChoiceGroupComponent(
+              choiceComponent: item,
+              groupKey: itemGroupKey,
+              itemKey: item['key'],
+              content: Utils.getContent(item),
+              surveyKey: surveyKey,
+              disabled: true),
+          value: item['key'],
+          onChanged: null,
+        );
+      } else {
+        itemWidget = RadioListTile(
+          groupValue: ((preset == null) ? null : preset['key']),
+          title: WidgetUtils.classifySingleChoiceGroupComponent(
+              choiceComponent: item,
+              groupKey: itemGroupKey,
+              itemKey: item['key'],
+              content: Utils.getContent(item),
+              surveyKey: surveyKey),
+          value: item['key'],
+          onChanged: (value) =>
+              _submitResponse(context, value, surveySingleItemModel),
+        );
+      }
 
       if (itemWidget != null) {
         result.add(itemWidget);

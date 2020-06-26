@@ -39,8 +39,7 @@ class MultipleChoiceGroup extends StatelessWidget {
     }
     choiceList.forEach((item) {
       String key = item['key'];
-      var disabled = item['disabled'] ?? false;
-      debugPrint('Disabled=' + disabled.toString());
+      bool disabled = item['disabled'] ?? false;
       Widget itemWidget;
       if (disabled == true) {
         itemWidget = CheckboxListTile(

@@ -10,9 +10,15 @@ class RadioInput extends StatelessWidget {
   final String itemKey;
   final String content;
   final String surveyKey;
+  final bool disabled;
 
   RadioInput(
-      {Key key, this.itemGroupKey, this.itemKey, this.content, this.surveyKey})
+      {Key key,
+      this.itemGroupKey,
+      this.itemKey,
+      this.content,
+      this.surveyKey,
+      this.disabled})
       : super(key: key);
 
   void _submitResponse(BuildContext context, String value,
@@ -31,6 +37,12 @@ class RadioInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
+    TextTheme textTheme = themeData.textTheme;
+    if (disabled == true) {
+      textTheme = themeData.textTheme.apply(
+          displayColor: themeData.disabledColor,
+          bodyColor: themeData.disabledColor);
+    }
     SurveySingleItemModel surveySingleItemModel =
         Provider.of<SurveyPageViewProvider>(context, listen: false)
             .getSurveyItemByKey(surveyKey);
@@ -38,9 +50,10 @@ class RadioInput extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Text(content ?? '', style: themeData.textTheme.bodyText2),
+        Text(content ?? '', style: textTheme.bodyText2),
         Expanded(
           child: ThemedTextFormField(
+            enabled: (!(disabled ?? false)),
             initialValue: (preset == null || preset['key'] != itemKey)
                 ? null
                 : preset['value'] ?? '',

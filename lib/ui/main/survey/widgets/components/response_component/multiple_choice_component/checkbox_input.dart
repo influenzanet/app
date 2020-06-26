@@ -47,7 +47,6 @@ class CheckBoxInput extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
     TextTheme textTheme = themeData.textTheme;
-
     if (disabled == true) {
       textTheme = themeData.textTheme.apply(
           displayColor: themeData.disabledColor,

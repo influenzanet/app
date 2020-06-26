@@ -80,27 +80,29 @@ class WidgetUtils {
       String groupKey,
       String itemKey,
       String content,
-      String surveyKey}) {
+      String surveyKey,
+      bool disabled}) {
     Widget choiceWidget;
     switch (choiceComponent['role']) {
       case 'option':
         choiceWidget = TextViewComponent(
-          textComponent: choiceComponent,
-        );
+            textComponent: choiceComponent, disabled: disabled);
         break;
       case 'input':
         choiceWidget = RadioInput(
             itemGroupKey: groupKey,
             itemKey: itemKey,
             content: content,
-            surveyKey: surveyKey);
+            surveyKey: surveyKey,
+            disabled: disabled);
         break;
       case 'numberInput':
         choiceWidget = RadioNumberInput(
             itemGroupKey: groupKey,
             itemKey: itemKey,
             content: content,
-            surveyKey: surveyKey);
+            surveyKey: surveyKey,
+            disabled: disabled);
         break;
       default:
         debugPrint('Invalid or not implemented response component');
