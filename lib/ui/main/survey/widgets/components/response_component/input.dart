@@ -31,7 +31,9 @@ class Input extends StatelessWidget {
         Provider.of<SurveyPageViewProvider>(context, listen: false)
             .getSurveyItemByKey(surveyKey);
     dynamic preset = surveySingleItemModel.preset;
+    bool disabled = inputComponent['disabled'] ?? false;
     return ThemedTextFormField(
+      enabled: !(disabled),
       initialValue: (preset == null) ? null : preset['value'],
       onFieldSubmitted: (String value) =>
           _submitResponse(context, value, surveySingleItemModel),

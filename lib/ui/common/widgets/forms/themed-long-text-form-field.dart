@@ -9,8 +9,10 @@ class ThemedLongTextFormField extends TextFormField {
       bool readOnly: false,
       bool autocorrect: false,
       Function onFieldSubmitted,
-      TextEditingController controller})
+      TextEditingController controller,
+      bool enabled})
       : super(
+          enabled: enabled,
           initialValue: initialValue,
           onFieldSubmitted: onFieldSubmitted,
           textInputAction: TextInputAction.done,
