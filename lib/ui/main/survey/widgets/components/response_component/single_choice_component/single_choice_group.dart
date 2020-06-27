@@ -12,16 +12,33 @@ class SingleChoiceGroup extends StatelessWidget {
   SingleChoiceGroup({Key key, this.singleChoiceGroupComponent, this.surveyKey})
       : super(key: key);
 
-  void _submitResponse(BuildContext context, String value,
-      SurveySingleItemModel surveySingleItemModel) {
-    dynamic valuePair = {'key': value, 'value': null};
+  void _submitResponse(BuildContext context, String newValue,
+      dynamic presetValue, SurveySingleItemModel surveySingleItemModel) {
+    dynamic newPresetPair = {
+      'groupKey': singleChoiceGroupComponent['key'],
+      'key': newValue,
+      'value': null
+    };
+    if (presetValue == null) {
+      presetValue = [];
+      presetValue.add(newPresetPair);
+    } else {
+      int position = presetValue.indexWhere(
+          (pre) => pre['groupKey'] == singleChoiceGroupComponent['key']);
+      if (position == -1) {
+        presetValue.add(newPresetPair);
+      } else {
+        presetValue[position] = newPresetPair;
+      }
+    }
+    dynamic valuePair = {'key': newValue, 'value': null};
     dynamic response = Utils.constructSingleChoiceGroupItem(
         groupKey: singleChoiceGroupComponent['key'],
         valuePair: valuePair,
         responseItem: surveySingleItemModel.getResponseItem());
     Provider.of<SurveyPageViewProvider>(context, listen: false).setResponded(
         surveyKey,
-        presetValue: valuePair,
+        presetValue: presetValue,
         responseItem: response);
   }
 
@@ -29,7 +46,15 @@ class SingleChoiceGroup extends StatelessWidget {
     SurveySingleItemModel surveySingleItemModel =
         Provider.of<SurveyPageViewProvider>(context, listen: false)
             .getSurveyItemByKey(surveyKey);
-    dynamic preset = surveySingleItemModel.preset;
+    dynamic presetValue = surveySingleItemModel.preset;
+    dynamic preset;
+    if (presetValue == null) {
+      preset = null;
+    } else {
+      preset = presetValue.singleWhere(
+          (pre) => pre['groupKey'] == singleChoiceGroupComponent['key'],
+          orElse: () => null);
+    }
     String itemGroupKey = singleChoiceGroupComponent['key'];
     List<Widget> result = [];
     itemList.forEach((item) {
@@ -58,11 +83,10 @@ class SingleChoiceGroup extends StatelessWidget {
               content: Utils.getContent(item),
               surveyKey: surveyKey),
           value: item['key'],
-          onChanged: (value) =>
-              _submitResponse(context, value, surveySingleItemModel),
+          onChanged: (newValue) => _submitResponse(
+              context, newValue, presetValue, surveySingleItemModel),
         );
       }
-
       if (itemWidget != null) {
         result.add(itemWidget);
       }
