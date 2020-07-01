@@ -48,14 +48,13 @@ class SingleChoiceGroup extends StatelessWidget {
             .getSurveyItemByKey(surveyKey);
     dynamic presetValue = surveySingleItemModel.preset;
     dynamic preset;
+    String itemGroupKey = singleChoiceGroupComponent['key'];
     if (presetValue == null) {
       preset = null;
     } else {
-      preset = presetValue.singleWhere(
-          (pre) => pre['groupKey'] == singleChoiceGroupComponent['key'],
+      preset = presetValue.singleWhere((pre) => pre['groupKey'] == itemGroupKey,
           orElse: () => null);
     }
-    String itemGroupKey = singleChoiceGroupComponent['key'];
     List<Widget> result = [];
     itemList.forEach((item) {
       bool disabled = item['disabled'] ?? false;

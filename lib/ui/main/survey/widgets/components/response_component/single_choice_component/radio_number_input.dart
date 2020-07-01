@@ -21,16 +21,33 @@ class RadioNumberInput extends StatelessWidget {
       this.disabled})
       : super(key: key);
 
-  void _submitResponse(BuildContext context, String value,
-      SurveySingleItemModel surveySingleItemModel) {
-    dynamic valuePair = {'key': itemKey, 'value': value};
+  void _submitResponse(BuildContext context, String newValue,
+      SurveySingleItemModel surveySingleItemModel, dynamic presetValue) {
+    dynamic valuePair = {'key': itemKey, 'value': newValue};
+    dynamic newPresetPair = {
+      'groupKey': itemGroupKey,
+      'key': itemKey,
+      'value': newValue
+    };
+    if (presetValue == null) {
+      presetValue = [];
+      presetValue.add(newPresetPair);
+    } else {
+      int position =
+          presetValue.indexWhere((pre) => pre['groupKey'] == itemGroupKey);
+      if (position == -1) {
+        presetValue.add(newPresetPair);
+      } else {
+        presetValue[position] = newPresetPair;
+      }
+    }
     dynamic response = Utils.constructSingleChoiceGroupItem(
         groupKey: itemGroupKey,
         valuePair: valuePair,
         responseItem: surveySingleItemModel.getResponseItem());
     Provider.of<SurveyPageViewProvider>(context, listen: false).setResponded(
         surveyKey,
-        presetValue: valuePair,
+        presetValue: presetValue,
         responseItem: response);
   }
 
@@ -46,7 +63,14 @@ class RadioNumberInput extends StatelessWidget {
     SurveySingleItemModel surveySingleItemModel =
         Provider.of<SurveyPageViewProvider>(context, listen: false)
             .getSurveyItemByKey(surveyKey);
+    dynamic presetValue = surveySingleItemModel.preset;
     dynamic preset = surveySingleItemModel.preset;
+    if (presetValue == null) {
+      preset = null;
+    } else {
+      preset = presetValue.singleWhere((pre) => pre['groupKey'] == itemGroupKey,
+          orElse: () => null);
+    }
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -55,9 +79,11 @@ class RadioNumberInput extends StatelessWidget {
           child: ThemedTextFormField(
             enabled: (!(disabled ?? false)),
             keyboardType: TextInputType.number,
-            initialValue: (preset == null) ? null : preset['value'] ?? '',
-            onFieldSubmitted: (String value) =>
-                _submitResponse(context, value, surveySingleItemModel),
+            initialValue: (preset == null || preset['key'] != itemKey)
+                ? null
+                : preset['value'] ?? '',
+            onFieldSubmitted: (String value) => _submitResponse(
+                context, value, surveySingleItemModel, presetValue),
           ),
         ),
       ],
