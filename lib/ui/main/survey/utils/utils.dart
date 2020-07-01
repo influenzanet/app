@@ -1,5 +1,5 @@
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
-import 'package:survey_engine.dart/api/api.dart';
+import 'package:influenzanet_survey_engine/api/api.dart';
 
 class Utils {
   static getSingleItemComponentsByRole(dynamic itemComponents, String role,

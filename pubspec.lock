@@ -165,6 +165,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.12"
+  influenzanet_survey_engine:
+    dependency: "direct dev"
+    description:
+      path: "C:\\src\\ananth\\dart_projects\\survey-engine.dart\\"
+      relative: false
+    source: path
+    version: "0.1.0"
   io:
     dependency: transitive
     description:
@@ -373,13 +380,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  "survey_engine.dart":
-    dependency: "direct dev"
-    description:
-      path: "C:\\src\\ananth\\dart_projects\\survey-engine.dart\\"
-      relative: false
-    source: path
-    version: "0.0.0"
   term_glyph:
     dependency: transitive
     description:

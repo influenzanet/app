@@ -2,7 +2,7 @@ import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
 import 'package:InfluenzaNet/ui/main/survey/models/unrendered/qp.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:survey_engine.dart/api/api.dart';
+import 'package:influenzanet_survey_engine/api/api.dart';
 
 class SurveyPageViewProvider with ChangeNotifier {
   List<SurveySingleItemModel> _surveyPage;

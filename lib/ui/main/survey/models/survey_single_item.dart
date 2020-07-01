@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:survey_engine.dart/api/api.dart';
+import 'package:influenzanet_survey_engine/api/api.dart';
 
 class SurveySingleItemModel {
   dynamic _surveySingleItemModel;

@@ -34,7 +34,7 @@ dev_dependencies:
   test: ^1.6.0
   flutter_launcher_icons: ^0.7.3
 
-  survey_engine.dart:
+  influenzanet_survey_engine:
     path: C:\src\ananth\dart_projects\survey-engine.dart\
 
 flutter_icons:
