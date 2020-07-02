@@ -25,27 +25,6 @@ class DropDownGroup extends StatelessWidget {
     return result;
   }
 
-  _updatePreset(dynamic presetValue, String newValue) {
-    dynamic newPresetPair = {
-      'groupKey': dropDownGroupComponent['key'],
-      'key': newValue,
-      'value': null
-    };
-    if (presetValue == null) {
-      presetValue = [];
-      presetValue.add(newPresetPair);
-    } else {
-      int position = presetValue.indexWhere(
-          (pre) => pre['groupKey'] == dropDownGroupComponent['key']);
-      if (position == -1) {
-        presetValue.add(newPresetPair);
-      } else {
-        presetValue[position] = newPresetPair;
-      }
-    }
-    return presetValue;
-  }
-
   @override
   Widget build(BuildContext context) {
     SurveySingleItemModel surveySingleItemModel =
@@ -53,6 +32,7 @@ class DropDownGroup extends StatelessWidget {
             .getSurveyItemByKey(surveyKey);
     dynamic presetValue = surveySingleItemModel.preset;
     dynamic preset;
+
     if (presetValue == null) {
       preset = null;
     } else {
@@ -60,6 +40,7 @@ class DropDownGroup extends StatelessWidget {
           (pre) => pre['groupKey'] == dropDownGroupComponent['key'],
           orElse: () => null);
     }
+
     return Container(
       child: SingleChildScrollView(
         child: Column(
@@ -89,7 +70,11 @@ class DropDownGroup extends StatelessWidget {
                           valuePair: valuePair,
                           responseItem:
                               surveySingleItemModel.getResponseItem());
-                      presetValue = _updatePreset(presetValue, newValue);
+                      presetValue = Utils.updateSingleChoicePresetValue(
+                        presetValue: presetValue,
+                        groupKey: dropDownGroupComponent['key'],
+                        key: newValue,
+                      );
                       Provider.of<SurveyPageViewProvider>(context,
                               listen: false)
                           .setResponded(surveyKey,
