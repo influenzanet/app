@@ -113,6 +113,24 @@ class Utils {
     return response;
   }
 
+  static updateSingleChoicePresetValue(
+      {dynamic presetValue, String groupKey, String key, String value}) {
+    dynamic newPresetPair = {'groupKey': groupKey, 'key': key, 'value': value};
+    if (presetValue == null) {
+      presetValue = [];
+      presetValue.add(newPresetPair);
+    } else {
+      int position =
+          presetValue.indexWhere((pre) => pre['groupKey'] == groupKey);
+      if (position == -1) {
+        presetValue.add(newPresetPair);
+      } else {
+        presetValue[position] = newPresetPair;
+      }
+    }
+    return presetValue;
+  }
+
   static initSurveyPageProvider(List surveyItems) {
     List<SurveySingleItemModel> items = [];
     surveyItems.forEach((surveyItem) {

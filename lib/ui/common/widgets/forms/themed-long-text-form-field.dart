@@ -10,14 +10,15 @@ class ThemedLongTextFormField extends TextFormField {
       bool autocorrect: false,
       Function onFieldSubmitted,
       TextEditingController controller,
-      bool enabled})
+      bool enabled,
+      TextStyle style})
       : super(
           enabled: enabled,
           initialValue: initialValue,
           onFieldSubmitted: onFieldSubmitted,
           textInputAction: TextInputAction.done,
           controller: controller,
-          style: ThemeElements.longTextFormFieldTextStyle,
+          style: style ?? ThemeElements.longTextFormFieldTextStyle,
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: ThemeElements.longTextFormFieldTextStyle,

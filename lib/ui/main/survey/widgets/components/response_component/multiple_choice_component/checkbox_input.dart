@@ -62,9 +62,10 @@ class CheckBoxInput extends StatelessWidget {
         Text(content ?? '', style: textTheme.bodyText2),
         Expanded(
           child: ThemedTextFormField(
-            enabled: (!(disabled ?? false)),
             onFieldSubmitted: (String value) =>
                 _submitResponse(context, value, preset, surveySingleItemModel),
+            enabled: (!(disabled ?? false)),
+            style: textTheme.bodyText2,
           ),
         ),
       ],

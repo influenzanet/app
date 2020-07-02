@@ -11,14 +11,15 @@ class ThemedTextFormField extends TextFormField {
       bool autocorrect: false,
       Function onFieldSubmitted,
       TextEditingController controller,
-      bool enabled})
+      bool enabled,
+      TextStyle style})
       : super(
           enabled: enabled,
           onFieldSubmitted: onFieldSubmitted,
           textInputAction: TextInputAction.done,
           controller: controller,
           initialValue: initialValue,
-          style: ThemeElements.bigButtonTextStyle,
+          style: style ?? ThemeElements.bigButtonTextStyle,
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: ThemeElements.bigButtonTextStyle,

@@ -27,16 +27,18 @@ class MultilineInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     SurveySingleItemModel surveySingleItemModel =
         Provider.of<SurveyPageViewProvider>(context, listen: false)
             .getSurveyItemByKey(surveyKey);
     dynamic preset = surveySingleItemModel.preset;
     bool disabled = inputComponent['disabled'] ?? false;
     return ThemedLongTextFormField(
-      enabled: !(disabled),
       initialValue: (preset == null) ? null : preset['value'],
       onFieldSubmitted: (String value) =>
           _submitResponse(context, value, surveySingleItemModel),
+      enabled: !(disabled),
+      style: themeData.textTheme.bodyText2,
     );
   }
 }

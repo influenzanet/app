@@ -36,6 +36,9 @@ const qpTest = {
                 "items": [
                   {
                     "role": "text",
+                    "style": [
+                      {"key": 'variant', "value": 'subtitle2'}
+                    ],
                     "content": [
                       {
                         "code": "en",
@@ -76,6 +79,9 @@ const qpTest = {
                   },
                   {
                     "role": "text",
+                    "style": [
+                      {"key": 'variant', "value": 'subtitle2'}
+                    ],
                     "content": [
                       {
                         "code": "en",
@@ -387,6 +393,9 @@ const qpTest = {
                 "items": [
                   {
                     "role": "text",
+                    "style": [
+                      {"key": 'variant', "value": 'subtitle2'}
+                    ],
                     "content": [
                       {
                         "code": "en",
@@ -427,6 +436,9 @@ const qpTest = {
                   },
                   {
                     "role": "text",
+                    "style": [
+                      {"key": 'variant', "value": 'subtitle2'}
+                    ],
                     "content": [
                       {
                         "code": "en",
@@ -524,7 +536,7 @@ const qpTest = {
                         ]
                       }
                     ]
-                  }
+                  },
                 ]
               }
             ]
@@ -607,6 +619,9 @@ const qpTest = {
                 "items": [
                   {
                     "role": "text",
+                    "style": [
+                      {"key": 'variant', "value": 'subtitle2'}
+                    ],
                     "content": [
                       {
                         "code": "en",
@@ -647,6 +662,9 @@ const qpTest = {
                   },
                   {
                     "role": "text",
+                    "style": [
+                      {"key": 'variant', "value": 'subtitle2'}
+                    ],
                     "content": [
                       {
                         "code": "en",
@@ -1013,7 +1031,7 @@ const qpTest = {
                   {
                     "role": "text",
                     "style": [
-                      {"key": "abc", "value": "abc"}
+                      {"key": 'variant', "value": 'subtitle2'}
                     ],
                     "content": [
                       {
@@ -1055,6 +1073,9 @@ const qpTest = {
                   },
                   {
                     "role": "text",
+                    "style": [
+                      {"key": 'variant', "value": 'subtitle2'}
+                    ],
                     "content": [
                       {
                         "code": "en",
@@ -1300,6 +1321,9 @@ const qpTest = {
                 "items": [
                   {
                     "role": "text",
+                    "style": [
+                      {"key": 'variant', "value": 'subtitle2'}
+                    ],
                     "content": [
                       {
                         "code": "en",
@@ -1343,6 +1367,9 @@ const qpTest = {
                     "content": [
                       {
                         "code": "en",
+                        "style": [
+                          {"key": 'variant', "value": 'subtitle2'}
+                        ],
                         "parts": [
                           {"str": "How should I answer it?"}
                         ]
@@ -1640,6 +1667,9 @@ const qpTest = {
                 "items": [
                   {
                     "role": "text",
+                    "style": [
+                      {"key": 'variant', "value": 'subtitle2'}
+                    ],
                     "content": [
                       {
                         "code": "en",
@@ -1680,6 +1710,9 @@ const qpTest = {
                   },
                   {
                     "role": "text",
+                    "style": [
+                      {"key": 'variant', "value": 'subtitle2'}
+                    ],
                     "content": [
                       {
                         "code": "en",

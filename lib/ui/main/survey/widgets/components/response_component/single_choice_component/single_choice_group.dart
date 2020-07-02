@@ -14,23 +14,10 @@ class SingleChoiceGroup extends StatelessWidget {
 
   void _submitResponse(BuildContext context, String newValue,
       dynamic presetValue, SurveySingleItemModel surveySingleItemModel) {
-    dynamic newPresetPair = {
-      'groupKey': singleChoiceGroupComponent['key'],
-      'key': newValue,
-      'value': null
-    };
-    if (presetValue == null) {
-      presetValue = [];
-      presetValue.add(newPresetPair);
-    } else {
-      int position = presetValue.indexWhere(
-          (pre) => pre['groupKey'] == singleChoiceGroupComponent['key']);
-      if (position == -1) {
-        presetValue.add(newPresetPair);
-      } else {
-        presetValue[position] = newPresetPair;
-      }
-    }
+    presetValue = Utils.updateSingleChoicePresetValue(
+        presetValue: presetValue,
+        groupKey: singleChoiceGroupComponent['key'],
+        key: newValue);
     dynamic valuePair = {'key': newValue, 'value': null};
     dynamic response = Utils.constructSingleChoiceGroupItem(
         groupKey: singleChoiceGroupComponent['key'],

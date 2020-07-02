@@ -21,26 +21,17 @@ class RadioInput extends StatelessWidget {
       this.disabled})
       : super(key: key);
 
-  void _submitResponse(BuildContext context, String newValue,
-      SurveySingleItemModel surveySingleItemModel, dynamic presetValue) {
+  void _submitResponse(
+      {BuildContext context,
+      String newValue,
+      SurveySingleItemModel surveySingleItemModel,
+      dynamic presetValue}) {
     dynamic valuePair = {'key': itemKey, 'value': newValue};
-    dynamic newPresetPair = {
-      'groupKey': itemGroupKey,
-      'key': itemKey,
-      'value': newValue
-    };
-    if (presetValue == null) {
-      presetValue = [];
-      presetValue.add(newPresetPair);
-    } else {
-      int position =
-          presetValue.indexWhere((pre) => pre['groupKey'] == itemGroupKey);
-      if (position == -1) {
-        presetValue.add(newPresetPair);
-      } else {
-        presetValue[position] = newPresetPair;
-      }
-    }
+    presetValue = Utils.updateSingleChoicePresetValue(
+        presetValue: presetValue,
+        groupKey: itemGroupKey,
+        key: itemKey,
+        value: newValue);
     dynamic response = Utils.constructSingleChoiceGroupItem(
         groupKey: itemGroupKey,
         valuePair: valuePair,
@@ -53,36 +44,48 @@ class RadioInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    dynamic preset;
+    String initialValue;
     ThemeData themeData = Theme.of(context);
     TextTheme textTheme = themeData.textTheme;
-    if (disabled == true) {
-      textTheme = themeData.textTheme.apply(
-          displayColor: themeData.disabledColor,
-          bodyColor: themeData.disabledColor);
-    }
+    bool enabled = (!(disabled ?? false));
     SurveySingleItemModel surveySingleItemModel =
         Provider.of<SurveyPageViewProvider>(context, listen: false)
             .getSurveyItemByKey(surveyKey);
     dynamic presetValue = surveySingleItemModel.preset;
-    dynamic preset = surveySingleItemModel.preset;
+
     if (presetValue == null) {
       preset = null;
     } else {
       preset = presetValue.singleWhere((pre) => pre['groupKey'] == itemGroupKey,
           orElse: () => null);
     }
+
+    if (disabled == true) {
+      textTheme = themeData.textTheme.apply(
+          displayColor: themeData.disabledColor,
+          bodyColor: themeData.disabledColor);
+      initialValue = '';
+    } else {
+      if (preset != null && preset['key'] == itemKey) {
+        initialValue = preset['value'] ?? '';
+      }
+    }
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Text(content ?? '', style: textTheme.bodyText2),
         Expanded(
           child: ThemedTextFormField(
-            enabled: (!(disabled ?? false)),
-            initialValue: (preset == null || preset['key'] != itemKey)
-                ? null
-                : preset['value'] ?? '',
-            onFieldSubmitted: (String value) => _submitResponse(
-                context, value, surveySingleItemModel, presetValue),
+            initialValue: initialValue,
+            onFieldSubmitted: (String newValue) => _submitResponse(
+                context: context,
+                newValue: newValue,
+                surveySingleItemModel: surveySingleItemModel,
+                presetValue: presetValue),
+            enabled: enabled,
+            style: textTheme.bodyText2,
           ),
         ),
       ],
