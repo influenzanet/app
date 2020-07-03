@@ -3,7 +3,7 @@ import 'package:InfluenzaNet/ui/common/widgets/buttons/themed-primary-button.dar
 import 'package:InfluenzaNet/ui/common/widgets/cards/themed-card.dart';
 import 'package:InfluenzaNet/ui/common/widgets/pages/list-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/exit-survey-button.dart';
-import 'package:InfluenzaNet/ui/main/survey/widgets/answer-wrap.dart';
+import 'package:InfluenzaNet/ui/main/survey/widgets/survey_item_view/answer-wrap.dart';
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:flutter/material.dart';
 

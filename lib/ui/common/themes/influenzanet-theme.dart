@@ -9,6 +9,13 @@ ThemeData influenzaNetTheme = ThemeData(
   canvasColor: ThemeElements.canvasColor,
   disabledColor: Colors.grey[350],
   textTheme: TextTheme(
+      caption: ThemeElements.displayTextStyle,
+      button: ThemeElements.displayTextStyle,
+      overline: ThemeElements.displayTextStyle,
+      subtitle2: ThemeElements.displayTextStyle,
+      subtitle1: ThemeElements.displayTextStyle,
+      headline6: ThemeElements.displayTextStyle,
+      headline5: ThemeElements.displayTextStyle,
       headline4: ThemeElements.displayTextStyle,
       headline3: ThemeElements.displayTextStyle,
       headline2: ThemeElements.displayTextStyle,
@@ -64,8 +71,17 @@ class ThemeElements {
 
   static const Color canvasColor = const Color(0xfff2f2f2);
 
+  static const Color helpBackgroundColor = const Color(0xfff1f1f1);
+
   static const TextStyle displayTextStyle = TextStyle(color: Colors.black);
   static const TextStyle bigButtonTextStyle = TextStyle(fontSize: 20.0);
+  static const TextStyle hintTextStyle = TextStyle();
+
+  static const TextStyle errorTextStyle =
+      TextStyle(color: Color(0xffb02300), fontWeight: FontWeight.bold);
+  static const TextStyle warningTextStyle =
+      TextStyle(color: Color(0xffffce00), fontWeight: FontWeight.bold);
+
   static const TextStyle longTextFormFieldTextStyle = TextStyle(fontSize: 14.0);
 
   static const EdgeInsetsGeometry bigButtonPaddingGeometry =
