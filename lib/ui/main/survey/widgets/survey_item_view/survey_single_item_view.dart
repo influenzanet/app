@@ -68,11 +68,9 @@ class SurveySingleItemView extends StatelessWidget {
       barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(36.0))),
           backgroundColor: ThemeElements.helpBackgroundColor,
-          title: Text(
-            'Help',
-            textAlign: TextAlign.center,
-          ),
           content: SingleChildScrollView(
             child: ListBody(
               children: helpWidgets,
@@ -80,7 +78,10 @@ class SurveySingleItemView extends StatelessWidget {
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text('OK'),
+              child: Text(
+                'OK',
+                textAlign: TextAlign.center,
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
