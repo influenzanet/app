@@ -27,7 +27,6 @@
 .packages
 .pub-cache/
 .pub/
-pubspec.lock
 /build/
 
 # Android related
@@ -37,7 +36,6 @@ pubspec.lock
 **/android/gradlew
 **/android/gradlew.bat
 **/android/local.properties
-**/android/gradle.properties
 **/android/**/GeneratedPluginRegistrant.java
 
 # iOS/XCode related
