@@ -20,14 +20,14 @@ class FirstQuestionPage extends ListPage {
 
   List<Widget> itemBuildArray({List array}) {
     List result = array
-        .map((e) => Padding(
+        .map((item) => Padding(
             padding: const EdgeInsets.only(
               left: ThemeElements.pagePadding,
               top: ThemeElements.pagePadding,
               right: ThemeElements.pagePadding,
             ),
             child: Container(
-              child: SurveySingleItemView(surveyItem: e),
+              child: SurveySingleItemView(surveyItem: item),
             )))
         .toList();
     return result;
@@ -55,8 +55,7 @@ class FirstQuestionPage extends ListPage {
         Container(height: ThemeElements.elementPadding),
         ThemedPrimaryButton(
           themeData,
-          primaryColor: true,
-          text: 'Next',
+          text: 'Finish Survey',
           onPressed: () {
             debugPrint('Sending responses');
             dynamic responses =

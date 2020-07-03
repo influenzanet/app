@@ -76,3 +76,4 @@
 # Test trials during development
 lib/ui/main/survey/trials/
 test/flattened_rendered.dart
+lib/ui/main/survey/models/test_json/
