@@ -168,9 +168,9 @@ packages:
   influenzanet_survey_engine:
     dependency: "direct dev"
     description:
-      path: "C:\\src\\ananth\\dart_projects\\survey-engine.dart\\"
-      relative: false
-    source: path
+      name: influenzanet_survey_engine
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.1.1"
   io:
     dependency: transitive

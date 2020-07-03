@@ -20,7 +20,7 @@ class SurveyNavigator extends StatelessWidget {
       GlobalKey<NavigatorState>();
 
   static void pushMainRoute() {
-    SurveyNavigator.navigatorKey.currentState
+    MainNavigator.navigatorKey.currentState
         .pushReplacementNamed(MainNavigator.homeRoute);
   }
 
