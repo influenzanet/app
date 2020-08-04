@@ -72,4 +72,9 @@ class SurveySingleItemModel {
       presetValue: presetValue ?? this.presetValue,
     );
   }
+
+  @override
+  String toString() {
+    return 'SurveySingleItemModel(_surveySingleItemModel: $_surveySingleItemModel, responseSet: $responseSet, _responseItem: $_responseItem, presetValue: $presetValue)';
+  }
 }
