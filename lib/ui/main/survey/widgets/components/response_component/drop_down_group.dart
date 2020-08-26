@@ -64,21 +64,24 @@ class DropDownGroup extends StatelessWidget {
                       color: Colors.black87,
                     ),
                     onChanged: (newValue) {
-                      dynamic valuePair = {'key': newValue, 'value': null};
-                      dynamic response = Utils.constructSingleChoiceGroupItem(
+                      if (!(preset != null && preset['key'] == newValue)) {
+                        dynamic valuePair = {'key': newValue, 'value': null};
+                        dynamic response = Utils.constructSingleChoiceGroupItem(
+                            groupKey: dropDownGroupComponent['key'],
+                            valuePair: valuePair,
+                            responseItem:
+                                surveySingleItemModel.getResponseItem());
+                        presetValue = Utils.updateSingleChoicePresetValue(
+                          presetValue: presetValue,
                           groupKey: dropDownGroupComponent['key'],
-                          valuePair: valuePair,
-                          responseItem:
-                              surveySingleItemModel.getResponseItem());
-                      presetValue = Utils.updateSingleChoicePresetValue(
-                        presetValue: presetValue,
-                        groupKey: dropDownGroupComponent['key'],
-                        key: newValue,
-                      );
-                      Provider.of<SurveyPageViewProvider>(context,
-                              listen: false)
-                          .setResponded(surveyKey,
-                              presetValue: presetValue, responseItem: response);
+                          key: newValue,
+                        );
+                        Provider.of<SurveyPageViewProvider>(context,
+                                listen: false)
+                            .setResponded(surveyKey,
+                                presetValue: presetValue,
+                                responseItem: response);
+                      }
                     },
                     items: _choiceItemsWidget(dropDownGroupComponent['items']),
                   ),
@@ -91,3 +94,4 @@ class DropDownGroup extends StatelessWidget {
     );
   }
 }
+
