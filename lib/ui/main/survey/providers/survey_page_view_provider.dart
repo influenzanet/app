@@ -1,5 +1,4 @@
 import 'package:InfluenzaNet/ui/main/survey/models/survey_single_item.dart';
-import 'package:InfluenzaNet/ui/main/survey/models/unrendered/qp.dart';
 import 'package:InfluenzaNet/ui/main/survey/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +8,13 @@ class SurveyPageViewProvider with ChangeNotifier {
   List<SurveySingleItemModel> _surveyPage;
   SurveyEngineCoreApi surveyEngineCore;
   dynamic _rendered;
-  SurveyPageViewProvider({List page}) {
-    SurveyGroupItem surveyGroupItem = SurveyGroupItem.fromMap(qpTest);
+  SurveyPageViewProvider({String survey}) {
+    SurveyGroupItem surveyGroupItem = SurveyGroupItem.fromJson(survey);
+
     surveyEngineCore = SurveyEngineCoreApi(surveyDef: surveyGroupItem);
     _rendered = surveyEngineCore.flattenSurveyItemtree();
     _surveyPage = [];
-    initialisePageItems(page ?? _rendered);
+    initialisePageItems(_rendered);
     this._surveyPage = _surveyPage;
   }
 
@@ -46,8 +46,7 @@ class SurveyPageViewProvider with ChangeNotifier {
     surveyEngineCore.setResponse(
         key: key, response: ResponseItem.fromMap(responseItem));
     dynamic reRendered = surveyEngineCore.flattenSurveyItemtree();
-    if(reRendered.toString()!=_rendered.toString())
-    {   
+    if (reRendered.toString() != _rendered.toString()) {
       _rendered = reRendered;
       _surveyPage = Utils.rerenderSurveyPageProvider(_surveyPage, reRendered);
     }

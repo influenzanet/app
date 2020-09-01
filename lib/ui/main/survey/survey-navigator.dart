@@ -1,3 +1,5 @@
+import 'dart:async' show Future;
+
 import 'package:InfluenzaNet/ui/common/widgets/navigators/navigator-page.dart';
 import 'package:InfluenzaNet/ui/main/main-navigator.dart';
 import 'package:InfluenzaNet/ui/main/survey/pages/first-question-page.dart';
@@ -5,6 +7,7 @@ import 'package:InfluenzaNet/ui/main/survey/pages/survey-wecome-page.dart';
 import 'package:InfluenzaNet/ui/main/survey/providers/survey_page_view_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:provider/provider.dart';
 
 class SurveyNavigator extends StatelessWidget {
@@ -24,10 +27,18 @@ class SurveyNavigator extends StatelessWidget {
         .pushNamed(SurveyNavigator.firstQuestionRoute);
   }
 
+  Future<String> loadSurvey() async {
+    return await rootBundle.loadString('assets/data/survey_sample.json');
+  }
+
   @override
   Widget build(BuildContext context) {
+    String surveyJson;
+    loadSurvey().then((value) {
+      surveyJson = value;
+    });
     return ChangeNotifierProvider(
-      create: (context) => SurveyPageViewProvider(),
+      create: (context) => SurveyPageViewProvider(survey: surveyJson),
       child: NavigatorPage(
         navigatorKey: navigatorKey,
         initialRoute: surveyWelcomeRoute,
